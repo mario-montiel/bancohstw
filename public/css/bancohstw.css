@@ -10,11 +10,10 @@ body {
 nav {
   height: 70px;
   width: 100%;
-  background-color: transparent;
+  background: lightgray;
   position: absolute;
   z-index: 103;
   top: 0;
-  margin-top: 50px;
   line-height: 65px; }
 
 .nav-links {
@@ -41,11 +40,6 @@ nav {
   width: 200px;
   top: 0;
   height: 70px; }
-
-.nav-links li:hover {
-  background: #cde1ff; }
-  .nav-links li:hover a {
-    color: #054b6b; }
 
 .landing {
   height: 90vh;
