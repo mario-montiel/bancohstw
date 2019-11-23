@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
