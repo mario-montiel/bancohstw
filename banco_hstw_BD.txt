@@ -2570,16 +2570,6 @@ insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguas
 (2456, 'Juchipila', 32),
 (2457, 'Moyahua de Estrada', 32);
 
--- -----------------------------------------------------
--- Table `banco_hstw`.`colonias`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`colonias` (
-  `colonia_id` INT NOT NULL AUTO_INCREMENT,
-  `colonia_nom` VARCHAR(45) NULL,
-  PRIMARY KEY (`colonia_id`),
-  UNIQUE INDEX `colonia_id_UNIQUE` (`colonia_id`))
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `banco_hstw`.`direcciones`
@@ -2717,6 +2707,7 @@ CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_tarjetas_deb_cred` (
   UNIQUE INDEX `tipos_tarjetas_deb_cred_UNIQUE` (`tipo_tarjeta_deb_cred_id`))
 ENGINE = InnoDB;
 
+INSERT INTO `banco_hstw`.`tipos_tarjetas_deb_cred` (`tipo_tarjeto_cd_nombre`) VALUES ('crédito'),('débito');
 
 -- -----------------------------------------------------
 -- Table `banco_hstw`.`tipos_tarjetas`
