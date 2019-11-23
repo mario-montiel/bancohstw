@@ -1,4 +1,3 @@
-@yield('navbar')
 <div class="container-fluid container_all">
     <nav id="nav" class="nav">
         <div class="hamburger">
@@ -13,3 +12,4 @@
         </ul>
     </nav>
 </div>
+@yield('navbar')
