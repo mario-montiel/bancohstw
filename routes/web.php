@@ -25,3 +25,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 route::get('/gestionar_clientes','crudController@gestionar_clientes');
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
+route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
