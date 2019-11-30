@@ -2,7 +2,7 @@
       <!-- Modal -->
     @section('content')
     <div class="trans" style="display: flex;justify-content: center;">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="display: flex; margin-top:100px;">
+      <button type="button" class="btn btn-primary modalclientes" data-toggle="modal" data-target="#exampleModal">
         Crear cliente
       </button>        
     </div>    
@@ -71,8 +71,8 @@
           </div>
       </div>
       </div>
-
-            <table class="table">
+      <div></div>
+            <table class="table" style="margin-top:20px;">
                 <thead>
                   <tr>
                     <th scope="col">Nombre</th>
@@ -86,13 +86,14 @@
                 <tbody>
                   @foreach($cli as $c)
                   <tr>
+                  <td>{{$c->cliente_id}}</td>
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
                   <td>{{$c->cli_fecha_nac}}</td>
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
-                  <td><a href="{{url('/eliminar', $tipo->id)}}" onclick="return confirm('¿Seguro que quiere eliminar este registro?')" class="btn btn-danger">Eliminar</a></td>
+                  <td><a href="{{url('/eliminar', $c->cliente_id)}}" onclick="return confirm('¿Seguro que quiere eliminar este registro?')" class="btn btn-danger">Eliminar</a></td>
                   <td><button class="btn btn-warning editar" href="">Editar</button></td> 
                   </tr>
                   @endforeach     
