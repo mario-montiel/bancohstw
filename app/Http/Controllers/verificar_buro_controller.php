@@ -9,4 +9,8 @@ class verificar_buro_controller extends Controller
     public function verificar_buro_credito(){
         return view('verificar_buro');
     }
+
+    public function get_clientes(){
+        
+    }
 }
