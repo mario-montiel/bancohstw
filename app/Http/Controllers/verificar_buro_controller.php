@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Usuario;
-
+use App\Modelos\Usuario;
+use DB;
 use Illuminate\Http\Request;
 
 class verificar_buro_controller extends Controller
@@ -12,7 +12,11 @@ class verificar_buro_controller extends Controller
     }
 
     public function get_clientes(){
-        $usuarios = Usuario::all();
+        // $usuarios = Usuario::where();
+        $usuarios = DB::table('usuarios')
+                    ->select('clientes.cli_nom, clientes.ali_fecha_nac')
+                    ->join('clientes', 'clientes.usu_id', 'usuarios.usu_id')
+                    ->get();
         dd($usuarios);
     }
 }
