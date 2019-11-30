@@ -22,11 +22,11 @@ class crudController extends Controller
         $cli->cli_curp=$request->get("curp");
         $cli->cli_rfc=$request->get("rfc");
         $cli->save();
-        return $cli;
+        return redirect("/gestionar_clientes");
     }
     public function eliminar($id)
     {
-        $cliente = ClientesModelo::destroy($id);
-        return redirect("crud/insertar");
+        ClientesModelo::destroy($id);
+        return redirect("/gestionar_clientes");
     }
 }
