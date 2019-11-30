@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+Route::get('/ver-usuarios', 'verificar_buro_controller@get_clientes');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+route::get('/gestionar_clientes','crudController@gestionar_clientes');
+route::post('/guardar','crudController@crear_cliente');
+route::get('/eliminar/{id}','crudController@eliminar');
