@@ -18,6 +18,7 @@ function verificar_buro_cliente(){
         form_cliente_curp.style.display = "none"
         form_cliente_rfc.style.display = "none"
         form_cliente_fecha.style.display = "none"
+        
     }
     else if (tipo_verificacion == "curp"){
         form_nom_fecha.style.display = "none"

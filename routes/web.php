@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+Route::get('/ver-usuarios', 'verificar_buro_controller@get_clientes');
 
 Auth::routes();
 

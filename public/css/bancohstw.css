@@ -12,7 +12,7 @@ nav {
   width: 100%;
   background: lightgray;
   position: absolute;
-  z-index: 103;
+  z-index: 9999;
   top: 0;
   line-height: 65px; }
 
@@ -72,8 +72,9 @@ nav {
     transition: .5s all; }
   nav {
     height: 70px;
-    position: relative;
-    width: 100%; }
+    position: absolute;
+    width: 100%;
+    top: 0; }
   .hamburger {
     position: absolute;
     cursor: pointer;
