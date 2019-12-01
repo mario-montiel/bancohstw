@@ -5,7 +5,7 @@ use App\Modelos\ClientesModelo;
 class prestamos_controller extends Controller
 {
     public function ver_prestamos_view(){
-        return view('pdf.php');
+        return view('pdf');
     }
 
 }

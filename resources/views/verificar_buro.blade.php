@@ -20,14 +20,15 @@
             <form>
             <div class="row">
                 <div class="col">
-                    <select class="selectpicker select_clientes" data-show-subtext="true" data-live-search="true">
+                    <!-- <select class="selectpicker select_clientes" data-show-subtext="true" data-live-search="true">
                         <option data-subtext="Rep California">Tom Foolery</option>
                         <option data-subtext="Sen California">Bill Gordon</option>
                         <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
                         <option data-subtext="Rep Alabama">Mario Flores</option>
                         <option data-subtext="Rep Alaska">Don Young</option>
                         <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
-                    </select>
+                    </select> -->
+                    <input id="verificar_nom_client" type="text" class="form-control" placeholder="Ingrese el nombre del cliente">
                 </div>
                     
                 <div class="col">

@@ -1,4 +1,5 @@
 // alert("hola baby")
+
 var form_nom_fecha = document.getElementById("form_nom_fecha")
 var form_cliente_fecha = document.getElementById("form_cliente")
 var form_cliente_curp = document.getElementById("form_cliente_curp")
@@ -12,6 +13,7 @@ form_cliente_rfc.style.display = "none"
 
 function verificar_buro_cliente(){
     var tipo_verificacion = document.getElementById("selector_cliente").value
+    var input_verificar_nom_client = document.getElementById("verificar_nom_client")
     
     if (tipo_verificacion == "f_n_f"){
         form_nom_fecha.style.display = "block"
@@ -33,8 +35,14 @@ function verificar_buro_cliente(){
         form_cliente_fecha.style.display = "none"
     }
 
+    if (input_verificar_nom_client.length != 0){
+        alert("hola")
+    }
+
 }
 
+
+    
 
 $('.my-select').selectpicker();
 
