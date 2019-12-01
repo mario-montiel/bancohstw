@@ -20,3 +20,10 @@ Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_c
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', 'verificar_buro_controller@admin');
+
+//Rutas de administrador
+Route::group(['middleware' => ['userType', 'auth']], function () {
+    Route::get('/admin', 'verificar_buro_controller@admin');
+});
