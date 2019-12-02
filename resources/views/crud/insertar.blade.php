@@ -77,6 +77,7 @@
                 <thead>
                   <tr>
                     <th>ID</th>
+                    <th scope="col">Usuario</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido paterno</th>
                     <th scope="col">Apellido materno</th>
@@ -91,6 +92,7 @@
                   @foreach($cli as $c)
                   <tr>
                   <td id="id"></td>
+                  <td>{{$c->usu_id}}</td>
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
