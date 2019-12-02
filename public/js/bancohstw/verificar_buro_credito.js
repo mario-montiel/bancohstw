@@ -68,6 +68,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             "<th> Fecha de Nacimiento </th>"+
                                                             "<th> CURP </th>"+
                                                             "<th> RFC </th>"+
+                                                            "<th> Domicilio(s) </th>" +
                                                         "</tr>"+
                                                     "<tbody>" +
                                                         "<tr> <td>" +
@@ -76,6 +77,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
+                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table> " +
@@ -119,6 +121,7 @@ $('.buscador_verif_curp').on('keyup',function(e){
                                                             "<th> Fecha de Nacimiento </th>"+
                                                             "<th> CURP </th>"+
                                                             "<th> RFC </th>"+
+                                                            "<th>Domicilio(s)</th>"
                                                         "</tr>"+
                                                     "<tbody>" +
                                                         "<tr> <td>" +
@@ -127,6 +130,7 @@ $('.buscador_verif_curp').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
+                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table> " +
@@ -178,6 +182,7 @@ $('.buscador_verif_rfc').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
+                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" + 
                                                             
                                                         "</tr>"+
                                                     "</tbody>" +
@@ -194,6 +199,13 @@ $('.buscador_verif_rfc').on('keyup',function(e){
 });
 
 // DOMICILIOS
+var button = $(event.relatedTarget) // Button that triggered the modal
+var profesor = button.data('profesor') 
+var taller = button.data('taller')
+var modal = $(this)
+modal.find('.modal-body #idActualizar').val(id)
+modal.find('.modal-body #profesorActualizar').val(profesor)
+modal.find('.modal-body #tallerActualizar').val(taller)
 // $('.ver_domicilios').change(function(e){
 //     e.preventDefault();
 //         $value = $('.buscador_verif_curp').val();

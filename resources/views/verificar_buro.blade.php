@@ -34,7 +34,8 @@
                     <input id="veri_fecha_cli" type="date" class="form-control">
                 </div>
             </div>
-        </div>  
+        </div>
+
 
         <div id="form_cliente_curp" class="container-fluid mt-5">
             <div class="row">
@@ -77,36 +78,43 @@
                         @endforeach
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
-        </div>  
-
-
-                <!-- Botón en HTML (lanza el modal en Bootstrap) -->
-            <button id="botones" href="#victorModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Abrir ventana modal</button>
             
-            <!-- Modal / Ventana / Overlay en HTML -->
-            <div id="victorModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title">¿Estás seguro?</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>¿Seguro que quieres borrar este elemento?</p>
-                            <p class="text-warning"><small>Si lo borras, nunca podrás recuperarlo.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-danger">Eliminar</button>
-                        </div>
-                    </div>
+            <button id="botones" type="button" class="btn btn-primary" data-toggle="modal" data-target="#domicilios">Large modal</button>
+
+            <div id="domicilios" class="modal fade bd-example-modal-lg domicilios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Domicilios</center> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div> 
+                <div class="modal-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                </div>
+            </div>
+            </div>
 
 
-
+        </div>
+                 
     </div>
 </div>
