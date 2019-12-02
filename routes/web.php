@@ -22,6 +22,22 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin', 'verificar_buro_controller@admin');
+
+/*
+|--------------------------------------------------------------------------
+| Rutas de administrador
+|--------------------------------------------------------------------------
+|
+| En este grupo de rutas se colocaran todas las rutas a las que solo
+| tiene acceso el administrador, tengan cuidado de añadir una ruta
+| con un proceso que el usuario comun necesita hacer. Los quiero
+|
+*/
+Route::group(['middleware' => ['userType', 'auth']], function () {
+    //Ejemplo:
+    //Route::get('/admin', 'admin@admin');
+});
 //>>>>>>>>>>>>rutas gestionar cliente
 route::get('/gestionar_clientes','crudController@gestionar_clientes');
 route::post('/guardar','crudController@crear_cliente');
