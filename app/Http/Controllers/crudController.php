@@ -8,7 +8,7 @@ use App\Modelos\ClientesModelo;
 class crudController extends Controller
 {
     public function gestionar_clientes(){
-        $cli = ClientesModelo::paginate(5);
+        $cli = ClientesModelo::all();
         return view('crud/insertar',compact('cli'));
     }
     
@@ -32,7 +32,7 @@ class crudController extends Controller
     }
     public function editar(Request $request, $id){
         $id = $request->get("id");
-        $cli =  ClientesModelo::find($id);
+        $cli =  ClientesModelo::findOrFail($id);
         $cli->cli_nom=$request->get("nombre");
         $cli->usu_id=$request->get("usuario");
         $cli->cli_ap_paterno=$request->get("appaterno");
