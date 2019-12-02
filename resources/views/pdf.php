@@ -1,6 +1,6 @@
 <?php
 
-include "fpdf/fpdf.php";
+include "C:/xampp/htdocs/bancohstw/FPDF/fpdf.php";
 
 $banco_nombre = "AXEL ALBERTO SERNA ROMAN";
 $banco_anios = "3 AÑOS";
@@ -24,9 +24,9 @@ $pdf->SetFont('Arial','B',10);
 
 
 $pdf->Rect(5,5,200,286,'D');
-$pdf->image("img/hsbc_logo.png",15,15,40,8,"PNG");
-$pdf->image("img/white.png",15,15,25,8,"PNG");
-$pdf->image("img/hstw_logo.JPG",41.2,11,13.5,13.5,"JPG");
+$pdf->image("C:/xampp/htdocs/bancohstw/public/img/hsbc_logo.png",15,15,40,8,"PNG");
+$pdf->image("C:/xampp/htdocs/bancohstw/public/img/white.png",15,15,25,8,"PNG");
+$pdf->image("C:/xampp/htdocs/bancohstw/public/img/hstw_logo.JPG",41.2,11,13.5,13.5,"JPG");
 $pdf->setXY(14,13.5);
 $pdf->SetFont('Arial','B',24);
 $pdf->Cell(150,12,utf8_decode('HSTW'),0,1);
@@ -117,6 +117,6 @@ $pdf->Cell(150,12,utf8_decode('información contenida en el mismo y que le ha si
 
 
 
-$pdf->Output('yourfilename.pdf','I');
+$pdf->Output('yourfilename.pdf','D');
 
 ?>

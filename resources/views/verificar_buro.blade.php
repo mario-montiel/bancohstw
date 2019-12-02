@@ -17,7 +17,6 @@
         </div>
 
         <div id="form_nom_fecha" class="container-fluid mt-5">
-            <form>
             <div class="row">
                 <div class="col">
                     <!-- <select class="selectpicker select_clientes" data-show-subtext="true" data-live-search="true">
@@ -28,103 +27,86 @@
                         <option data-subtext="Rep Alaska">Don Young</option>
                         <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
                     </select> -->
-                    <input id="verificar_nom_client" type="text" class="form-control" placeholder="Ingrese el nombre del cliente">
+                    <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre del cliente">
                 </div>
                     
                 <div class="col">
-                    <input type="date" class="form-control" placeholder="Seleccione la fecha de nacimiento del cliente">
+                    <input id="veri_fecha_cli" type="date" class="form-control">
                 </div>
             </div>
-            </form>
-            <center><button class="btn btn-primary mt-5" type="button">Siguiente</button></center>
-            
-        </div>
-
+        </div>  
 
         <div id="form_cliente_curp" class="container-fluid mt-5">
-            <form>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Ingrese el CURP del cliente">
+                <input name="curp_cliente" type="search" class="form-control buscador_verif_curp" placeholder="Ingrese el CURP del cliente">
                 </div>
-            </div>
-            </form>          
+            </div>         
         </div>
 
         <div id="form_cliente_rfc" class="container-fluid mt-5">
-            <form>
             <div class="row">
                 <div class="col">
-                    <input type="text" class="form-control" placeholder="Ingrese el RFC del cliente">
+                    <input name="rfc_cliente" type="search" class="form-control buscador_verif_rfc" placeholder="Ingrese el RFC del cliente">
+                </div>
+            </div>        
+        </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered table_verif_cli">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha de Nacimiento</th>
+                                <th>CURP</th>
+                                <th>RFC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($usuarios as $usu)
+                            <tr>
+                                <td>{{$usu->cliente_id}}</td>
+                                <td>{{$usu->cli_nom}}</td>
+                                <td>{{$usu->ali_fecha_nac}}</td>
+                                <td>{{$usu->cli_curp}}</td>
+                                <td>{{$usu->cli_rfc}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    
                 </div>
             </div>
-            </form>          
-        </div>
+        </div>  
 
 
-        
-        <div id="form_cliente" class="container-fluid mt-5 ">
-            <form class="needs-validation" novalidate>
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                    <label for="validationCustom01">First name</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                    <label for="validationCustom02">Last name</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                    <label for="validationCustomUsername">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <!-- Botón en HTML (lanza el modal en Bootstrap) -->
+            <button id="botones" href="#victorModal" role="button" class="btn btn-large btn-primary" data-toggle="modal">Abrir ventana modal</button>
+            
+            <!-- Modal / Ventana / Overlay en HTML -->
+            <div id="victorModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">¿Estás seguro?</h4>
                         </div>
-                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                        <div class="invalid-feedback">
-                        Please choose a username.
+                        <div class="modal-body">
+                            <p>¿Seguro que quieres borrar este elemento?</p>
+                            <p class="text-warning"><small>Si lo borras, nunca podrás recuperarlo.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-danger">Eliminar</button>
                         </div>
                     </div>
-                    </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                    <label for="validationCustom03">City</label>
-                    <input type="text" class="form-control" id="validationCustom03" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                    </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                    <label for="validationCustom04">State</label>
-                    <select class="custom-select" id="validationCustom04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a valid state.
-                    </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                    <label for="validationCustom05">Zip</label>
-                    <input type="text" class="form-control" id="validationCustom05" required>
-                    <div class="invalid-feedback">
-                        Please provide a valid zip.
-                    </div>
-                    </div>
-                </div>
-                <center><button class="btn btn-primary mt-4" width="50%" type="submit">Submit form</button></center>
-                
-            </form>            
-        </div>
-                 
+            </div> 
+
+
+
     </div>
 </div>
-
-<script src="js/bancohstw/verificar_buro_credito.js"></script>

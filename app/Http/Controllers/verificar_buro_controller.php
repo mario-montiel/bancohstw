@@ -8,24 +8,47 @@ use Illuminate\Http\Request;
 class verificar_buro_controller extends Controller
 {
     public function verificar_buro_credito(){
-        return view('verificar_buro');
+        $usuarios = DB::table('usuarios')
+                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
+                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+                    ->get();
+        return view('verificar_buro', compact('usuarios'));
     }
 
-    public function get_clientes(){
-
-        $datos = 1;
-        // $usuarios = Usuario::where();
-        $usuarios = DB::table('usuarios')
-                    ->select('clientes.cliente_id')
-                    ->select('usuarios.usu_fecha_reg_bc')
-                    ->select('clientes.cli_nom')
-                    ->select('clientes.ali_fecha_nac')
-                    ->select('clientes.cli_rfc')
+    public function buscar_clientes(Request $request){
+        $usuario = DB::table('usuarios')
+                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
+                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
                     ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-                    ->where('usuarios.usu_id like "%'. $datos . "%'")
+                    ->where('cli_nom', 'LIKE', '%'.$request->verificar_nom_client.'%')
+                    ->orWhere('cli_curp', 'LIKE', '%'.$request->verificar_nom_client.'%')
+                    ->orWhere('cli_rfc', 'LIKE', '%'.$request->verificar_nom_client.'%')
+                    ->orWhere('ali_fecha_nac', 'LIKE', '%'.$request->verificar_nom_client.'%')
                     ->get();
-        dd($usuarios);
 
-        // $sql = "SELECT * FROM usuarios WHERE clientes"
+        return $usuario;
+    }
+
+    public function buscar_clientes_curp(Request $request){
+        $usuario = DB::table('usuarios')
+                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
+                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+                    ->orWhere('cli_curp', 'LIKE', '%'.$request->buscar_clientes_curp.'%')
+                    ->get();
+
+        return $usuario;
+    }
+
+    public function buscar_clientes_rfc(Request $request){
+        $usuario = DB::table('usuarios')
+                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
+                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+                    ->orWhere('cli_rfc', 'LIKE', '%'.$request->buscar_clientes_rfc.'%')
+                    ->get();
+
+        return $usuario;
     }
 }
