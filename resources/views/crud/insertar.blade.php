@@ -83,6 +83,8 @@
                     <th scope="col">Fecha de nacimiento</th>
                     <th scope="col">CURP</th>
                     <th scope="col">RFC</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
