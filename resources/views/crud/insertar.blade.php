@@ -76,6 +76,7 @@
             <table class="table">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido paterno</th>
                     <th scope="col">Apellido materno</th>
@@ -87,7 +88,7 @@
                 <tbody>
                   @foreach($cli as $c)
                   <tr>
-                  <td id="id">{{$c->cliente_id}}</td>
+                  <td id="id"></td>
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
@@ -95,15 +96,8 @@
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
                   <td><a href="{{url('/eliminar', $c->cliente_id)}}" onclick="return confirm('¿Seguro que quiere eliminar este registro?')" class="btn btn-danger">Eliminar</a></td>
-                  <td><button class="btn btn-warning editar" id="editar"  data-toggle="modal" data-target="#editar_cliente" href="" >Editar</button></td> 
-                  </tr>
-                  @endforeach     
-                </tbody>
-              </table>
-        </div>
-       
-        {{-- MODAL EDITAR CLIENTE --}}    
-                <div class="modal fade" id="editar_cliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <td><button class="btn btn-warning editar" id="editar" data-toggle="modal" data-target="#editar_cliente{{$c->cliente_id}}" href="" >Editar</button>
+                  <div class="modal fade" id="editar_cliente{{$c->cliente_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -113,51 +107,52 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                             </div>
-                      <form action="/editar" method="POST">
+                        <form action="{{url('/editar',$c->cliente_id)}}" method="POST">
                               {{csrf_field()}}
                           <div class="modal-body">
-                                  
+                                
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}">
                               <div class="input-group mb-3">
                                   <div class="input-group-prepend">
                                       <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
                                   </div>
-                                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre">
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" value="{{$c->cli_nom}}">
                                   </div>
                               <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                                     </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->usu_id}}">
                               </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                               <span class="input-group-text" id="inputGroup-sizing-default">Apellido paterno</span>
                                           </div>
-                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="appaterno">
+                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="appaterno" value="{{$c->cli_ap_paterno}}">
                                       </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                               <span class="input-group-text" id="inputGroup-sizing-default">Apellido materno</span>
                                           </div>
-                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="apmaterno">
+                                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="apmaterno" value="{{$c->cli_ap_materno}}">
                                       </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                               <span class="input-group-text" id="inputGroup-sizing-default">Fecha de nacimiento</span>
                                           </div>
-                                              <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="fnac">
+                                              <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="fnac" value="{{$c->cli_fecha_nac}}">
                                           </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                                 <span class="input-group-text" id="inputGroup-sizing-default">CURP</span>
                                           </div>
-                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="curp">
+                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="curp" value="{{$c->cli_curp}}">
                                       </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                               <span class="input-group-text" id="inputGroup-sizing-default">RFC</span>
                                           </div>
-                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc">
+                                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc" value="{{$c->cli_rfc}}">
                                       </div>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                       
@@ -167,6 +162,17 @@
                     </div>
                 </div>
                 </div>
+                
+                
+                </td> 
+                  </tr>
+                  @endforeach     
+                </tbody>
+              </table>
+        </div>
+       
+        {{-- MODAL EDITAR CLIENTE --}}    
+              
         {{-- <ul class="pagination">
                 <li class="page-item">
                   <a class="page-link" href="#" aria-label="Previous">
