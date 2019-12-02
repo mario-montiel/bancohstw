@@ -12,7 +12,11 @@ class verificar_buro_controller extends Controller
                     ->select('*')
                     ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
                     ->join('direcciones_has_clientes', 'direcciones_has_clientes.clientes_cliente_id', '=', 'clientes.cliente_id')
-                    ->join('direcciones', 'direcciones.direccion_id', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('direcciones', 'direcciones.direccion_id', '=', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('ciudades', 'ciudades.ciudad_id', '=', 'direcciones.ciudad_id')
+                    ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
+                    ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
+                    ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
                     ->get();
         return view('verificar_buro', compact('usuarios'));
     }
@@ -20,11 +24,14 @@ class verificar_buro_controller extends Controller
 
     public function buscar_clientes(Request $request){
         $usuario = DB::table('usuarios')
-                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
-                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->select('*')
                     ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
                     ->join('direcciones_has_clientes', 'direcciones_has_clientes.clientes_cliente_id', '=', 'clientes.cliente_id')
-                    ->join('direcciones', 'direcciones.direccion_id', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('direcciones', 'direcciones.direccion_id', '=', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('ciudades', 'ciudades.ciudad_id', '=', 'direcciones.ciudad_id')
+                    ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
+                    ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
+                    ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
                     ->where('cli_nom', 'LIKE', '%'.$request->verificar_nom_client.'%')
                     ->orWhere('cli_curp', 'LIKE', '%'.$request->verificar_nom_client.'%')
                     ->orWhere('cli_rfc', 'LIKE', '%'.$request->verificar_nom_client.'%')
@@ -36,9 +43,14 @@ class verificar_buro_controller extends Controller
 
     public function buscar_clientes_curp(Request $request){
         $usuario = DB::table('usuarios')
-                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
-                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->select('*')
                     ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+                    ->join('direcciones_has_clientes', 'direcciones_has_clientes.clientes_cliente_id', '=', 'clientes.cliente_id')
+                    ->join('direcciones', 'direcciones.direccion_id', '=', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('ciudades', 'ciudades.ciudad_id', '=', 'direcciones.ciudad_id')
+                    ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
+                    ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
+                    ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
                     ->orWhere('cli_curp', 'LIKE', '%'.$request->buscar_clientes_curp.'%')
                     ->get();
 
@@ -47,11 +59,14 @@ class verificar_buro_controller extends Controller
 
     public function buscar_clientes_rfc(Request $request){
         $usuario = DB::table('usuarios')
-                    ->select('clientes.cliente_id', 'usuarios.usu_fecha_reg_bc', 'clientes.cli_nom', 
-                    'clientes.ali_fecha_nac', 'clientes.cli_curp', 'clientes.cli_rfc')
+                    ->select('*')
                     ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
                     ->join('direcciones_has_clientes', 'direcciones_has_clientes.clientes_cliente_id', '=', 'clientes.cliente_id')
-                    ->join('direcciones', 'direcciones.direccion_id', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('direcciones', 'direcciones.direccion_id', '=', 'direcciones_has_clientes.direcciones_direccion_id')
+                    ->join('ciudades', 'ciudades.ciudad_id', '=', 'direcciones.ciudad_id')
+                    ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
+                    ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
+                    ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
                     ->orWhere('cli_rfc', 'LIKE', '%'.$request->buscar_clientes_rfc.'%')
                     ->get();
 

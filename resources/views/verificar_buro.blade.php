@@ -5,7 +5,7 @@
 
 <div class="container mt-5">
     <div class="form pt-5">
-
+    {{ csrf_field() }}
         <div class="container-fluid mt-5">
             <center><h1>BURÓ DE CREDITO</h1></center>
             <select id="selector_cliente" class="form-control mt-4" name="" onchange="verificar_buro_cliente();">
@@ -40,7 +40,7 @@
         <div id="form_cliente_curp" class="container-fluid mt-5">
             <div class="row">
                 <div class="col">
-                <input name="curp_cliente" type="search" class="form-control buscador_verif_curp" placeholder="Ingrese el CURP del cliente">
+                <input id="buscador_verif_curp" name="curp_cliente" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
                 </div>
             </div>         
         </div>
@@ -48,7 +48,7 @@
         <div id="form_cliente_rfc" class="container-fluid mt-5">
             <div class="row">
                 <div class="col">
-                    <input name="rfc_cliente" type="search" class="form-control buscador_verif_rfc" placeholder="Ingrese el RFC del cliente">
+                    <input id="buscador_verif_rfc" name="rfc_cliente" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
                 </div>
             </div>        
         </div>
@@ -81,9 +81,8 @@
                 </div>
             </div>
             
-            <button id="botones" type="button" class="btn btn-primary" data-toggle="modal" data-target="#domicilios">Large modal</button>
 
-            <div id="domicilios" class="modal fade bd-example-modal-lg domicilios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div id="domicilios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -93,21 +92,43 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    
+                <div class="form-group">
+                    <label for="codigo" class="control-label">Cliente:</label>
+                    <input disabled type="text" class="form-control" id="cliente" name="cliente" required maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Calle:</label>
+                    <input disabled type="text" class="form-control" id="calle" name="calle" required maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label for="moneda" class="control-label">Numero Exterior:</label>
+                    <input disabled type="text" class="form-control" id="numero_ext" name="numero_ext" required maxlength="3">
+                </div>
+                <div class="form-group">
+                    <label for="capital" class="control-label">Colonia:</label>
+                    <input disabled type="text" class="form-control" id="colonia" name="colonia" required maxlength="30"> 
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Ciudad:</label>
+                    <input disabled type="text" class="form-control" id="ciudad" name="ciudad" required maxlength="15">
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Estado:</label>
+                    <input disabled type="text" class="form-control" id="estado" name="estado" required maxlength="15">
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Codigo Postal:</label>
+                    <input disabled type="text" class="form-control" id="codigo_postal" name="codigo_postal" required maxlength="15">
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Codigo Postal:</label>
+                    <input disabled type="text" class="form-control" id="mensaje" name="mensaje" required maxlength="15">
+                </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
                 </div>
             </div>

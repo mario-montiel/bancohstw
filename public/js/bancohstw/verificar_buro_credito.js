@@ -59,7 +59,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                         $.each(data, function(i, item) {
                             console.log(item)
                                 changos = " <div class='container'> "+
-                                            "<center><h3> PERSONAS </h3></center>" +
+                                            "<center><h3> CLIENTE </h3></center>" +
                                                 "<table class='table table-bordered'> "+
                                                     "<thead>"+
                                                         "<tr>"+
@@ -77,12 +77,33 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
-                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
+                                                            '<center><button class="btn btn-success btn_obtener_datos" id="btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><img id="update" src="">Domicilios</button></center>' +
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table> " +
                                             "</div>";
-                                $('.table_verif_cli').append(changos);
+                                            $('#domicilios').on('show.bs.modal', function (event) {
+                                                // DOMICILIOS
+                                                var button = $(event.relatedTarget) // Button that triggered the modal
+                                                var cliente = button.data('cliente') 
+                                                var calle = button.data('calle')
+                                                var num_ext = button.data('numero')
+                                                var colonia = button.data('colonia')
+                                                var ciudad = button.data('ciudad')
+                                                var estado = button.data('estado')
+                                                var codigo_postal = button.data('codigo_postal')
+                                                var mensaje = button.data('mensaje')
+                                                var modal = $(this)
+                                                modal.find('.modal-body #cliente').val(cliente)
+                                                modal.find('.modal-body #calle').val(calle)
+                                                modal.find('.modal-body #numero_ext').val(num_ext)
+                                                modal.find('.modal-body #colonia').val(colonia)
+                                                modal.find('.modal-body #ciudad').val(ciudad)
+                                                modal.find('.modal-body #estado').val(estado)
+                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
+                                                modal.find('.modal-body #mensaje').val(mensaje)
+                                            });
+                                            $('.table_verif_cli').append(changos);
                         });
                     }
 				},
@@ -94,15 +115,15 @@ $('#verificar_nom_client').on('keyup',function(e){
 });
 
 // CURP
-$('.buscador_verif_curp').on('keyup',function(e){
-    if ($('.buscador_verif_curp').val() == ""){
+$('#buscador_verif_curp').on('keyup',function(e){
+    if ($('#buscador_verif_curp').val() == ""){
         $('.table_verif_cli').css("display", "none"); 
     }
     else{
         $('.table_verif_cli').css("display", "block"); 
     }
         e.preventDefault();
-            $value = $('.buscador_verif_curp').val();
+            $value = $('#buscador_verif_curp').val();
 			$.ajax({
 				type: 'GET',
 				url:  '/buscar_clientes_curp',
@@ -113,6 +134,7 @@ $('.buscador_verif_curp').on('keyup',function(e){
                         $.each(data, function(i, item) {
                             console.log(item)
                                 changos = " <div class='container'> "+
+                                                "<center><h3> CLIENTE </h3></center>" +
                                                 "<table class='table table-bordered'> "+
                                                     "<thead>"+
                                                         "<tr>"+
@@ -121,7 +143,7 @@ $('.buscador_verif_curp').on('keyup',function(e){
                                                             "<th> Fecha de Nacimiento </th>"+
                                                             "<th> CURP </th>"+
                                                             "<th> RFC </th>"+
-                                                            "<th>Domicilio(s)</th>"
+                                                            "<th>Domicilio(s)</th>" +
                                                         "</tr>"+
                                                     "<tbody>" +
                                                         "<tr> <td>" +
@@ -130,12 +152,33 @@ $('.buscador_verif_curp').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
-                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
+                                                            "<center><button class='btn btn-success btn_obtener_datos' id='btn_obtener_datos' value="+item+" data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table> " +
                                             "</div>";
-                                $('.table_verif_cli').append(changos);
+                                            $('#domicilios').on('show.bs.modal', function (event) {
+                                                // DOMICILIOS
+                                                var button = $(event.relatedTarget) // Button that triggered the modal
+                                                var cliente = button.data('cliente') 
+                                                var calle = button.data('calle')
+                                                var num_ext = button.data('numero')
+                                                var colonia = button.data('colonia')
+                                                var ciudad = button.data('ciudad')
+                                                var estado = button.data('estado')
+                                                var codigo_postal = button.data('codigo_postal')
+                                                var mensaje = button.data('mensaje')
+                                                var modal = $(this)
+                                                modal.find('.modal-body #cliente').val(cliente)
+                                                modal.find('.modal-body #calle').val(calle)
+                                                modal.find('.modal-body #numero_ext').val(num_ext)
+                                                modal.find('.modal-body #colonia').val(colonia)
+                                                modal.find('.modal-body #ciudad').val(ciudad)
+                                                modal.find('.modal-body #estado').val(estado)
+                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
+                                                modal.find('.modal-body #mensaje').val(mensaje)
+                                            });
+                                            $('.table_verif_cli').append(changos);
                         });
                     }
 				},
@@ -146,15 +189,15 @@ $('.buscador_verif_curp').on('keyup',function(e){
 });
 
 // RFC
-$('.buscador_verif_rfc').on('keyup',function(e){
-    if ($('.buscador_verif_rfc').val() == ""){
+$('#buscador_verif_rfc').on('keyup',function(e){
+    if ($('#buscador_verif_rfc').val() == ""){
         $('.table_verif_cli').css("display", "none"); 
     }
     else{
         $('.table_verif_cli').css("display", "block"); 
     }
         e.preventDefault();
-            $value = $('.buscador_verif_rfc').val();
+            $value = $('#buscador_verif_rfc').val();
 			$.ajax({
 				type: 'GET',
 				url:  '/buscar_clientes_rfc',
@@ -165,6 +208,7 @@ $('.buscador_verif_rfc').on('keyup',function(e){
                         $.each(data, function(i, item) {
                             console.log(item)
                                 changos = " <div class='container'> "+
+                                                "<center><h3> CLIENTE </h3></center>" +
                                                 "<table class='table table-bordered'> "+
                                                     "<thead>"+
                                                         "<tr>"+
@@ -182,13 +226,36 @@ $('.buscador_verif_rfc').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
-                                                            "<center><button data-id="+item.usu_id+" data-calle="+item.direccion_calle+" data-numero="+item.direccion_num_ext+" data-colonia="+item.direccion_colonia+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" + 
+                                                            "<center><button class='btn btn-success btn_obtener_datos' id='btn_obtener_datos' value="+item+" data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Domicilios</button></center>" +
+
                                                             
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table> " +
                                             "</div>";
-                                $('.table_verif_cli').append(changos);
+
+                                            $('#domicilios').on('show.bs.modal', function (event) {
+                                                // DOMICILIOS
+                                                var button = $(event.relatedTarget) // Button that triggered the modal
+                                                var cliente = button.data('cliente') 
+                                                var calle = button.data('calle')
+                                                var num_ext = button.data('numero')
+                                                var colonia = button.data('colonia')
+                                                var ciudad = button.data('ciudad')
+                                                var estado = button.data('estado')
+                                                var codigo_postal = button.data('codigo_postal')
+                                                var mensaje = button.data('mensaje')
+                                                var modal = $(this)
+                                                modal.find('.modal-body #cliente').val(cliente)
+                                                modal.find('.modal-body #calle').val(calle)
+                                                modal.find('.modal-body #numero_ext').val(num_ext)
+                                                modal.find('.modal-body #colonia').val(colonia)
+                                                modal.find('.modal-body #ciudad').val(ciudad)
+                                                modal.find('.modal-body #estado').val(estado)
+                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
+                                                modal.find('.modal-body #mensaje').val(mensaje)
+                                            });
+                                            $('.table_verif_cli').append(changos);
                         });
                     }
 				},
@@ -198,14 +265,36 @@ $('.buscador_verif_rfc').on('keyup',function(e){
             });
 });
 
-// DOMICILIOS
-var button = $(event.relatedTarget) // Button that triggered the modal
-var profesor = button.data('profesor') 
-var taller = button.data('taller')
-var modal = $(this)
-modal.find('.modal-body #idActualizar').val(id)
-modal.find('.modal-body #profesorActualizar').val(profesor)
-modal.find('.modal-body #tallerActualizar').val(taller)
+// $('#btn_obtener_datos').click(function(e){
+//     // $('#btn_obtener_datos').val()
+//     alert("hhhh")
+// });
+// $(document).on('show.bs.modal','#domicilios', function () {
+//     alert('hi');
+//   })
+
+
+// $('#domicilios').modal("show");
+// 	var button = $(event.relatedTarget) // Botón que activó el modal
+//     var id = button.data('id') 
+//     $('#botonPrueba').click(function(e){
+//         alert("hhhh")
+//         console.log(id)
+//     });
+// });
+
+$('#domicilios').on('show.bs.modal', function (event) {
+    // DOMICILIOS
+    console.log("hola")
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var id = button.data('usu_id') 
+    var calle = button.data('calle')
+    console.log(calle)
+    var modal = $(this)
+    modal.find('.modal-body #idCliente').val(id)
+    modal.find('.modal-body #calleCliente').val(calle)
+    // modal.find('.modal-body #tallerActualizar').val(taller)
+});
 // $('.ver_domicilios').change(function(e){
 //     e.preventDefault();
 //         $value = $('.buscador_verif_curp').val();
