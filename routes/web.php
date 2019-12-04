@@ -50,3 +50,6 @@ route::post('/editar/{id}','crudController@editar');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>><<<>>>>>>
 
 route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+
+// rutas iony
+route::get('/tarjetas', 'tarjetasController@tarjetas');
