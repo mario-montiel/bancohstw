@@ -1,6 +1,6 @@
-<div class="card" style="width: 20rem;">
+<div class="card ml-4" style="width: 20rem;">
   <div class="card-body">
-    <h5 class="font-weight-bold mb-3">Panel title</h5>
+    <h5 class="font-weight-bold mb-3">Text</h5>
     <p class="mb-0">Some quick example text to build on the panel title and make up the bulk of the panel's content.</p>
   </div>
   <ul class="list-group list-group-flush">
