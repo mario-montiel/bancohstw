@@ -17,6 +17,9 @@ class verificar_buro_controller extends Controller
                     ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
                     ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
                     ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
+                    ->join('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
+                    ->join('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
+                    ->join('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
                     ->get();
         return view('verificar_buro', compact('usuarios'));
     }
@@ -32,6 +35,9 @@ class verificar_buro_controller extends Controller
                     ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
                     ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
                     ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
+                    ->join('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
+                    ->join('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
+                    ->join('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
                     ->where('cli_nom', 'LIKE', '%'.$request->verificar_nom_client.'%')
                     ->orWhere('cli_curp', 'LIKE', '%'.$request->verificar_nom_client.'%')
                     ->orWhere('cli_rfc', 'LIKE', '%'.$request->verificar_nom_client.'%')
@@ -51,6 +57,9 @@ class verificar_buro_controller extends Controller
                     ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
                     ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
                     ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
+                    ->join('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
+                    ->join('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
+                    ->join('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
                     ->orWhere('cli_curp', 'LIKE', '%'.$request->buscar_clientes_curp.'%')
                     ->get();
 
@@ -67,6 +76,9 @@ class verificar_buro_controller extends Controller
                     ->join('estados', 'estados.estado_id', '=', 'ciudades.estado_id')
                     ->join('paises', 'paises.pais_id', '=', 'estados.pais_id')
                     ->join('mensajes', 'mensajes.mensaje_id', '=', 'clientes.cliente_id')
+                    ->join('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
+                    ->join('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
+                    ->join('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
                     ->orWhere('cli_rfc', 'LIKE', '%'.$request->buscar_clientes_rfc.'%')
                     ->get();
 

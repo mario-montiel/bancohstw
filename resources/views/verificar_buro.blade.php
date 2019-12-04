@@ -135,6 +135,91 @@
             </div>
 
 
+
+
+            <div id="creditos_bancarios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Créditos Bancarios</center> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                <div class="form-group">
+                    <label for="codigo" class="control-label">Nombre de la Institución:</label>
+                    <input disabled type="text" class="form-control" id="nombre_institucion" name="nombre_institucion" required maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Código Identificador:</label>
+                    <input disabled type="text" class="form-control" id="codigo" name="codigo" required maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label for="moneda" class="control-label">Descripción:</label>
+                    <input disabled type="text" class="form-control" id="descripcion" name="descripcion" required maxlength="3">
+                </div>
+                <div class="form-group">
+                    <label for="capital" class="control-label">Estado:</label>
+                    <input disabled type="text" class="form-control" id="estado" name="estado" required maxlength="30"> 
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Comportamiento:</label>
+                    <input disabled type="text" class="form-control" id="comportamiento" name="comportamiento" required maxlength="15">
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+
+
+            <div id="creditos_no_bancarios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Créditos No Bancarios</center> </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                <div class="form-group">
+                    <label for="codigo" class="control-label">Nombre de la Institución:</label>
+                    <input disabled type="text" class="form-control" id="nombre_institucion0" name="nombre_institucion0" required maxlength="2">
+                </div>
+                <div class="form-group">
+                    <label for="nombre" class="control-label">Código Identificador:</label>
+                    <input disabled type="text" class="form-control" id="codigo0" name="codigo0" required maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label for="moneda" class="control-label">Descripción:</label>
+                    <input disabled type="text" class="form-control" id="descripcion0" name="descripcion0" required maxlength="3">
+                </div>
+                <div class="form-group">
+                    <label for="capital" class="control-label">Estado:</label>
+                    <input disabled type="text" class="form-control" id="estado0" name="estado0" required maxlength="30"> 
+                </div>
+                <div class="form-group">
+                    <label for="continente" class="control-label">Comportamiento:</label>
+                    <input disabled type="text" class="form-control" id="comportamiento0" name="comportamiento0" required maxlength="15">
+                </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+
         </div>
                  
     </div>
