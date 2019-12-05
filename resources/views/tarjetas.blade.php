@@ -11,6 +11,37 @@
 <div class="row">
 	<div class="col-1"></div>
 	<div class="col-10">
+		<div class="container">
+			<div class="form-group">
+				<div class="row">
+					@foreach($tarj as $t)
+						@if($t->tipo_tarjeta_deb_cred_id < 2)
+							<div class="col-1">
+								<input type="radio" class="form-check-input" id="$t->tipo_tarjeta_deb_cred_id">
+							</div>
+							<div class="col-2">
+								<label>{{$t->tipo_tarjeto_cd_nombre}}</label>
+							</div>
+							<div class="col-3"></div>
+						@endif
+						@if($t->tipo_tarjeta_deb_cred_id > 1)
+							<div class="col-3"></div>
+							<div class="col-1">
+								<input type="radio" class="form-check-input" id="$t->tipo_tarjeta_deb_cred_id">
+							</div>
+							<div class="col-2">
+								<label>{{$t->tipo_tarjeto_cd_nombre}}</label>
+							</div>
+						@endif
+					@endforeach
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-1"></div>
+	<div class="col-10">
 		<div class="container border">
 			<br>
 			<br>
@@ -53,15 +84,24 @@
 						</div>
 						<hr>
 						<div class="row">
-								<div class="col-1"></div>
-								<div class="col-2 mt-3">
-									<label>Nombre Completo</label>
-								</div>
-								<div class="col-8">
-									<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
-								</div>
-								<div class="col-1"></div>
+							<div class="col-1"></div>
+							<div class="col-2 mt-3">
+								<label>Nombre Completo</label>
 							</div>
+							<div class="col-8">
+								<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
+							</div>
+							<div class="col-1"></div>
+						</div>
+						<div class="row">
+							<div class="col-1"></div>
+							<div class="col-3 mt-3">
+								<label>Fecha de nacimiento</label>
+							</div>
+							<div class="col-8 mt-3">
+								<input type="date" name="">
+							</div>
+						</div>
 						<br>
 					</div>
 					<div class="col-1"></div>
