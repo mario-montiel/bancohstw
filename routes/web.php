@@ -47,5 +47,12 @@ route::post('/editar/{id}','crudController@editar');
 
 route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
 
+route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
+route::get('/login_axel','login_a_controller@login_view');
+route::post('/home_axel','login_a_controller@log_home');
+
+
+
 // rutas iony
 route::get('/tarjetas', 'tarjetasController@tarjetas');
+

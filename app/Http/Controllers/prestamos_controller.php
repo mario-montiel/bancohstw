@@ -8,4 +8,8 @@ class prestamos_controller extends Controller
         return view('pdf');
     }
 
+    public function ver_prestamos_view_lista(){
+        return view('ver_prestamos');
+    }
+
 }
