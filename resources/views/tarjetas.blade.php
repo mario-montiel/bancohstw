@@ -11,35 +11,21 @@
 <div class="row">
 	<div class="col-1"></div>
 	<div class="col-10">
-		<div class="container">
-			<div class="form-group">
-				<div class="row">
-					@foreach($tarj as $t)
-						@if($t->tipo_tarjeta_deb_cred_id < 2)
-							<div class="col-1">
-								<input type="radio" class="form-check-input" id="$t->tipo_tarjeta_deb_cred_id">
-							</div>
-							<div class="col-2">
-								<label>{{$t->tipo_tarjeto_cd_nombre}}</label>
-							</div>
-							<div class="col-3"></div>
-						@endif
-						@if($t->tipo_tarjeta_deb_cred_id > 1)
-							<div class="col-3"></div>
-							<div class="col-1">
-								<input type="radio" class="form-check-input" id="$t->tipo_tarjeta_deb_cred_id">
-							</div>
-							<div class="col-2">
-								<label>{{$t->tipo_tarjeto_cd_nombre}}</label>
-							</div>
-						@endif
-					@endforeach
+		<center class="mt-5">
+			<div class="container">
+				<div class="form-check col-md-6">
+  					<input class="form-check-input" type="radio" name="exampleRadios" id="credito" value="option1">
+  					<label class="form-check-label ml-5" for="exampleRadios1">credito</label>
+				</div>
+				<div class="form-check col-md-6">
+  					<input class="form-check-input" type="radio" name="exampleRadios" id="debito" value="option2">
+  					<label class="form-check-label ml-5" for="exampleRadios2">debito</label>
 				</div>
 			</div>
-		</div>
+		</center>
 	</div>
 </div>
-<div class="row">
+<div id="div_credito" class="row mt-5">
 	<div class="col-1"></div>
 	<div class="col-10">
 		<div class="container border">
@@ -99,7 +85,7 @@
 								<label>Fecha de nacimiento</label>
 							</div>
 							<div class="col-8 mt-3">
-								<input type="date" name="">
+								<input class="form-control" type="date" name="">
 							</div>
 						</div>
 						<br>
@@ -111,3 +97,10 @@
 	</div>
 	<div class="col-1"></div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	alert("popo");
+	$("#debito").hide();
+	});
+</script>
