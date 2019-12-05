@@ -26,3 +26,7 @@ route::get('/gestionar_clientes','crudController@gestionar_clientes');
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
 route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
+route::get('/login_axel','login_a_controller@login_view');
+route::post('/home_axel','login_a_controller@log_home');
+
