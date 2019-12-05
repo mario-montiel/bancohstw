@@ -22,6 +22,10 @@ Route::get('/verificar_nom_client', 'verificar_buro_controller@buscar_clientes')
 Route::get('/buscar_clientes_curp', 'verificar_buro_controller@buscar_clientes_curp');
 Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rfc');
 
+Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
