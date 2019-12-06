@@ -34,9 +34,12 @@ Route::get('/admin', 'verificar_buro_controller@admin');
 | con un proceso que el usuario comun necesita hacer. Los quiero
 |
 */
-// rutas iony
+/*====================================*/
+/*rutas iony*/
+
 // esta ruta es para otorgar las tarjetas a los clientes haciendo consultas
 route::get('/tarjetas', 'tarjetasController@tarjetas');
+/*====================================*/
 
 
 Route::group(['middleware' => ['userType', 'auth']], function () {

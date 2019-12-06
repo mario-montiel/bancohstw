@@ -14,11 +14,11 @@
 		<center class="mt-5">
 			<div class="container">
 				<div class="form-check col-md-6">
-  					<input class="form-check-input" type="radio" name="exampleRadios" id="credito" value="option1">
+  					<input class="form-check-input" type="radio" name="exampleRadios" id="credito" onchange="credito()" value="option1">
   					<label class="form-check-label ml-5" for="exampleRadios1">credito</label>
 				</div>
 				<div class="form-check col-md-6">
-  					<input class="form-check-input" type="radio" name="exampleRadios" id="debito" value="option2">
+  					<input class="form-check-input" type="radio" name="exampleRadios" id="debito" onchange="debito()" value="option2">
   					<label class="form-check-label ml-5" for="exampleRadios2">debito</label>
 				</div>
 			</div>
@@ -84,7 +84,7 @@
 							<div class="col-3 mt-3">
 								<label>Fecha de nacimiento</label>
 							</div>
-							<div class="col-8 mt-3">
+							<div class="col-7 mt-3">
 								<input class="form-control" type="date" name="">
 							</div>
 						</div>
@@ -92,15 +92,24 @@
 					</div>
 					<div class="col-1"></div>
 				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" id="buro_boton" onclick="buro()" class="btn btn-primary">Buro?</button>
+					</div>
+					<div class="col-1">
+						<button type="submit" id="aceptar" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-1"></div>
 </div>
+<br>
+<br>
+<br>
+<br>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-	alert("popo");
-	$("#debito").hide();
-	});
-</script>
+<script src="js/bancohstw/tarjetas.js"></script>
