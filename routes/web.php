@@ -11,6 +11,12 @@
 |
 */
 
+// RUTAS QUE DIRIGEN A LAS RESPECTIVAS VISTAS K HIZO CADA UNO >:v
+route::get('/gestionar_clientes','crudController@gestionar_clientes');
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,7 +53,7 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
     //Route::get('/admin', 'admin@admin');
 });
 //>>>>>>>>>>>>rutas gestionar cliente
-route::get('/gestionar_clientes','crudController@gestionar_clientes');
+
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
 route::post('/editar/{id}','crudController@editar');
