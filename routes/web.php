@@ -23,6 +23,7 @@ Route::get('/buscar_clientes_curp', 'verificar_buro_controller@buscar_clientes_c
 Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rfc');
 
 Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
 
 
 
@@ -41,6 +42,23 @@ Route::get('/admin', 'verificar_buro_controller@admin');
 | tiene acceso el administrador, tengan cuidado de añadir una ruta
 | con un proceso que el usuario comun necesita hacer. Los quiero
 |
+--- PONGAN SUS PINCHES RUTAS AQUI
+*/
+Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+/*
+|--------------------------------------------------------------------------
+| Rutas de usuario común
+|--------------------------------------------------------------------------
+|
+| En este grupo de rutas se colocaran todas las rutas a las que solo
+| tiene acceso el usuario normal, tengan cuidado de añadir una ruta
+| con un proceso que el usuario administrador necesita hacer. Los quiero
+|
+--- PONGAN SUS PINCHES RUTAS AQUI
+*/
+Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+/*
+--- HASTA AQUÍ!
 */
 Route::group(['middleware' => ['userType', 'auth']], function () {
     //Ejemplo:

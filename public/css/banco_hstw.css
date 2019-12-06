@@ -4,12 +4,14 @@
   box-sizing: border-box; }
 
 body {
-  font-family: sans-serif; }
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace; }
 
 nav {
   height: 70px;
   width: 100%;
-  background: lightgray;
+  background: #00B4DB;
+  background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+  background: linear-gradient(to right, #0083B0, #00B4DB);
   position: absolute;
   z-index: 999;
   top: 0;
@@ -27,8 +29,8 @@ nav {
   font-size: 15px; }
 
 .nav-links li a {
-  color: black;
-  font-size: 18px; }
+  color: #fff;
+  font-size: 15px; }
 
 .nav-links li {
   text-align: center;
@@ -109,6 +111,10 @@ nav {
   .landing {
     flex-direction: column; } }
 
+.container-verificar_buro {
+  -webkit-box-shadow: 0px 0px 5px 0px #aba9ab;
+  -moz-box-shadow: 0px 0px 5px 0px #aba9ab; }
+
 #domicilios {
   position: absolute;
   z-index: 99998;
@@ -131,3 +137,7 @@ nav {
   margin: auto;
   display: flex;
   margin-top: 40px; }
+
+.container_asignar_prestamos {
+  -webkit-box-shadow: 0px 0px 5px 0px #aba9ab;
+  -moz-box-shadow: 0px 0px 5px 0px #aba9ab; }
