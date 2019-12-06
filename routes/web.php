@@ -11,6 +11,12 @@
 |
 */
 
+// RUTAS QUE DIRIGEN A LAS RESPECTIVAS VISTAS K HIZO CADA UNO >:v
+route::get('/gestionar_clientes','crudController@gestionar_clientes');
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -60,12 +66,20 @@ Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
 /*
 --- HASTA AQUÍ!
 */
+/*====================================*/
+/*rutas iony*/
+
+// esta ruta es para otorgar las tarjetas a los clientes haciendo consultas
+route::get('/tarjetas', 'tarjetasController@tarjetas');
+/*====================================*/
+
+
 Route::group(['middleware' => ['userType', 'auth']], function () {
     //Ejemplo:
     //Route::get('/admin', 'admin@admin');
 });
 //>>>>>>>>>>>>rutas gestionar cliente
-route::get('/gestionar_clientes','crudController@gestionar_clientes');
+
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
 route::post('/editar/{id}','crudController@editar');
@@ -77,8 +91,4 @@ route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista
 route::get('/login_axel','login_a_controller@login_view');
 route::post('/home_axel','login_a_controller@log_home');
 
-
-
-// rutas iony
-route::get('/tarjetas', 'tarjetasController@tarjetas');
 
