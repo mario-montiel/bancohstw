@@ -8,7 +8,7 @@ use App\Modelos\ClientesModelo;
 class crudController extends Controller
 {
     public function gestionar_clientes(){
-        $cli = ClientesModelo::all();
+        $cli = ClientesModelo::paginate("3");
         return view('crud/insertar',compact('cli'));
     }
     
@@ -43,4 +43,5 @@ class crudController extends Controller
         $cli->save();
         return redirect("/gestionar_clientes");
     }
+    
 }
