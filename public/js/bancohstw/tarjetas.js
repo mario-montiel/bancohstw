@@ -2,6 +2,7 @@
 var botones_credito = document.getElementById("botones_credito");
 var formrfc = document.getElementById("formrfc");
 var formcurp = document.getElementById("formcurp");
+var formnumero = document.getElementById("formnumero");
 /*var botonsini = document.getElementById("aceptar");
 var buro_boton = document.getElementById("buro_boton");
 var formesito = document.getElementById("formesito");
@@ -10,6 +11,7 @@ var formsito2 = document.getElementById("formsito2")*/
 botones_credito.style.display = "none"
 formrfc.style.display = 'none'
 formcurp.style.display = 'none'
+formnumero.style.display = 'none'
 /*buro_boton.style.display = "none"
 formsito2.style.display = "none"
 formesito.style.display = "none"*/
@@ -17,11 +19,19 @@ formesito.style.display = "none"*/
 function botonderfc(){
 	formrfc.style.display = "block";
 	formcurp.style.display = 'none'
+	formnumero.style.display = 'none'
 }
 
 function botoncurp(){
 	formrfc.style.display = "none";
 	formcurp.style.display = 'block'
+	formnumero.style.display = 'none'
+}
+
+function botonnum(){
+	formrfc.style.display = "none";
+	formcurp.style.display = 'none'
+	formnumero.style.display = 'block'
 }
 
 function credito(){

@@ -44,7 +44,7 @@
 			</div>
 			<div class="col-1"></div>
 			<div class="col-1">
-				<button type="submit" class="btn btn-primary">#Cliente</button>
+				<button type="submit" class="btn btn-primary" onclick="botonnum()">#Cliente</button>
 			</div>
 			<div class="col-1"></div>
 			<div class="col-1">
@@ -87,6 +87,29 @@
 					</div>
 					<div class="col-8">
 						<input type="text" class="form-control" placeholder="curp" id="rfc">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnumero">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Número de cliente:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="#" id="rfc">
 					</div>
 				</div>
 				<br>
