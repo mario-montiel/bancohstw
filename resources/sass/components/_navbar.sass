@@ -1,11 +1,23 @@
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+
+body
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace
+
 nav
     height: 70px
     width: 100%
-    background: lightgray
+    background: #00B4DB
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB)
+    background: linear-gradient(to right, #0083B0, #00B4DB)
+
     position: absolute
-    z-index: 9999
+    z-index: 999
     top: 0
     line-height: 65px
+    margin-left: -14px
 
 .nav-links
     display: flex
@@ -18,8 +30,8 @@ nav
     font-size: 15px
 
 .nav-links li a
-    color: black
-    font-size: 18px
+    color: #fff
+    font-size: 15px
 
 .nav-links li
     text-align: center

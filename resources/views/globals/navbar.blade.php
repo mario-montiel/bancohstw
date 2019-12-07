@@ -18,6 +18,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
             </li>
+            @auth
+            @if (Auth::user()->type == admin)
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">Dropdown
@@ -28,6 +30,9 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            @endif
+            @endauth
+
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             @if (Route::has('login'))
