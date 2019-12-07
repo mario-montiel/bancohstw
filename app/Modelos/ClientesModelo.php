@@ -3,7 +3,6 @@
 namespace App\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
-
 class ClientesModelo extends Model
 {
     Protected $primaryKey='cliente_id';

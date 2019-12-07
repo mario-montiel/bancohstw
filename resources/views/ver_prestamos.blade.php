@@ -1,20 +1,19 @@
 @extends('scripts/scripts')
-@extends('globals/navbar')
-@section('navbar')
-@endsection
+@extends('layouts/app')
+@section('content')
+
+  
   <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  @csrf
+  <center>
 
 
-  <div style="padding-left: 170px;" align="center">
-
-      <div style="padding-left: 530px;" class="row">  
-        <div>  
-           <legend>Ver Prestamos</legend> 
-        </div>
+      <div>  
+        <center>  
+           <legend>Tus Prestamos</legend> 
+        </center>
       </div>         
 
       <br>
@@ -43,14 +42,13 @@
                 <th>{{ $campo->prest_monto_sol }} $</th>
                 <th>30/01/2020</th>
                 <th>{{ $campo->prest_tasa }}%</th>
-                <th>{{ $campo->prest_monto_total }} $</th>      
-                <th><a class="btn btn-primary" id="boton_pdf"  href="ver_prestamos">PDF</a></th>
-                <th><input type="text" name="prestamo_id" value="{{ $campo->prest_id }}" style="display: none;"></th>
+                <th>{{ $campo->prest_monto_total }} $</th> 
+                <th><button class="btn btn-primary btn_pdf" value="{{ $campo->prest_id }}">PDF</button></th>     
           </tr>
 
           @endforeach
 
-    <!--
+    <!--  style="display: none;"
     <?php// if(is_array($solicitudes)): ?>
     <?php// foreach($solicitudes as $row):?>  
     <tr>
@@ -72,13 +70,44 @@
         </tbody>
     </table>
     
-  </div>
+  </center>
 
-  <script src="js/bancohstw/prestamos_view">
-  
-  $("#boton_pdf").click(function(){
-    alert("si jala");
+  <br><br><br><br><br><br><br><br>
+
+  <div id="capa"></div>
+
+  <script type="text/javascript">
+
+  $( ".btn_pdf" ).click(function() {
+    prest_id = $(this).val();
+    
+    //alert(prest_id);
+    
+    $.ajax({
+          type : 'POST',
+          url  : 'ver_prestamos',
+          dataType : 'html',
+
+          data: {
+           "_token": "{{ csrf_token() }}",
+            prest_id : prest_id            
+          },
+          success : function(html){
+            //alert("si jalo");
+            window.location.href = "ver_prestamos_g/"+prest_id;
+
+            
+          },  
+          error : function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Ocurrio un error");
+          }
+      }); //$.ajax 
+        
   });
 
 
+
   </script>
+
+
+@endsection

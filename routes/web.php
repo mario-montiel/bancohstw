@@ -12,8 +12,10 @@
 */
 
 // RUTAS QUE DIRIGEN A LAS RESPECTIVAS VISTAS K HIZO CADA UNO >:v
+//GESTIONAR CLIENTES
 route::get('/gestionar_clientes','crudController@gestionar_clientes');
-
+//AREA DE COBRANZA
+route::get('/mostrar','crudController@gestionar');
 
 
 
@@ -30,6 +32,7 @@ Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rf
 
 Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
 Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
+Route::post('/x', 'asignar_prestamos_controller@asignarPrestamos');
 
 
 
@@ -85,10 +88,18 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
 route::post('/editar/{id}','crudController@editar');
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>><<<>>>>>>
+route::get('/mostrar','crudController@gestionar');
+//>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 
+//rutas de axel
+
+//El cliente puede ver sus prestamos y sacar pdf apartir de estos
 route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
-route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+//generar pdf
+route::post('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+route::get('/ver_prestamos_g/{id}','prestamos_controller@ver_prestamos_view2');
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 // rutas iony
 route::get('/tarjetas', 'tarjetasController@tarjetas');
