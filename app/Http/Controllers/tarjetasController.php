@@ -13,4 +13,16 @@ class tarjetasController extends Controller
     	$tiptar = DB::table('tipos_tarjetas')->select('tipo_tarjeta_id','tipo_tarjeta_nombre')->get();
     	return view('tarjetas', compact('tarj','tiptar'));
     }
+    public function clientes(Request $r){
+    	$cliente = $r->get("ncliente");
+    	$rfc = $r->get("rfc");
+    	$curp = $r->get("curp");
+    	$nombre = $r->get("nombre");
+    	$fecha = $r->get("fecha");
+    	$arreglo = [$cliente, $rfc, $curp, $nombre, $fecha];
+    	return $arreglo;
+    }
+    public function pifi(){
+    	return "hola";
+    }
 }

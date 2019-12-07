@@ -1,5 +1,5 @@
 @extends('scripts/scripts')
-@extends('navbar')
+@extends('globals/navbar')
 @section('navbar')
 @endsection
 <br>
@@ -13,13 +13,13 @@
 	<div class="col-10">
 		<center class="mt-5">
 			<div class="container">
-				<div class="form-check col-md-6">
+				<div class="form-check col-md-2">
   					<input class="form-check-input" type="radio" name="exampleRadios" id="credito" onchange="credito()" value="option1">
-  					<label class="form-check-label ml-5" for="exampleRadios1">credito</label>
+  					<label class="form-check-label" for="exampleRadios1">credito</label>
 				</div>
-				<div class="form-check col-md-6">
+				<div class="form-check col-md-2">
   					<input class="form-check-input" type="radio" name="exampleRadios" id="debito" onchange="debito()" value="option2">
-  					<label class="form-check-label ml-5" for="exampleRadios2">debito</label>
+  					<label class="form-check-label" for="exampleRadios2">debito</label>
 				</div>
 			</div>
 		</center>
@@ -31,78 +31,79 @@
 		<div class="container border">
 			<br>
 			<br>
-			<div class="form-group">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-2 mt-3">
-						<label>Número de cliente</label>
-					</div>
-					<div class="col-8">
-						<input type="text" name="ncliente" id="ncliente" placeholder="#" class="form-control">
-					</div>
-					<div class="col-1"></div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-1"></div>
-					<div class="col-2 mt-3">
-						<label>RFC</label>
-					</div>
-					<div class="col-8">
-						<input type="text" name="rfc" id="rfc" placeholder="RFC" class="form-control">
-					</div>
-					<div class="col-1"></div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-1"></div>
-					<div class="container border col-10">
-						<br>
-						<p>En dado caso de no contar con la CURP, favor de registrar los datos restantes (Si se completa el campo de la CURP no es necesario el ingreso de información dentro de los demás campos de este contenedor de información).</p>
-						<br>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-2 mt-3">
-								<label>CURP</label>
-							</div>
-							<div class="col-8">
-								<input type="text" name="curp" id="curp" placeholder="CURP" class="form-control">
-							</div>
-							<div class="col-1"></div>
+			<form class="form-group" id="formesito" action="{{url('/tarjetas_clientes')}}" method="POST">
+				<form class="form-group" id="buro_boton" action="{{url('/pifi')}}" method="POST">
+					@csrf
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-2 mt-3">
+							<label>Número de cliente</label>
 						</div>
-						<hr>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-2 mt-3">
-								<label>Nombre Completo</label>
-							</div>
-							<div class="col-8">
-								<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
-							</div>
-							<div class="col-1"></div>
+						<div class="col-8">
+							<input type="text" name="ncliente" id="ncliente" placeholder="#" class="form-control">
 						</div>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-3 mt-3">
-								<label>Fecha de nacimiento</label>
-							</div>
-							<div class="col-7 mt-3">
-								<input class="form-control" type="date" name="">
-							</div>
+						<div class="col-1"></div>
+					</div>
+					<div class="row mt-5">
+						<div class="col-1"></div>
+						<div class="col-2 mt-3">
+							<label>RFC</label>
 						</div>
-						<br>
+						<div class="col-8">
+							<input type="text" name="rfc" id="rfc" placeholder="RFC" class="form-control">
+						</div>
+						<div class="col-1"></div>
 					</div>
-					<div class="col-1"></div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-10"></div>
-					<div class="col-1">
-						<button type="submit" id="buro_boton" onclick="buro()" class="btn btn-primary">Buro?</button>
+					<div class="row mt-5">
+						<div class="col-1"></div>
+						<div class="container border col-10">
+							<br>
+							<p>En dado caso de no contar con la CURP, favor de registrar los datos restantes (Si se completa el campo de la CURP no es necesario el ingreso de información dentro de los demás campos de este contenedor de información).</p>
+							<br>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-2 mt-3">
+									<label>CURP</label>
+								</div>
+								<div class="col-8">
+									<input type="text" name="curp" id="curp" placeholder="CURP" class="form-control">
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-2 mt-3">
+									<label>Nombre Completo</label>
+								</div>
+								<div class="col-8">
+									<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
+								</div>
+								<div class="col-1"></div>
+							</div>
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-3 mt-3">
+									<label>Fecha de nacimiento</label>
+								</div>
+								<div class="col-7 mt-3">
+									<input name="fecha" id="fecha" class="form-control" type="date" name="">
+								</div>
+							</div>
+							<br>
+						</div>
+						<div class="col-1"></div>
 					</div>
-					<div class="col-1">
-						<button type="submit" id="aceptar" class="btn btn-primary">Aceptar</button>
+					<br>
+					<div class="row">
+						<div class="col-9"></div>
+						<div class="col-1">
+							<button id="buro_boton" onclick="buro()" class="btn btn-primary">Buro?</button>
+						</div>
+						<div class="col-1">
+							<button type="submit" id="aceptar" class="btn btn-primary">Aceptar</button>
+						</div>
 					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="col-1"></div>
