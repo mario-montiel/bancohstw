@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use DB;
 
 class asignar_prestamos_controller extends Controller
 {
     public function verVista(){
         return view('asignar_prestamos');
+    }
+
+    public function asignarPrestamos(Request $request){
+        $carbon = new \Carbon\Carbon();
+        $date = $carbon->now();
+        dd($date);
     }
 
     public function verifClientBuroCredito(Request $request){

@@ -30,6 +30,7 @@ Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rf
 
 Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
 Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
+Route::post('/x', 'asignar_prestamos_controller@asignarPrestamos');
 
 
 
