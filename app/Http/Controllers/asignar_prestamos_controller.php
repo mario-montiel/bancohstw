@@ -3,12 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Modelos\AsignarPrestamo;
 use DB;
 
 class asignar_prestamos_controller extends Controller
 {
     public function verVista(){
         return view('asignar_prestamos');
+    }
+
+    public function asignarPrestamos(Request $request){
+        $carbon = new \Carbon\Carbon();
+        $date = $carbon->now();
+        
+        $asignar_prestamo = new AsignarPrestamo();
+        $asignar_prestamo->clientes_cliente_id = 1;
+        $asignar_prestamo->tipos_pagos_tipo_pago_id = 2;
+        $asignar_prestamo->prest_monto_sol = 5000;
+        $asignar_prestamo->prest_fecha_final = $date;
+        $asignar_prestamo->prest_tasa = '5%';
+        $asignar_prestamo->prest_monto_total = 66;
+        $asignar_prestamo->save();
+
+        return redirect('asignar_prestamos')
+                ->with('prestamo', 'Prestamo asignado con éxito!...');;
     }
 
     public function verifClientBuroCredito(Request $request){
