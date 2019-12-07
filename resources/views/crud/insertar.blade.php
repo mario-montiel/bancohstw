@@ -1,4 +1,5 @@
 @extends('base.base')
+
       <!-- Modal -->
     @section('content')
     <div class="iovanna">
@@ -92,14 +93,14 @@
                   @foreach($cli as $c)
                   <tr>
                   <td id="id"></td>
-                  <td>{{$c->usu_id}}</td>
+                  <td>{{$c->user_id}}</td>
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
                   <td>{{$c->cli_fecha_nac}}</td>
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
-                  <td><a href="{{url('/eliminar', $c->cliente_id)}}" onclick="return confirm('¿Seguro que quiere eliminar este registro?')" class="btn btn-danger">Eliminar</a></td>
+                  <td><a href="" class="btn btn-danger eliminar" data-id="{{$c->cliente_id}}" >Eliminar</a></td>
                   <td><button class="btn btn-warning editar" id="editar" data-toggle="modal" data-target="#editar_cliente{{$c->cliente_id}}" href="" >Editar</button>
                   <div class="modal fade" id="editar_cliente{{$c->cliente_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   
@@ -115,7 +116,7 @@
                               {{csrf_field()}}
                           <div class="modal-body">
                                 
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}">
+                                {{-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}"> --}}
                               <div class="input-group mb-3">
                                   <div class="input-group-prepend">
                                       <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
@@ -176,20 +177,27 @@
               </table>
         </div>
        
-        {{-- MODAL EDITAR CLIENTE --}}    
-              
-        <ul class="pagination">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-        </ul>
+<script>
+
+$(document).on('click', '.eliminar', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+            title: "¿Estás seguro de eliminar este registro?!",
+            type: "Warning",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Si!",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                type: "get",
+                url: "/eliminar",
+                data: {id:id},
+                success: function (data) {
+                              //
+                    }         
+            });
+    });
+});
+</script>

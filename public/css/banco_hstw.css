@@ -135,6 +135,13 @@ nav {
   display: flex;
   margin-top: 40px; }
 
+.tablagestion {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-content: center;
+  margin-top: 100px; }
+
 .container_asignar_prestamos {
   -webkit-box-shadow: 0px 0px 5px 0px #aba9ab;
   -moz-box-shadow: 0px 0px 5px 0px #aba9ab; }

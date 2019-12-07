@@ -117,6 +117,6 @@ $pdf->Cell(150,12,utf8_decode('información contenida en el mismo y que le ha si
 
 
 
-$pdf->Output('yourfilename.pdf','D');
+$pdf->Output('name.pdf','D');
 
 ?>
