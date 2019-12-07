@@ -85,8 +85,15 @@ route::get('/eliminar/{id}','crudController@eliminar');
 route::post('/editar/{id}','crudController@editar');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>><<<>>>>>>
 
+//rutas de axel
+
+//El cliente puede ver sus prestamos y sacar pdf apartir de estos
 route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
-route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+//generar pdf
+route::post('/ver_prestamos','prestamos_controller@ver_prestamos_view');
+route::get('/ver_prestamos_g/{id}','prestamos_controller@ver_prestamos_view2');
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
 // rutas iony
 route::get('/tarjetas', 'tarjetasController@tarjetas');

@@ -11,6 +11,12 @@ class prestamos_controller extends Controller
         return view('pdf');
     }
 
+    public function ver_prestamos_view2($prest_id){
+    	$prest_arreglo = DB::table('prestamos')->select('prest_id','tipos_pagos_tipo_pago_id','prest_monto_sol','prest_tasa','prest_monto_total')->where('prest_id',"=",$prest_id)->get();
+
+        return view('pdf',compact('prest_arreglo'));
+    }
+
     public function ver_prestamos_view_lista(){
     	$cli_id = 1;
     	$prest = DB::table('prestamos')->select('prest_id','tipos_pagos_tipo_pago_id','prest_monto_sol','prest_tasa','prest_monto_total')->where('clientes_cliente_id',"=",$cli_id)->get();
