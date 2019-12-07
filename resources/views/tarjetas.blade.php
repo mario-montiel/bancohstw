@@ -48,7 +48,7 @@
 			</div>
 			<div class="col-1"></div>
 			<div class="col-1">
-				<button type="submit" class="btn btn-primary">Nombre</button>
+				<button type="submit" class="btn btn-primary" onclick="botonnombre()">Nombre</button>
 			</div>
 		</div>
 		<br>
@@ -63,7 +63,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="RFC" id="rfc">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc" name="rfc">
 					</div>
 				</div>
 				<br>
@@ -86,7 +86,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="curp" id="rfc">
+						<input type="text" class="form-control" placeholder="curp" id="curp" name="curp">
 					</div>
 				</div>
 				<br>
@@ -109,7 +109,63 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="#" id="rfc">
+						<input type="text" class="form-control" placeholder="#" id="numero" name="numero">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnombre">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Nombre:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre" name="nombre">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido paterno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP" name="AP">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido materno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM" name="AM">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Fecha de nacimiento:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="date" class="form-control" name="fecha" id="fecha">
 					</div>
 				</div>
 				<br>
@@ -126,6 +182,158 @@
 	</div>
 </div>
 <div id="botones_debito">
+	<div class="container border">
+		<br>
+		<center>
+			<p>Para registrar la tarjeta se requieren de los datos del cliente. Elija la opción con la que cuenta información:</p>
+		</center>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonderfc2()">RFC</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botoncurp2()">CURP</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnum2()">#Cliente</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnombre2()">Nombre</button>
+			</div>
+		</div>
+		<br>
+		<br>
+		<form class="form-group" id="formrfc2">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>RFC:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc2" name="rfc2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formcurp2">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>CURP:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="curp" id="curp2" name="curp2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnumero2">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Número de cliente:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="#" id="numero2" name="numero2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnombre2">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Nombre:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre2" name="nombre2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido paterno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP2" name="AP2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido materno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM2" name="AM2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Fecha de nacimiento:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="date" class="form-control" name="fecha2" id="fecha">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<br>
+	</div>
 </div>
 <br>
 <br>
