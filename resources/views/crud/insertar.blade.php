@@ -1,7 +1,7 @@
 @extends('base.base')
-
-      <!-- Modal -->
-    @section('content')
+@extends('layouts/app')
+@section('content')
+    
     <div class="iovanna">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Crear cliente
@@ -73,7 +73,7 @@
       </div>
       </div>
       {{-- TABLA VER CLIENTES --}}
-      <div class="tablaclientes">
+      <div class="tablaclientes table-hover">
             <table class="table">
                 <thead>
                   <tr>
@@ -176,28 +176,28 @@
                 
               </table>
         </div>
-       
-<script>
+        @endsection
+{{-- <script>
 
-$(document).on('click', '.eliminar', function (e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    swal({
-            title: "¿Estás seguro de eliminar este registro?!",
-            type: "Warning",
-            confirmButtonClass: "btn-danger",
-            confirmButtonText: "Si!",
-            showCancelButton: true,
-        },
-        function() {
-            $.ajax({
-                type: "get",
-                url: "/eliminar",
-                data: {id:id},
-                success: function (data) {
-                              //
-                    }         
-            });
-    });
-});
-</script>
+// $(document).on('click', '.eliminar', function (e) {
+//     e.preventDefault();
+//     var id = $(this).data('id');
+//     swal({
+//             title: "¿Estás seguro de eliminar este registro?!",
+//             type: "Warning",
+//             confirmButtonClass: "btn-danger",
+//             confirmButtonText: "Si!",
+//             showCancelButton: true,
+//         },
+//         function() {
+//             $.ajax({
+//                 type: "get",
+//                 url: "/eliminar",
+//                 data: {id:id},
+//                 success: function (data) {
+//                               //
+//                     }         
+//             });
+//     });
+// });
+// </script> --}}
