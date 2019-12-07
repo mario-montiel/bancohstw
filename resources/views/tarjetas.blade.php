@@ -1,7 +1,6 @@
 @extends('scripts/scripts')
-@extends('globals/navbar')
-@section('navbar')
-@endsection
+@extends('layouts/app')
+@section('content')
 <br>
 <br>
 <br>
@@ -25,159 +24,89 @@
 		</center>
 	</div>
 </div>
-<div id="div_credito" class="row mt-5">
-	<div class="col-1"></div>
-	<div class="col-10">
-		<div class="container border">
-			<br>
-			<br>
-			<form class="form-group" id="formesito" action="{{url('/tarjetas_clientes')}}" method="POST">
-				@csrf
-					<div class="row">
-						<div class="col-1"></div>
-						<div class="col-2 mt-3">
-							<label>Número de cliente</label>
-						</div>
-						<div class="col-8">
-							<input type="text" name="ncliente" id="ncliente" placeholder="#" class="form-control">
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<div class="row mt-5">
-						<div class="col-1"></div>
-						<div class="col-2 mt-3">
-							<label>RFC</label>
-						</div>
-						<div class="col-8">
-							<input type="text" name="rfc" id="rfc" placeholder="RFC" class="form-control">
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<div class="row mt-5">
-						<div class="col-1"></div>
-						<div class="container border col-10">
-							<br>
-							<p>En dado caso de no contar con la CURP, favor de registrar los datos restantes (Si se completa el campo de la CURP no es necesario el ingreso de información dentro de los demás campos de este contenedor de información).</p>
-							<br>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-2 mt-3">
-									<label>CURP</label>
-								</div>
-								<div class="col-8">
-									<input type="text" name="curp" id="curp" placeholder="CURP" class="form-control">
-								</div>
-								<div class="col-1"></div>
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-2 mt-3">
-									<label>Nombre Completo</label>
-								</div>
-								<div class="col-8">
-									<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
-								</div>
-								<div class="col-1"></div>
-							</div>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-3 mt-3">
-									<label>Fecha de nacimiento</label>
-								</div>
-								<div class="col-7 mt-3">
-									<input name="fecha" id="fecha" class="form-control" type="date" name="">
-								</div>
-							</div>
-							<br>
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-10"></div>
-						<div class="col-1">
-							<button type="submit" id="aceptar" class="btn btn-primary">Aceptar</button>
-						</div>
-					</div>
-			</form>
-			<form class="form-group" id="formsito2" action="{{url('/pifi')}}" method="POST">
-					@csrf
-					<div class="row">
-						<div class="col-1"></div>
-						<div class="col-2 mt-3">
-							<label>Número de cliente</label>
-						</div>
-						<div class="col-8">
-							<input type="text" name="ncliente2" id="ncliente2" placeholder="#" class="form-control">
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<div class="row mt-5">
-						<div class="col-1"></div>
-						<div class="col-2 mt-3">
-							<label>RFC</label>
-						</div>
-						<div class="col-8">
-							<input type="text" name="rfc2" id="rfc2" placeholder="RFC" class="form-control">
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<div class="row mt-5">
-						<div class="col-1"></div>
-						<div class="container border col-10">
-							<br>
-							<p>En dado caso de no contar con la CURP, favor de registrar los datos restantes (Si se completa el campo de la CURP no es necesario el ingreso de información dentro de los demás campos de este contenedor de información).</p>
-							<br>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-2 mt-3">
-									<label>CURP</label>
-								</div>
-								<div class="col-8">
-									<input type="text" name="curp2" id="curp2" placeholder="CURP" class="form-control">
-								</div>
-								<div class="col-1"></div>
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-2 mt-3">
-									<label>Nombre Completo</label>
-								</div>
-								<div class="col-8">
-									<input type="text" name="nombre2" id="nombre2" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
-								</div>
-								<div class="col-1"></div>
-							</div>
-							<div class="row">
-								<div class="col-1"></div>
-								<div class="col-3 mt-3">
-									<label>Fecha de nacimiento</label>
-								</div>
-								<div class="col-7 mt-3">
-									<input name="fecha2" id="fecha2" class="form-control" type="date" name="">
-								</div>
-							</div>
-							<br>
-						</div>
-						<div class="col-1"></div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-10"></div>
-						<div class="col-1">
-							<button id="buro_boton" onclick="buro()" class="btn btn-primary">Buro?</button>
-						</div>
-					</div>
-			</form>
+<br>
+<br>
+<br>
+<div id="botones_credito">
+	<div class="container border">
+		<br>
+		<center>
+			<p>Para registrar la tarjeta se requieren de los datos del cliente. Elija la opción con la que cuenta información:</p>
+		</center>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonderfc()">RFC</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botoncurp()">CURP</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary">#Cliente</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary">Nombre</button>
+			</div>
 		</div>
+		<br>
+		<br>
+		<form class="form-group" id="formrfc">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>RFC:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formcurp">
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>CURP:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="curp" id="rfc">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<br>
 	</div>
-	<div class="col-1"></div>
+</div>
+<div id="botones_debito">
 </div>
 <br>
 <br>
 <br>
 <br>
 
-<script src="js/bancohstw/tarjetas.js"></script>
+@endsection

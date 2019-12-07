@@ -30,5 +30,6 @@
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script> -->
+    <script src="js/bancohstw/tarjetas.js"></script>
 </body>
 </html>
