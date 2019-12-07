@@ -72,7 +72,7 @@ Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
 // esta ruta es para otorgar las tarjetas a los clientes haciendo consultas
 route::get('/tarjetas', 'tarjetasController@tarjetas');
 route::post('/tarjetas_clientes', 'tarjetasController@clientes');
-route::get('/pifi', 'tarjetasController@pifi');
+route::post('/pifi', 'tarjetasController@pifi');
 /*====================================*/
 
 

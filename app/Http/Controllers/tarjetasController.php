@@ -22,7 +22,13 @@ class tarjetasController extends Controller
     	$arreglo = [$cliente, $rfc, $curp, $nombre, $fecha];
     	return $arreglo;
     }
-    public function pifi(){
-    	return "hola";
+    public function pifi(Request $r){
+        $cliente = $r->get("ncliente2");
+        $rfc = $r->get("rfc2");
+        $curp = $r->get("curp2");
+        $nombre = $r->get("nombre2");
+        $fecha = $r->get("fecha2");
+        $arreglo = [$cliente, $rfc, $curp, $nombre, $fecha];
+    	return $arreglo;
     }
 }
