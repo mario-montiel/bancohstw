@@ -12,8 +12,10 @@
 */
 
 // RUTAS QUE DIRIGEN A LAS RESPECTIVAS VISTAS K HIZO CADA UNO >:v
+//GESTIONAR CLIENTES
 route::get('/gestionar_clientes','crudController@gestionar_clientes');
-
+//AREA DE COBRANZA
+route::get('/mostrar','crudController@gestionar');
 
 
 
@@ -57,7 +59,8 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
 route::post('/editar/{id}','crudController@editar');
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><>>>><<<>>>>>>
+route::get('/mostrar','crudController@gestionar');
+//>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 
 route::get('/ver_prestamos','prestamos_controller@ver_prestamos_view');
 
