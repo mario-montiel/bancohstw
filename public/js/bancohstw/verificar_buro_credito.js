@@ -1,5 +1,5 @@
 var form_nom_fecha = document.getElementById("form_nom_fecha")
-var veri_fecha_cli = document.getElementById("veri_fecha_cli")
+// var veri_fecha_cli = document.getElementById("veri_fecha_cli")
 var form_cliente_curp = document.getElementById("form_cliente_curp")
 var form_cliente_rfc = document.getElementById("form_cliente_rfc")
 var option = document.getElementById("option").selected = "selected"
@@ -12,7 +12,8 @@ form_cliente_rfc.style.display = "none"
 function verificar_buro_cliente(){
     $("#verificar_nom_client").val("");
     $("#veri_fecha_cli").val("");
-    $(".buscador_verif_curp").val("");
+    $("#buscador_verif_curp").val("");
+    $("#buscador_verif_rfc").val("");
     
     var tipo_verificacion = document.getElementById("selector_cliente").value
     
@@ -34,7 +35,7 @@ function verificar_buro_cliente(){
     }
 
 }
-
+// alert("h")
 // >>>>>>>>>>>>>>> JQUERY  <<<<<<<<<<<<<<<<<<<<<<<<<
 $('#verificar_nom_client').on('keyup',function(e){
     $('#veri_fecha_cli').change(function(e){
@@ -45,9 +46,13 @@ $('#verificar_nom_client').on('keyup',function(e){
 				url:  '/verificar_nom_client',
 				data: {'verificar_nom_client':$value},
 				success:function(data){
+                    console.log(data)
 					if(data.no != ""){
                         $('.table_verif_cli').html("");
                         $.each(data, function(i, item) {
+                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
                                 changos = " <div class='container'> "+
                                             "<center><h3> CLIENTE </h3>" +
                                                 "<table class='table table-bordered'> "+
@@ -69,9 +74,9 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             item.cli_nom + "</td><td>" +
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
-                                                            item.cli_rfc + "</td><td>" +
-                                                            item.cli_status + "</td><td>" +
-                                                            '<center><button class="btn btn-success btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><i class='fas fa-eye'></i></button></center> </td><td>' + 
+                                                            item.cli_rfc + "</td><td>" + 
+                                                            semaforo + "</td><td>" +
+                                                            '<center><button class="btn btn-success btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><i class="fas fa-eye"></i></button></center> </td><td>' + 
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                         "</tr>"+
@@ -140,9 +145,13 @@ $('#buscador_verif_curp').on('keyup',function(e){
 				url:  '/buscar_clientes_curp',
 				data: {'buscar_clientes_curp':$value},
 				success:function(data){
+                    console.log(data);
 					if(data.no != ""){
                         $('.table_verif_cli').html("");
                         $.each(data, function(i, item) {
+                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
                                 changos = " <div class='container'> "+
                                                 "<center><h3> CLIENTE </h3>" +
                                                 "<table class='table table-bordered'> "+
@@ -165,7 +174,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
-                                                            item.cli_status + "</td><td>" +
+                                                            semaforo + "</td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' value="+item+" data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
@@ -237,6 +246,9 @@ $('#buscador_verif_rfc').on('keyup',function(e){
 					if(data.no != ""){
                         $('.table_verif_cli').html("");
                         $.each(data, function(i, item) {
+                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
                                 changos = " <div class='container'> "+
                                                 "<center><h3> CLIENTE </h3>" +
                                                 "<table class='table table-bordered'> "+
@@ -259,9 +271,9 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
-                                                            item.cli_status + "</td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><img id='update' src=''>Ver</button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><img id='update' src=''>Ver</button></center></td><td>" +
+                                                            semaforo + "</td><td>" +
+                                                            "<center><button class='btn btn-success btn_obtener_datos' data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
+                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             
                                                         "</tr>"+

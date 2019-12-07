@@ -1,10 +1,8 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
-
-body {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace; }
 
 nav {
   height: 70px;
@@ -15,8 +13,7 @@ nav {
   position: absolute;
   z-index: 999;
   top: 0;
-  line-height: 65px;
-  margin-left: -14px; }
+  line-height: 65px; }
 
 .nav-links {
   display: flex;

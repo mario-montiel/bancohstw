@@ -1,10 +1,9 @@
 @extends('scripts/scripts')
-@extends('navbar')
-@section('navbar')
-@endsection
+@extends('layouts/app')
+@section('content')
 
-<div class="container mt-5">
-    <div class="form pt-5">
+<div class="container mt-5 pb-5">
+    <div class="form">
     {{ csrf_field() }}
         <div class="container-fluid container-verificar_buro">
             <div class="container-fluid mt-5">
@@ -20,14 +19,6 @@
             <div id="form_nom_fecha" class="container-fluid mt-5">
                 <div class="row">
                     <div class="col">
-                        <!-- <select class="selectpicker select_clientes" data-show-subtext="true" data-live-search="true">
-                            <option data-subtext="Rep California">Tom Foolery</option>
-                            <option data-subtext="Sen California">Bill Gordon</option>
-                            <option data-subtext="Sen Massacusetts">Elizabeth Warren</option>
-                            <option data-subtext="Rep Alabama">Mario Flores</option>
-                            <option data-subtext="Rep Alaska">Don Young</option>
-                            <option data-subtext="Rep California" disabled="disabled">Marvin Martinez</option>
-                        </select> -->
                         <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre del cliente">
                     </div>
                         
@@ -41,7 +32,8 @@
             <div id="form_cliente_curp" class="container-fluid mt-5">
                 <div class="row">
                     <div class="col">
-                    <input id="buscador_verif_curp" name="curp_cliente" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
+                        <label for="buscador_verif_curp" class="control-label">Ingrese el CURP:</label>
+                        <input id="buscador_verif_curp" name="curp_cliente" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
                     </div>
                 </div>         
             </div>
@@ -49,6 +41,7 @@
             <div id="form_cliente_rfc" class="container-fluid mt-5">
                 <div class="row">
                     <div class="col">
+                        <label for="buscador_verif_rfc" class="control-label">Ingrese el RFC:</label>
                         <input id="buscador_verif_rfc" name="rfc_cliente" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
                     </div>
                 </div>        
@@ -57,7 +50,7 @@
             <div class="container mt-5 pb-5">
                 <div class="row">
                     <div class="col">
-                        <table class="table table-bordered table_verif_cli">
+                        <table class="table table-bordered table_verif_cli pt-5">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -76,8 +69,21 @@
                                     <td>{{$usu->ali_fecha_nac}}</td>
                                     <td>{{$usu->cli_curp}}</td>
                                     <td>{{$usu->cli_rfc}}</td>
-                                    <td>{{$usu->cli_status}}</td>
+                                
+                                    <td>
+                                    @if ( $usu->cli_status == "verde")
+                                        <center><img src="/img/verde.png" alt="" srcset="" style="height:30px;"></center>
+                                    @endif
+                                    @if ( $usu->cli_status == "amarillo")
+                                        <center><img src="/img/amarillo.png" alt="" srcset="" style="height:30px;"></center>
+                                    @endif
+                                    @if ( $usu->cli_status == "rojo")
+                                        <center><img src="/img/rojo.png" alt="" srcset="" style="height:30px;"></center>
+                                    @endif
+                                    </td>
+                               
                                 </tr>
+                                
                             @endforeach
                             </tbody>
                         </table>
@@ -227,3 +233,5 @@
         </div>     
     </div>
 </div>
+
+@endsection
