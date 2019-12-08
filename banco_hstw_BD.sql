@@ -2911,6 +2911,11 @@ insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguas
 (2456, 'Juchipila', 32),
 (2457, 'Moyahua de Estrada', 32);
 
+INSERT INTO `banco_hstw`.`users` (`id`, `name`, `email`, `password`, `type`) VALUES ('1', 'admin', 'admin@admin.com', '$2y$10$bCUkkthLSgj7uu.vMX1Q8OLPsXylDEnBdbdHeh/S4N0EB31E.XMGC', 'admin');
+INSERT INTO `banco_hstw`.`clientes` (`cliente_id`, `cli_nom`, `cli_ap_paterno`, `cli_ap_materno`, `ali_fecha_nac`, `cli_curp`, `cli_rfc`, `users_id`) VALUES ('1', 'Jesús', 'Alcalá', 'Luna', '14-enero-19997', 'CURPDEPRUEBA', 'RFCDEPRUEBA', '1');
+UPDATE `banco_hstw`.`clientes` SET `ali_fecha_nac` = '1997-01-14 00:00:00.000000' WHERE (`cliente_id` = '1');
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
