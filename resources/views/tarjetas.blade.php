@@ -1,11 +1,17 @@
 @extends('scripts/scripts')
-@extends('navbar')
-@section('navbar')
-@endsection
+@extends('layouts/app')
+@section('content')
 <br>
 <br>
 <br>
 <br>
+@if($errors->any())
+<center>
+	<div class="alert alert-info" role="alert">
+	  {{$errors->first()}}
+	</div>
+</center>
+@endif
 <br>
 <center><h1>Solicitud de tarjetas</h1></center>
 <div class="row">
@@ -13,103 +19,340 @@
 	<div class="col-10">
 		<center class="mt-5">
 			<div class="container">
-				<div class="form-check col-md-6">
+				<div class="form-check col-md-2">
   					<input class="form-check-input" type="radio" name="exampleRadios" id="credito" onchange="credito()" value="option1">
-  					<label class="form-check-label ml-5" for="exampleRadios1">credito</label>
+  					<label class="form-check-label" for="exampleRadios1">credito</label>
 				</div>
-				<div class="form-check col-md-6">
+				<div class="form-check col-md-2">
   					<input class="form-check-input" type="radio" name="exampleRadios" id="debito" onchange="debito()" value="option2">
-  					<label class="form-check-label ml-5" for="exampleRadios2">debito</label>
+  					<label class="form-check-label" for="exampleRadios2">debito</label>
 				</div>
 			</div>
 		</center>
 	</div>
 </div>
-<div id="div_credito" class="row mt-5">
-	<div class="col-1"></div>
-	<div class="col-10">
-		<div class="container border">
-			<br>
-			<br>
-			<div class="form-group">
+<br>
+<br>
+<br>
+<div id="botones_credito">
+	<div class="container border">
+		<br>
+		<center>
+			<p>Para registrar la tarjeta se requieren de los datos del cliente. Elija la opción con la que cuenta información:</p>
+		</center>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonderfc()">RFC</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botoncurp()">CURP</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnum()">#Cliente</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnombre()">Nombre</button>
+			</div>
+		</div>
+		<br>
+		<br>
+		<form class="form-group" id="formrfc" action="{{url('/RFC1')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
 				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-2 mt-3">
-						<label>Número de cliente</label>
+					<div class="col-3 mt-2">
+						<center>
+							<label>RFC:</label>
+						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" name="ncliente" id="ncliente" placeholder="#" class="form-control">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc" name="rfc">
 					</div>
-					<div class="col-1"></div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-1"></div>
-					<div class="col-2 mt-3">
-						<label>RFC</label>
-					</div>
-					<div class="col-8">
-						<input type="text" name="rfc" id="rfc" placeholder="RFC" class="form-control">
-					</div>
-					<div class="col-1"></div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-1"></div>
-					<div class="container border col-10">
-						<br>
-						<p>En dado caso de no contar con la CURP, favor de registrar los datos restantes (Si se completa el campo de la CURP no es necesario el ingreso de información dentro de los demás campos de este contenedor de información).</p>
-						<br>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-2 mt-3">
-								<label>CURP</label>
-							</div>
-							<div class="col-8">
-								<input type="text" name="curp" id="curp" placeholder="CURP" class="form-control">
-							</div>
-							<div class="col-1"></div>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-2 mt-3">
-								<label>Nombre Completo</label>
-							</div>
-							<div class="col-8">
-								<input type="text" name="nombre" id="nombre" placeholder="Juan Paco Pancho Pedro de la Mar" class="form-control">
-							</div>
-							<div class="col-1"></div>
-						</div>
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-3 mt-3">
-								<label>Fecha de nacimiento</label>
-							</div>
-							<div class="col-7 mt-3">
-								<input class="form-control" type="date" name="">
-							</div>
-						</div>
-						<br>
-					</div>
-					<div class="col-1"></div>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-10"></div>
 					<div class="col-1">
-						<button type="submit" id="buro_boton" onclick="buro()" class="btn btn-primary">Buro?</button>
-					</div>
-					<div class="col-1">
-						<button type="submit" id="aceptar" class="btn btn-primary">Aceptar</button>
+						<button type="submit" class="btn btn-primary">Aceptar</button>
 					</div>
 				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formcurp" action="{{url('/curp1')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>CURP:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="curp" id="curp" name="curp">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnumero" action="{{url('/numero1')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Número de cliente:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="#" id="numero" name="numero">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnombre" action="{{url('/nombre1')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Nombre:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre" name="nombre">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido paterno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP" name="AP">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido materno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM" name="AM">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Fecha de nacimiento:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="date" class="form-control" name="fecha" id="fecha">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<br>
+	</div>
+</div>
+<div id="botones_debito">
+	<div class="container border">
+		<br>
+		<center>
+			<p>Para registrar la tarjeta se requieren de los datos del cliente. Elija la opción con la que cuenta información:</p>
+		</center>
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonderfc2()">RFC</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botoncurp2()">CURP</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnum2()">#Cliente</button>
+			</div>
+			<div class="col-1"></div>
+			<div class="col-1">
+				<button type="submit" class="btn btn-primary" onclick="botonnombre2()">Nombre</button>
 			</div>
 		</div>
+		<br>
+		<br>
+		<form class="form-group" id="formrfc2" action="{{url('/rfc2')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>RFC:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc2" name="rfc2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formcurp2" action="{{url('/curp2')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>CURP:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="curp" id="curp2" name="curp2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnumero2" action="{{url('/numero2')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Número de cliente:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="#" id="numero2" name="numero2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<form class="form-group" id="formnombre2" action="{{url('/nombre2')}}" method="POST">
+			@csrf
+			<div class="container border">
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Nombre:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre2" name="nombre2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido paterno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP2" name="AP2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Apellido materno:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM2" name="AM2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-3 mt-2">
+						<center>
+							<label>Fecha de nacimiento:</label>
+						</center>
+					</div>
+					<div class="col-8">
+						<input type="date" class="form-control" name="fecha2" id="fecha2">
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-10"></div>
+					<div class="col-1">
+						<button type="submit" class="btn btn-primary">Aceptar</button>
+					</div>
+				</div>
+				<br>
+			</div>
+		</form>
+		<br>
 	</div>
-	<div class="col-1"></div>
 </div>
 <br>
 <br>
 <br>
 <br>
 
-<script src="js/bancohstw/tarjetas.js"></script>
+@endsection

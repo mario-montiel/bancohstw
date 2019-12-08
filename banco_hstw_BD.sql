@@ -10,6 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema banco_hstw
 -- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `banco_hstw` ;
 
 -- -----------------------------------------------------
 -- Schema banco_hstw
@@ -20,34 +21,383 @@ USE `banco_hstw` ;
 -- -----------------------------------------------------
 -- Table `banco_hstw`.`paises`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`paises` ;
+
 CREATE TABLE IF NOT EXISTS `banco_hstw`.`paises` (
   `pais_id` INT(11) NOT NULL AUTO_INCREMENT,
   `pais_nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`pais_id`),
-  UNIQUE INDEX `pais_id_UNIQUE` (`pais_id`))
+  UNIQUE INDEX `pais_id_UNIQUE` (`pais_id` ))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
-insert into `paises` (`pais_nombre`) value('México');
 
 -- -----------------------------------------------------
 -- Table `banco_hstw`.`estados`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`estados` ;
+
 CREATE TABLE IF NOT EXISTS `banco_hstw`.`estados` (
   `estado_id` INT(11) NOT NULL AUTO_INCREMENT,
   `estado_nom` VARCHAR(45) NOT NULL,
   `pais_id` INT(11) NOT NULL,
   PRIMARY KEY (`estado_id`),
-  UNIQUE INDEX `estado_id_UNIQUE` (`estado_id`),
-  INDEX `fk_estados_paises1_idx` (`pais_id`),
+  UNIQUE INDEX `estado_id_UNIQUE` (`estado_id` ) ,
+  INDEX `fk_estados_paises1_idx` (`pais_id` ) ,
   CONSTRAINT `fk_estados_paises1`
     FOREIGN KEY (`pais_id`)
     REFERENCES `banco_hstw`.`paises` (`pais_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 33
+AUTO_INCREMENT = 193
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`ciudades`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`ciudades` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`ciudades` (
+  `ciudad_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ciudad_nom` VARCHAR(191) NOT NULL,
+  `estado_id` INT(11) NOT NULL,
+  PRIMARY KEY (`ciudad_id`),
+  UNIQUE INDEX `ciudad_id_UNIQUE` (`ciudad_id` ) ,
+  INDEX `fk_ciudades_estados1_idx` (`estado_id` ) ,
+  CONSTRAINT `fk_ciudades_estados1`
+    FOREIGN KEY (`estado_id`)
+    REFERENCES `banco_hstw`.`estados` (`estado_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 2458
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`users`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`users` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`users` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(191) NOT NULL,
+  `email` VARCHAR(191) NOT NULL,
+  `email_verified_at` TIMESTAMP NULL DEFAULT NULL,
+  `password` VARCHAR(191) NOT NULL,
+  `type` VARCHAR(191) NOT NULL DEFAULT 'user',
+  `remember_token` VARCHAR(100) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  `updated_at` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `users_email_unique` (`email` ) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`clientes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`clientes` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`clientes` (
+  `cliente_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `cli_nom` VARCHAR(45) NOT NULL,
+  `cli_ap_paterno` VARCHAR(45) NOT NULL,
+  `cli_ap_materno` VARCHAR(45) NOT NULL,
+  `ali_fecha_nac` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `cli_curp` VARCHAR(45) NOT NULL,
+  `cli_rfc` VARCHAR(45) NOT NULL,
+  `users_id` BIGINT(20) UNSIGNED NOT NULL,
+  PRIMARY KEY (`cliente_id`),
+  INDEX `fk_clientes_users1_idx` (`users_id` ) ,
+  CONSTRAINT `fk_clientes_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `banco_hstw`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`tienda`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`tienda` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`tienda` (
+  `tienda_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tienda_id`),
+  UNIQUE INDEX `tienda_id_UNIQUE` (`tienda_id` ) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`deudas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`deudas` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`deudas` (
+  `deudas_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tienda_tienda_id` INT(11) NOT NULL,
+  `clientes_cliente_id` INT(11) NOT NULL,
+  `deudas_cantidad` VARCHAR(45) NOT NULL,
+  `deudas_fecha` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `estatus` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`deudas_id`),
+  UNIQUE INDEX `deudas_id_UNIQUE` (`deudas_id` ) ,
+  INDEX `fk_deudas_tienda1_idx` (`tienda_tienda_id` ) ,
+  INDEX `fk_deudas_clientes1_idx` (`clientes_cliente_id` ),
+  CONSTRAINT `fk_deudas_clientes1`
+    FOREIGN KEY (`clientes_cliente_id`)
+    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_deudas_tienda1`
+    FOREIGN KEY (`tienda_tienda_id`)
+    REFERENCES `banco_hstw`.`tienda` (`tienda_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`direcciones`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`direcciones` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`direcciones` (
+  `direccion_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ciudad_id` INT(11) NOT NULL,
+  `direccion_colonia` VARCHAR(45) NOT NULL,
+  `direccion_calle` VARCHAR(45) NOT NULL,
+  `direccion_codigo_postal` INT(11) NOT NULL,
+  `direccion_num_ext` VARCHAR(45) NOT NULL,
+  `direccion_num_int` VARCHAR(45) NULL DEFAULT NULL,
+  `direccion_entre_calles` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`direccion_id`),
+  UNIQUE INDEX `direccion_id_UNIQUE` (`direccion_id` ),
+  INDEX `fk_direcciones_ciudades_idx` (`ciudad_id` ),
+  CONSTRAINT `fk_direcciones_ciudades`
+    FOREIGN KEY (`ciudad_id`)
+    REFERENCES `banco_hstw`.`ciudades` (`ciudad_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`direcciones_has_clientes`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`direcciones_has_clientes` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`direcciones_has_clientes` (
+  `direcciones_direccion_id` INT(11) NOT NULL,
+  `clientes_cliente_id` INT(11) NOT NULL,
+  PRIMARY KEY (`direcciones_direccion_id`, `clientes_cliente_id`),
+  INDEX `fk_direcciones_has_clientes_clientes1_idx` (`clientes_cliente_id` ),
+  INDEX `fk_direcciones_has_clientes_direcciones1_idx` (`direcciones_direccion_id` ),
+  CONSTRAINT `fk_direcciones_has_clientes_clientes1`
+    FOREIGN KEY (`clientes_cliente_id`)
+    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_direcciones_has_clientes_direcciones1`
+    FOREIGN KEY (`direcciones_direccion_id`)
+    REFERENCES `banco_hstw`.`direcciones` (`direccion_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`failed_jobs`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`failed_jobs` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`failed_jobs` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `connection` TEXT NOT NULL,
+  `queue` TEXT NOT NULL,
+  `payload` LONGTEXT NOT NULL,
+  `exception` LONGTEXT NOT NULL,
+  `failed_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`migrations`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`migrations` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`migrations` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` VARCHAR(191) NOT NULL,
+  `batch` INT(11) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 4
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`tipos_pagos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`tipos_pagos` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_pagos` (
+  `tipo_pago_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tipo_pago_nom` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tipo_pago_id`),
+  UNIQUE INDEX `tipo_pago_id_UNIQUE` (`tipo_pago_id` ))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`prestamos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`prestamos` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`prestamos` (
+  `prest_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `clientes_cliente_id` INT(11) NOT NULL,
+  `tipos_pagos_tipo_pago_id` INT(11) NOT NULL,
+  `prest_monto_sol` VARCHAR(45) NOT NULL,
+  `prest_fecha_final` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `prest_tasa` VARCHAR(45) NOT NULL,
+  `prest_monto_total` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`prest_id`),
+  UNIQUE INDEX `prest_id_UNIQUE` (`prest_id` ),
+  INDEX `fk_prestamos_tipos_pagos1_idx` (`tipos_pagos_tipo_pago_id` ),
+  INDEX `fk_prestamos_clientes1_idx` (`clientes_cliente_id` ),
+  CONSTRAINT `fk_prestamos_clientes1`
+    FOREIGN KEY (`clientes_cliente_id`)
+    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_prestamos_tipos_pagos1`
+    FOREIGN KEY (`tipos_pagos_tipo_pago_id`)
+    REFERENCES `banco_hstw`.`tipos_pagos` (`tipo_pago_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`pagos`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`pagos` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`pagos` (
+  `pago_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `prest_id` INT(11) NOT NULL,
+  `pago_cuota_pagar` VARCHAR(45) NOT NULL,
+  `pago_interes` VARCHAR(45) NOT NULL,
+  `pago_cap_amortizado` VARCHAR(45) NOT NULL,
+  `pago_cap_final` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`pago_id`),
+  UNIQUE INDEX `pago_id_UNIQUE` (`pago_id` ),
+  INDEX `fk_pagos_prestamos1_idx` (`prest_id` ),
+  CONSTRAINT `fk_pagos_prestamos1`
+    FOREIGN KEY (`prest_id`)
+    REFERENCES `banco_hstw`.`prestamos` (`prest_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`password_resets`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`password_resets` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`password_resets` (
+  `email` VARCHAR(191) NOT NULL,
+  `token` VARCHAR(191) NOT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT NULL,
+  INDEX `password_resets_email_index` (`email` ))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`tipos_tarjetas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`tipos_tarjetas` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_tarjetas` (
+  `tipo_tarjeta_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tipo_tarjeta_nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tipo_tarjeta_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`tipos_tarjetas_deb_cred`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`tipos_tarjetas_deb_cred` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_tarjetas_deb_cred` (
+  `tipo_tarjeta_deb_cred_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `tipo_tarjeto_cd_nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tipo_tarjeta_deb_cred_id`),
+  UNIQUE INDEX `tipos_tarjetas_deb_cred_UNIQUE` (`tipo_tarjeta_deb_cred_id` ))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `banco_hstw`.`tarjetas`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `banco_hstw`.`tarjetas` ;
+
+CREATE TABLE IF NOT EXISTS `banco_hstw`.`tarjetas` (
+  `tarjeta_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `cliente_id` INT(11) NOT NULL,
+  `tipo_tarjeta_id` INT(11) NOT NULL,
+  `tipo_tarjeta_deb_cred_id` INT(11) NOT NULL,
+  `tarjeta_numero` VARCHAR(45) NOT NULL,
+  `tarjeta_fecha_venc` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  PRIMARY KEY (`tarjeta_id`),
+  UNIQUE INDEX `tarjeta_id_UNIQUE` (`tarjeta_id` ),
+  INDEX `fk_tarjetas_tipos_tarjetas_deb_cred1_idx` (`tipo_tarjeta_deb_cred_id` ),
+  INDEX `fk_tarjetas_tipos_tarjetas1_idx` (`tipo_tarjeta_id` ),
+  INDEX `fk_tarjetas_clientes1_idx` (`cliente_id` ),
+  CONSTRAINT `fk_tarjetas_clientes1`
+    FOREIGN KEY (`cliente_id`)
+    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tarjetas_tipos_tarjetas1`
+    FOREIGN KEY (`tipo_tarjeta_id`)
+    REFERENCES `banco_hstw`.`tipos_tarjetas` (`tipo_tarjeta_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tarjetas_tipos_tarjetas_deb_cred1`
+    FOREIGN KEY (`tipo_tarjeta_deb_cred_id`)
+    REFERENCES `banco_hstw`.`tipos_tarjetas_deb_cred` (`tipo_tarjeta_deb_cred_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 insert into `estados` (`estado_nom`,`pais_id`) values('Aguascalientes', 1),
@@ -86,9 +436,10 @@ insert into `estados` (`estado_nom`,`pais_id`) values('Aguascalientes', 1),
 -- -----------------------------------------------------
 -- Table `banco_hstw`.`ciudades`
 -- -----------------------------------------------------
+Drop table if exists `banco_hstw`.`ciudades`;
 CREATE TABLE IF NOT EXISTS `banco_hstw`.`ciudades` (
   `ciudad_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `ciudad_nom` VARCHAR(45) NOT NULL,
+  `ciudad_nom` VARCHAR(191) NOT NULL,
   `estado_id` INT(11) NOT NULL,
   PRIMARY KEY (`ciudad_id`),
   UNIQUE INDEX `ciudad_id_UNIQUE` (`ciudad_id`),
@@ -103,7 +454,7 @@ AUTO_INCREMENT = 2458
 DEFAULT CHARACTER SET = utf8;
 
 insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguascalientes', 1),
-(2, 'San Francisco de los Romo', 1),
+(2, 'San Francisco', 1),
 (3, 'El Llano', 1),
 (4, 'Rincón de Romos', 1),
 (5, 'Cosío', 1),
@@ -295,7 +646,7 @@ insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguas
 (191, 'Cacahoatán', 7),
 (192, 'Motozintla', 7),
 (193, 'Mazapa de Madero', 7),
-(194, 'Amatenango de la Frontera', 7),
+(194, 'Amatenango d', 7),
 (195, 'Bejucal de Ocampo', 7),
 (196, 'La Grandeza', 7),
 (197, 'El Porvenir', 7),
@@ -2560,267 +2911,10 @@ insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguas
 (2456, 'Juchipila', 32),
 (2457, 'Moyahua de Estrada', 32);
 
--- -----------------------------------------------------
--- Table `banco_hstw`.`tipos_usuarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_usuarios` (
-  `tipo_usuario_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `tipo_nom` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`tipo_usuario_id`),
-  UNIQUE INDEX `tipo_usuario_id_UNIQUE` (`tipo_usuario_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+INSERT INTO `banco_hstw`.`users` (`id`, `name`, `email`, `password`, `type`) VALUES ('1', 'admin', 'admin@admin.com', '$2y$10$bCUkkthLSgj7uu.vMX1Q8OLPsXylDEnBdbdHeh/S4N0EB31E.XMGC', 'admin');
+INSERT INTO `banco_hstw`.`clientes` (`cliente_id`, `cli_nom`, `cli_ap_paterno`, `cli_ap_materno`, `ali_fecha_nac`, `cli_curp`, `cli_rfc`, `users_id`) VALUES ('1', 'Jesús', 'Alcalá', 'Luna', '14-enero-19997', 'CURPDEPRUEBA', 'RFCDEPRUEBA', '1');
+UPDATE `banco_hstw`.`clientes` SET `ali_fecha_nac` = '1997-01-14 00:00:00.000000' WHERE (`cliente_id` = '1');
 
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`usuarios`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`usuarios` (
-  `usu_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `usu_nom` VARCHAR(45) NOT NULL,
-  `usu_pass` VARCHAR(45) NOT NULL,
-  `usu_fecha_reg_bc` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-  `usuario_id` INT(11) NOT NULL,
-  PRIMARY KEY (`usu_id`),
-  UNIQUE INDEX `usu_id_UNIQUE` (`usu_id`),
-  INDEX `fk_usuarios_tipos_usuarios1_idx` (`usuario_id`),
-  CONSTRAINT `fk_usuarios_tipos_usuarios1`
-    FOREIGN KEY (`usuario_id`)
-    REFERENCES `banco_hstw`.`tipos_usuarios` (`tipo_usuario_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`clientes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`clientes` (
-  `cliente_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `usu_id` INT(11) NOT NULL,
-  `cli_nom` VARCHAR(45) NOT NULL,
-  `cli_ap_paterno` VARCHAR(45) NOT NULL,
-  `cli_ap_materno` VARCHAR(45) NOT NULL,
-  `ali_fecha_nac` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-  `cli_curp` VARCHAR(45) NOT NULL,
-  `cli_rfc` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`cliente_id`),
-  INDEX `fk_clientes_usuarios1_idx` (`usu_id`),
-  CONSTRAINT `fk_clientes_usuarios1`
-    FOREIGN KEY (`usu_id`)
-    REFERENCES `banco_hstw`.`usuarios` (`usu_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`direcciones`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`direcciones` (
-  `direccion_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `ciudad_id` INT(11) NOT NULL,
-  `direccion_colonia` VARCHAR(45) NOT NULL,
-  `direccion_calle` VARCHAR(45) NOT NULL,
-  `direccion_codigo_postal` INT(11) NOT NULL,
-  `direccion_num_ext` VARCHAR(45) NOT NULL,
-  `direccion_num_int` VARCHAR(45) NULL DEFAULT NULL,
-  `direccion_entre_calles` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`direccion_id`),
-  UNIQUE INDEX `direccion_id_UNIQUE` (`direccion_id`),
-  INDEX `fk_direcciones_ciudades_idx` (`ciudad_id`),
-  CONSTRAINT `fk_direcciones_ciudades`
-    FOREIGN KEY (`ciudad_id`)
-    REFERENCES `banco_hstw`.`ciudades` (`ciudad_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`direcciones_has_clientes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`direcciones_has_clientes` (
-  `direcciones_direccion_id` INT(11) NOT NULL,
-  `clientes_cliente_id` INT(11) NOT NULL,
-  PRIMARY KEY (`direcciones_direccion_id`, `clientes_cliente_id`),
-  INDEX `fk_direcciones_has_clientes_clientes1_idx` (`clientes_cliente_id`),
-  INDEX `fk_direcciones_has_clientes_direcciones1_idx` (`direcciones_direccion_id`),
-  CONSTRAINT `fk_direcciones_has_clientes_clientes1`
-    FOREIGN KEY (`clientes_cliente_id`)
-    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_direcciones_has_clientes_direcciones1`
-    FOREIGN KEY (`direcciones_direccion_id`)
-    REFERENCES `banco_hstw`.`direcciones` (`direccion_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`tipos_pagos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_pagos` (
-  `tipo_pago_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `tipo_pago_nom` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`tipo_pago_id`),
-  UNIQUE INDEX `tipo_pago_id_UNIQUE` (`tipo_pago_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`prestamos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`prestamos` (
-  `prest_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `clientes_cliente_id` INT(11) NOT NULL,
-  `tipos_pagos_tipo_pago_id` INT(11) NOT NULL,
-  `prest_monto_sol` VARCHAR(45) NOT NULL,
-  `prest_fecha_final` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-  `prest_tasa` VARCHAR(45) NOT NULL,
-  `prest_monto_total` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`prest_id`),
-  UNIQUE INDEX `prest_id_UNIQUE` (`prest_id`),
-  INDEX `fk_prestamos_tipos_pagos1_idx` (`tipos_pagos_tipo_pago_id`),
-  INDEX `fk_prestamos_clientes1_idx` (`clientes_cliente_id`),
-  CONSTRAINT `fk_prestamos_clientes1`
-    FOREIGN KEY (`clientes_cliente_id`)
-    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_prestamos_tipos_pagos1`
-    FOREIGN KEY (`tipos_pagos_tipo_pago_id`)
-    REFERENCES `banco_hstw`.`tipos_pagos` (`tipo_pago_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`pagos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`pagos` (
-  `pago_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `prest_id` INT(11) NOT NULL,
-  `pago_cuota_pagar` VARCHAR(45) NOT NULL,
-  `pago_interes` VARCHAR(45) NOT NULL,
-  `pago_cap_amortizado` VARCHAR(45) NOT NULL,
-  `pago_cap_final` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`pago_id`),
-  UNIQUE INDEX `pago_id_UNIQUE` (`pago_id`),
-  INDEX `fk_pagos_prestamos1_idx` (`prest_id`),
-  CONSTRAINT `fk_pagos_prestamos1`
-    FOREIGN KEY (`prest_id`)
-    REFERENCES `banco_hstw`.`prestamos` (`prest_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`tipos_tarjetas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_tarjetas` (
-  `tipo_tarjeta_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `tipo_tarjeta_nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`tipo_tarjeta_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`tipos_tarjetas_deb_cred`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tipos_tarjetas_deb_cred` (
-  `tipo_tarjeta_deb_cred_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `tipo_tarjeto_cd_nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`tipo_tarjeta_deb_cred_id`),
-  UNIQUE INDEX `tipos_tarjetas_deb_cred_UNIQUE` (`tipo_tarjeta_deb_cred_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8;
-
-INSERT INTO `banco_hstw`.`tipos_tarjetas_deb_cred` (`tipo_tarjeto_cd_nombre`) VALUES ('crédito'),('débito');
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`tarjetas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tarjetas` (
-  `tarjeta_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `cliente_id` INT(11) NOT NULL,
-  `tipo_tarjeta_id` INT(11) NOT NULL,
-  `tipo_tarjeta_deb_cred_id` INT(11) NOT NULL,
-  `tarjeta_numero` VARCHAR(45) NOT NULL,
-  `tarjeta_fecha_venc` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
-  PRIMARY KEY (`tarjeta_id`),
-  UNIQUE INDEX `tarjeta_id_UNIQUE` (`tarjeta_id`),
-  INDEX `fk_tarjetas_tipos_tarjetas_deb_cred1_idx` (`tipo_tarjeta_deb_cred_id`),
-  INDEX `fk_tarjetas_tipos_tarjetas1_idx` (`tipo_tarjeta_id`),
-  INDEX `fk_tarjetas_clientes1_idx` (`cliente_id`),
-  CONSTRAINT `fk_tarjetas_clientes1`
-    FOREIGN KEY (`cliente_id`)
-    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tarjetas_tipos_tarjetas1`
-    FOREIGN KEY (`tipo_tarjeta_id`)
-    REFERENCES `banco_hstw`.`tipos_tarjetas` (`tipo_tarjeta_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tarjetas_tipos_tarjetas_deb_cred1`
-    FOREIGN KEY (`tipo_tarjeta_deb_cred_id`)
-    REFERENCES `banco_hstw`.`tipos_tarjetas_deb_cred` (`tipo_tarjeta_deb_cred_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`tienda`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`tienda` (
-  `tienda_id` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`tienda_id`),
-  UNIQUE INDEX `tienda_id_UNIQUE` (`tienda_id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `banco_hstw`.`deudas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `banco_hstw`.`deudas` (
-  `deudas_id` INT NOT NULL AUTO_INCREMENT,
-  `tienda_tienda_id` INT NOT NULL,
-  `clientes_cliente_id` INT(11) NOT NULL,
-  `deudas_cantidad` VARCHAR(45) NOT NULL,
-  `deudas_fecha` TIMESTAMP(6) NOT NULL,
-  `estatus` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`deudas_id`),
-  UNIQUE INDEX `deudas_id_UNIQUE` (`deudas_id`),
-  INDEX `fk_deudas_tienda1_idx` (`tienda_tienda_id`),
-  INDEX `fk_deudas_clientes1_idx` (`clientes_cliente_id`),
-  CONSTRAINT `fk_deudas_tienda1`
-    FOREIGN KEY (`tienda_tienda_id`)
-    REFERENCES `banco_hstw`.`tienda` (`tienda_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_deudas_clientes1`
-    FOREIGN KEY (`clientes_cliente_id`)
-    REFERENCES `banco_hstw`.`clientes` (`cliente_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
