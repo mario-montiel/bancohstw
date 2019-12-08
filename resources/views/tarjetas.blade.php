@@ -5,6 +5,13 @@
 <br>
 <br>
 <br>
+@if($errors->any())
+<center>
+	<div class="alert alert-info" role="alert">
+	  {{$errors->first()}}
+	</div>
+</center>
+@endif
 <br>
 <center><h1>Solicitud de tarjetas</h1></center>
 <div class="row">
@@ -53,7 +60,8 @@
 		</div>
 		<br>
 		<br>
-		<form class="form-group" id="formrfc">
+		<form class="form-group" id="formrfc" action="{{url('/RFC1')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -76,7 +84,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formcurp">
+		<form class="form-group" id="formcurp" action="{{url('/curp1')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -99,7 +108,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formnumero">
+		<form class="form-group" id="formnumero" action="{{url('/numero1')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -122,7 +132,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formnombre">
+		<form class="form-group" id="formnombre" action="{{url('/nombre1')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -207,7 +218,8 @@
 		</div>
 		<br>
 		<br>
-		<form class="form-group" id="formrfc2">
+		<form class="form-group" id="formrfc2" action="{{url('/rfc2')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -230,7 +242,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formcurp2">
+		<form class="form-group" id="formcurp2" action="{{url('/curp2')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -253,7 +266,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formnumero2">
+		<form class="form-group" id="formnumero2" action="{{url('/numero2')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -276,7 +290,8 @@
 				<br>
 			</div>
 		</form>
-		<form class="form-group" id="formnombre2">
+		<form class="form-group" id="formnombre2" action="{{url('/nombre2')}}" method="POST">
+			@csrf
 			<div class="container border">
 				<br>
 				<div class="row">
@@ -319,7 +334,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="date" class="form-control" name="fecha2" id="fecha">
+						<input type="date" class="form-control" name="fecha2" id="fecha2">
 					</div>
 				</div>
 				<br>
