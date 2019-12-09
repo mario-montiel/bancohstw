@@ -23,16 +23,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// >>>>>>>>>>> RUTAS VERIFICAR CLIENTE EN EL BURO DE CREDITO  <<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>  RUTAS VERIFICAR CLIENTE EN EL BURO DE CREDITO  <<<<<<<<<<<<<<<<<
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
 Route::get('/ver-usuarios', 'verificar_buro_controller@get_clientes');
 Route::get('/verificar_nom_client', 'verificar_buro_controller@buscar_clientes');
 Route::get('/buscar_clientes_curp', 'verificar_buro_controller@buscar_clientes_curp');
 Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rfc');
 
+// >>>>>>>>>>>  RUTAS ASIGNAR PRESTAMOS   <<<<<<<<<<<<<<<<<
 Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+Route::get('/asignar_prestamo', 'asignar_prestamos_controller@verVista2');
 Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
-Route::post('/x', 'asignar_prestamos_controller@asignarPrestamos');
+Route::post('/verif_sol_prestamo', 'asignar_prestamos_controller@asignarPrestamos');
+Route::post('/prestamo_solicitado', 'asignar_prestamos_controller@prestamoSolicitado');
+
 
 
 
