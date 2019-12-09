@@ -17,9 +17,16 @@ asig_num_cli.style.display = "none"
 btn_asignar_prestamos.style.display = "none"
 // numero_cliente
 function verificacion() {
-
+    $('#asig_numero_cliente').val("");
+    $('#asig_nombre_cliente').val("");
+    $('#asig_ap_paterno').val("");
+    $('#asig_ap_materno').val("");
+    $('#asig_fecha_cli').val("");
+    $('#asig_curp').val("");
+    $('#asig_rfc').val("");
     var verificacion = document.getElementById("seleccion_opcion").value
-    btn_asignar_prestamos.style.display = "block"
+    btn_asignar_prestamos.style.display = "block";
+    
     // 
     
     // asig_num_cli.style.display = "block"
