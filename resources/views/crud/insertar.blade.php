@@ -1,4 +1,4 @@
-@extends('base.base')
+@extends('scripts/scripts')
 @extends('layouts/app')
 @section('content')
     
@@ -26,43 +26,43 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
                         </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre">
+                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" required>
                         </div>
                     <div class="input-group mb-3">
                           <div class="input-group-prepend">
                               <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                           </div>
-                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario">
+                              <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" >
                     </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Apellido paterno</span>
                                 </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="appaterno">
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="appaterno" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Apellido materno</span>
                                 </div>
-                                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="apmaterno">
+                                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="apmaterno" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Fecha de nacimiento</span>
                                 </div>
-                                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="fnac">
+                                    <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="fnac" required>
                                 </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                       <span class="input-group-text" id="inputGroup-sizing-default">CURP</span>
                                 </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="curp">
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="curp" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">RFC</span>
                                 </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc">
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc" required>
                             </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             
@@ -100,7 +100,7 @@
                   <td>{{$c->cli_fecha_nac}}</td>
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
-                  <td><a href="" class="btn btn-danger eliminar" data-id="{{$c->cliente_id}}" >Eliminar</a></td>
+                  <td><a href="eliminar/{{$c->cliente_id}}" class="btn btn-danger eliminar" onclick="return confirm('Estás seguro?')" >Eliminar</a></td>
                   <td><button class="btn btn-warning editar" id="editar" data-toggle="modal" data-target="#editar_cliente{{$c->cliente_id}}" href="" >Editar</button>
                   <div class="modal fade" id="editar_cliente{{$c->cliente_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   
@@ -116,18 +116,18 @@
                               {{csrf_field()}}
                           <div class="modal-body">
                                 
-                                {{-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}"> --}}
+                                <input type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}">
                               <div class="input-group mb-3">
                                   <div class="input-group-prepend">
                                       <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
                                   </div>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" value="{{$c->cli_nom}}">
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" value="{{$c->cli_nom}}" >
                                   </div>
                               <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                                     </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->usu_id}}">
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->usu_id}}" >
                               </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">

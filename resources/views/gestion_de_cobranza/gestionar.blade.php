@@ -1,4 +1,6 @@
 @extends('scripts/scripts')
+@extends('layouts/app')
+@section('content')
 <div class="tablagestion">
     <table class="table table-hover">
         <thead>
@@ -46,3 +48,4 @@
     </ul> --}}
 </div>
 
+@endsection
