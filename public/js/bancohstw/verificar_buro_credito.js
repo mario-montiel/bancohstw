@@ -11,6 +11,8 @@ form_cliente_rfc.style.display = "none"
 
 function verificar_buro_cliente(){
     $("#verificar_nom_client").val("");
+    $("#verificar_ap_paterno").val("");
+    $("#verificar_ap_materno").val("");
     $("#veri_fecha_cli").val("");
     $("#buscador_verif_curp").val("");
     $("#buscador_verif_rfc").val("");
@@ -60,6 +62,8 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                         "<tr>"+
                                                             "<th> ID </th>"+
                                                             "<th> Nombre </th>"+
+                                                            "<th> Apellido Paterno </th> " +
+                                                            "<th> Apellido Materno </th> " +
                                                             "<th> Fecha de Nacimiento </th>"+
                                                             "<th> CURP </th>"+
                                                             "<th> RFC </th>"+
@@ -72,6 +76,8 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
+                                                            item.cli_ap_paterno + "</td><td>" +
+                                                            item.cli_ap_materno + "</td><td>" +
                                                             item.ali_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" + 

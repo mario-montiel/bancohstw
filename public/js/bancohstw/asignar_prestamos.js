@@ -1,5 +1,5 @@
 setTimeout(function() {
-    $("p").fadeOut(1500);
+    $("p").fadeOut(3000);
 },3000);
 
 var asig_nombre = document.getElementById("form_asignar_nombre")

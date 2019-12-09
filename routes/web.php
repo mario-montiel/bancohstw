@@ -31,11 +31,8 @@ Route::get('/buscar_clientes_curp', 'verificar_buro_controller@buscar_clientes_c
 Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rfc');
 
 // >>>>>>>>>>>  RUTAS ASIGNAR PRESTAMOS   <<<<<<<<<<<<<<<<<
-Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
-Route::get('/asignar_prestamo', 'asignar_prestamos_controller@verVista2');
-Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
-Route::post('/verif_sol_prestamo', 'asignar_prestamos_controller@asignarPrestamos');
-Route::post('/prestamo_solicitado', 'asignar_prestamos_controller@prestamoSolicitado');
+// Route::get('/verif_asignar_prestamos', 'asignar_prestamos_controller@verifClientBuroCredito');
+
 
 
 
@@ -46,18 +43,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'verificar_buro_controller@admin');
 
-/*
-|--------------------------------------------------------------------------
-| Rutas de administrador
-|--------------------------------------------------------------------------
-|
-| En este grupo de rutas se colocaran todas las rutas a las que solo
-| tiene acceso el administrador, tengan cuidado de añadir una ruta
-| con un proceso que el usuario comun necesita hacer. Los quiero
-|
---- PONGAN SUS PINCHES RUTAS AQUI
+
+/*--- PONGAN SUS PINCHES RUTAS AQUI
 */
+//El admi puede verificar si alguien esta en buro de crédito
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+//El usuario común podrá acceder para poder solicitar un préstamo
+Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+// En estas rutas no se puede acceder directamente por el usuario comun
+Route::get('/asignar_prestamo', 'asignar_prestamos_controller@verVista2');
+Route::post('/verif_sol_prestamo', 'asignar_prestamos_controller@asignarPrestamos');
+Route::post('/prestamo_solicitado', 'asignar_prestamos_controller@prestamoSolicitado');
 
 
 /*rutas iony*/
@@ -75,6 +71,7 @@ route::post('/curp2', 'tarjetasController@curp2');
 route::post('/numero2', 'tarjetasController@numero2');
 route::post('/nombre2', 'tarjetasController@nombre2');
 route::post('/tarjetadebito', 'tarjetasController@tarjetadebito');
+
 
 
 /*
