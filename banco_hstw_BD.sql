@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `banco_hstw`.`clientes` (
   `ali_fecha_nac` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `cli_curp` VARCHAR(45) NOT NULL,
   `cli_rfc` VARCHAR(45) NOT NULL,
-  `users_id` BIGINT(20) UNSIGNED NOT NULL,
+  `users_id` BIGINT(20) UNSIGNED,
   PRIMARY KEY (`cliente_id`),
   INDEX `fk_clientes_users1_idx` (`users_id` ) ,
   CONSTRAINT `fk_clientes_users1`
