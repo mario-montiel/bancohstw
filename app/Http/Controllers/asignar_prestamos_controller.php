@@ -37,10 +37,21 @@ class asignar_prestamos_controller extends Controller
             return redirect ('asignar_prestamos')
                     ->with('usuario_fail', 'Usuario no encontrado!...');
         }
+
+        if ($verificar_solicitud->cli_status == "rojo"){
+            return redirect ('asignar_prestamos')
+                    ->with('negado', 'Usuario en estado rojo!...');
+        }
         
-        if ($request->tipo_tarjeta == "credito"){
+        if ($request->tipo_tarjeta == "credito" && $verificar_solicitud->cli_status == "verde"){
             return redirect ('asignar_prestamo')
-                    ->with('solicitud', 'Cliente encontrado en el sistema con éxito!...')
+                    ->with('solicitud_verde', 'Cliente encontrado en el sistema con éxito!...')
+                    ->with(['tipo' => $request->tipo_tarjeta])
+                    ->with(['verificar_solicitud' => $verificar_solicitud]);
+        }
+        else if ($request->tipo_tarjeta == "credito" && $verificar_solicitud->cli_status == "amarillo"){
+            return redirect ('asignar_prestamo')
+                    ->with('solicitud_amarillo', 'Cliente encontrado en el sistema con éxito!...')
                     ->with(['tipo' => $request->tipo_tarjeta])
                     ->with(['verificar_solicitud' => $verificar_solicitud]);
         }
@@ -77,40 +88,40 @@ class asignar_prestamos_controller extends Controller
                     ->with('prestamo', 'Solicitud de Prestamo realizado con Éxito!');
     }
 
-    public function verifClientBuroCredito(Request $request){
-        // return $request->datos["nombre"];
-        if($request->datos["nombre"] != ""){
-            $consulta = DB::table('usuarios')
-                    ->select('*')
-                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-                    ->orWhere('cli_nom', $request->datos["nombre"])
-                    ->get();
-            return $consulta;
-        }
-        if($request->datos["curp"] != ""){
-            $consulta = DB::table('usuarios')
-                    ->select('*')
-                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-                    ->orWhere('cli_curp', 'LIKE', '%'.$request->datos["curp"].'%')
-                    ->get();
-            return $consulta;
-        }
-        if($request->datos["rfc"] != ""){
-            $consulta = DB::table('usuarios')
-                    ->select('*')
-                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-                    ->orWhere('cli_rfc', 'LIKE', '%'.$request->datos["rfc"].'%')
-                    ->get();
-            return $consulta;
-        }
-        if($request->datos["fecha"] != ""){
-            $consulta = DB::table('usuarios')
-                    ->select('*')
-                    ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-                    ->orWhere('ali_fecha_nac', 'LIKE', '%'.$request->datos["fecha"].'%')
-                    ->get();
-            return $consulta;
-        }
+    // public function verifClientBuroCredito(Request $request){
+    //     // return $request->datos["nombre"];
+    //     if($request->datos["nombre"] != ""){
+    //         $consulta = DB::table('usuarios')
+    //                 ->select('*')
+    //                 ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+    //                 ->orWhere('cli_nom', $request->datos["nombre"])
+    //                 ->get();
+    //         return $consulta;
+    //     }
+    //     if($request->datos["curp"] != ""){
+    //         $consulta = DB::table('usuarios')
+    //                 ->select('*')
+    //                 ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+    //                 ->orWhere('cli_curp', 'LIKE', '%'.$request->datos["curp"].'%')
+    //                 ->get();
+    //         return $consulta;
+    //     }
+    //     if($request->datos["rfc"] != ""){
+    //         $consulta = DB::table('usuarios')
+    //                 ->select('*')
+    //                 ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+    //                 ->orWhere('cli_rfc', 'LIKE', '%'.$request->datos["rfc"].'%')
+    //                 ->get();
+    //         return $consulta;
+    //     }
+    //     if($request->datos["fecha"] != ""){
+    //         $consulta = DB::table('usuarios')
+    //                 ->select('*')
+    //                 ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
+    //                 ->orWhere('ali_fecha_nac', 'LIKE', '%'.$request->datos["fecha"].'%')
+    //                 ->get();
+    //         return $consulta;
+    //     }
         
-    }
+    // }
 }

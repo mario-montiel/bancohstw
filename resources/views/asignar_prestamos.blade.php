@@ -11,6 +11,11 @@
             @if(Session::has('usuario_fail'))
                 <p class="alert alert-success" style="text-align:center;"> Usuario no encontrado! </p>
             @endif
+            @if(Session::has('negado'))
+                <p class="alert alert-success" style="text-align:center;"> Solicitud de Préstamo NEGADO! <br>
+                    Estado de buro en ROJO
+                </p>
+            @endif
                 <form action="{{url('/verif_sol_prestamo')}}" method="POST">
                 {{ csrf_field() }}
                     <center><h1 class="pt-5">Verificar Cliente</h1></center>
@@ -23,13 +28,29 @@
                         </select>
                         <div id="asig_num_cli" class="form-group mt-4">
                             <label for="numero_cliente" class="control-label">Número del Cliente:</label>
-                            <input type="text" class="form-control" id="numero_cliente" name="numero_cliente" maxlength="2">
+                            <input type="text" class="form-control" id="asig_numero_cliente" name="numero_cliente" maxlength="2">
                         </div>
-                        <div id="form_asignar_nombre" class="form-group mt-4">
+                        <div id="form_asignar_nombre" class="container-fluid mt-5">
                             <div class="row">
-                                <div class="col">
-                                    <label for="nom_client" class="control-label">Nombre del Cliente:</label>
-                                    <input id="nombre_cliente" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre del cliente">
+                                <div class="col-12">
+                                    <label for="nombre_cliente" class="control-label">Nombre Completo:</label>
+                                    <input id="asig_nombre_cliente" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre completo del cliente">
+                                </div>
+                                <div class="container mt-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="ap_paterno" class="control-label">Apellido Paterno:</label>
+                                            <input id="asig_ap_paterno" name="ap_paterno" type="search" class="form-control" placeholder="Ingrese el nombre paterno del cliente">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="ap_materno" class="control-label">Apellido Materno:</label>
+                                            <input id="asig_ap_materno" name="ap_materno" type="search" class="form-control" placeholder="Ingrese el nombre materno del cliente">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <label for="veri_fecha_cli" class="control-label">Fecha de Nacimiento:</label>
+                                    <input id="asig_fecha_cli" type="date" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -37,7 +58,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label id="l_verif_curp" for="verif_curp" class="control-label">CURP:</label>
-                                    <input id="verif_curp" name="verif_curp" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
+                                    <input id="asig_curp" name="verif_curp" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
                                 </div>
                             </div>         
                         </div>
@@ -46,7 +67,7 @@
                             <div class="row">
                                 <div class="col">
                                     <label id="l_verif_rfc" for="verif_rfc" class="control-label">RFC:</label>
-                                    <input id="verif_rfc" name="verif_rfc" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
+                                    <input id="asig_rfc" name="verif_rfc" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
                                 </div>
                             </div>        
                         </div>
