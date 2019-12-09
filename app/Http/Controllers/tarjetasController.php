@@ -17,7 +17,43 @@ class tarjetasController extends Controller
     public function RFC1(Request $r){
         $rfc = $r->get('rfc');
         $selector = DB::table('prestamos')->join('clientes', 'clientes.cliente_id', '=', 'prestamos.clientes_cliente_id')->select('prestamos.prest_monto_sol','prestamos.prest_fecha_final','prestamos.prest_tasa','prestamos.prest_monto_total')->where('clientes.cli_rfc', $rfc)->get();
-        return $selector;
+        $selector2 = DB::table('deudas')->join('clientes','clientes.cliente_id','=','deudas.clientes_cliente_id')->select('deudas.deudas_cantidad','deudas.deudas_fecha','deudas.estatus')->where('clientes.cli_rfc', $rfc)->get();
+        $semaforo = "verde";
+        $fechadehoy = getdate();
+        $dia = $fechadehoy['mday'];
+        $mes = $fechadehoy['mon'];
+        $año = $fechadehoy['year'];
+        $c1 = count($selector);
+        if ($c1 > 0){
+            $semaforo = "amarillo";
+            foreach ($selector as $s) {
+                $year = "";
+                for ($i=0; $i < 4; $i++) { 
+                    $year = $year.$s->prest_fecha_final[$i];
+                }
+                $month = "";
+                for ($i=5; $i < 7; $i++) { 
+                    $month = $month.$s->prest_fecha_final[$i];
+                }
+                $day = "";
+                for ($i=8; $i <10; $i++) { 
+                    $day = $day.$s->prest_fecha_final[$i];
+                }
+                if (($month + 3) > 12) {
+                    $year += 1;
+                    $month -= 9;
+                }else{
+                    $month += 3;
+                }
+                $fe1 = date("Y-m-d", strtotime($año."-".$mes."-".$dia));
+                $fe2 = date("Y-m-d", strtotime($year."-".$month."-".$day));
+                if($fe1 > $fe2){
+                    $semaforo = "rojo";
+                }
+            }
+        }
+        $c2 = count($selector2);
+        return $c2;
     }
     public function curp1(Request $r){
         $curp = $r->get('curp');
