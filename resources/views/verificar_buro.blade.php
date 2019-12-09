@@ -18,11 +18,24 @@
 
             <div id="form_nom_fecha" class="container-fluid mt-5">
                 <div class="row">
-                    <div class="col">
-                        <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre del cliente">
+                    <div class="col-12">
+                        <label for="verificar_nom_client" class="control-label">Nombre Completo:</label>
+                        <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre completo del cliente">
                     </div>
-                        
-                    <div class="col">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="ap_paterno" class="control-label">Apellido Paterno:</label>
+                                <input id="verificar_ap_paterno" name="ap_paterno" type="search" class="form-control" placeholder="Ingrese el nombre paterno del cliente">
+                            </div>
+                            <div class="col-6">
+                                <label for="ap_materno" class="control-label">Apellido Materno:</label>
+                                <input id="verificar_ap_materno" name="ap_materno" type="search" class="form-control" placeholder="Ingrese el nombre materno del cliente">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <label for="veri_fecha_cli" class="control-label">Fecha de Nacimiento:</label>
                         <input id="veri_fecha_cli" type="date" class="form-control">
                     </div>
                 </div>
@@ -55,6 +68,8 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
+                                    <th>Apellido Paterno</th>
+                                    <th>Apellido Materno</th>
                                     <th>Fecha de Nacimiento</th>
                                     <th>CURP</th>
                                     <th>RFC</th>
@@ -66,6 +81,8 @@
                                 <tr>
                                     <td>{{$usu->cliente_id}}</td>
                                     <td>{{$usu->cli_nom}}</td>
+                                    <td>{{$usu->cli_ap_paterno}}</td>
+                                    <td>{{$usu->cli_ap_materno}}</td>
                                     <td>{{$usu->ali_fecha_nac}}</td>
                                     <td>{{$usu->cli_curp}}</td>
                                     <td>{{$usu->cli_rfc}}</td>
