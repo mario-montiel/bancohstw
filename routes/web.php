@@ -58,6 +58,25 @@ Route::get('/admin', 'verificar_buro_controller@admin');
 --- PONGAN SUS PINCHES RUTAS AQUI
 */
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+
+
+/*rutas iony*/
+// estas rutas son para otorgar las tarjetas a los clientes haciendo consultas
+route::get('/tarjetas', 'tarjetasController@tarjetas');
+// estas rutas son para consultarme si el bato está en buró de credito dependiendo de los datos k ingrese
+//								||
+//							    \/
+route::post('/RFC1', 'tarjetasController@RFC1');
+route::post('/curp1', 'tarjetasController@curp1');
+route::post('/numero1', 'tarjetasController@numero1');
+route::post('/nombre1', 'tarjetasController@nombre1');
+route::post('/rfc2', 'tarjetasController@rfc2');
+route::post('/curp2', 'tarjetasController@curp2');
+route::post('/numero2', 'tarjetasController@numero2');
+route::post('/nombre2', 'tarjetasController@nombre2');
+route::post('/tarjetadebito', 'tarjetasController@tarjetadebito');
+
+
 /*
 |--------------------------------------------------------------------------
 | Rutas de usuario común
@@ -70,23 +89,13 @@ Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_c
 --- PONGAN SUS PINCHES RUTAS AQUI
 */
 Route::get('/asignar_prestamos', 'asignar_prestamos_controller@verVista');
+
+
+
 /*
 --- HASTA AQUÍ!
 */
 /*====================================*/
-/*rutas iony*/
-
-// esta ruta es para otorgar las tarjetas a los clientes haciendo consultas
-route::get('/tarjetas', 'tarjetasController@tarjetas');
-route::post('/RFC1', 'tarjetasController@RFC1');
-route::post('/curp1', 'tarjetasController@curp1');
-route::post('/numero1', 'tarjetasController@numero1');
-route::post('/nombre1', 'tarjetasController@nombre1');
-route::post('/rfc2', 'tarjetasController@rfc2');
-route::post('/curp2', 'tarjetasController@curp2');
-route::post('/numero2', 'tarjetasController@numero2');
-route::post('/nombre2', 'tarjetasController@nombre2');
-route::post('/tarjetadebito', 'tarjetasController@tarjetadebito');
 /*====================================*/
 
 
@@ -110,8 +119,4 @@ route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista
 route::post('/ver_prestamos','prestamos_controller@ver_prestamos_view');
 route::get('/ver_prestamos_g/{id}','prestamos_controller@ver_prestamos_view2');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-// rutas iony
-route::get('/tarjetas', 'tarjetasController@tarjetas');
 
