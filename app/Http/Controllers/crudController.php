@@ -9,7 +9,7 @@ use Illuminate\Pagination\Paginator;
 class crudController extends Controller
 {
     public function gestionar_clientes(){
-        $cli = ClientesModelo::paginate("3");
+        $cli = ClientesModelo::all();
         return view('crud/insertar',compact('cli'));
     }
     
@@ -32,10 +32,11 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function editar(Request $request, $id){
+        
         $id = $request->get("id");
         $cli =  ClientesModelo::findOrFail($id);
         $cli->cli_nom=$request->get("nombre");
-        $cli->usu_id=$request->get("usuario");
+        $cli->user_id=$request->get("usuario");
         $cli->cli_ap_paterno=$request->get("appaterno");
         $cli->cli_ap_materno=$request->get("apmaterno");
         $cli->cli_fecha_nac=$request->get("fnac");

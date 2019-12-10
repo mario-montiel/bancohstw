@@ -1,6 +1,8 @@
 @extends('scripts/scripts')
+@extends('layouts/app')
+@section('content')
 <div class="tablagestion">
-    <table class="table">
+    <table class="table table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -17,7 +19,7 @@
         <tbody>
           @foreach($cli as $c)
           <tr>
-          <td id="id"></td>
+          <td id="id">{{$c->cliente_id}}</td>
           <td>{{$c->user_id}}</td>
           <td>{{$c->cli_nom}}</td>
           <td>{{$c->cli_ap_paterno}}</td>
@@ -46,3 +48,4 @@
     </ul> --}}
 </div>
 
+@endsection
