@@ -20,7 +20,7 @@
           @foreach($cli as $c)
           <tr>
           <td id="id">{{$c->cliente_id}}</td>
-          <td>{{$c->user_id}}</td>
+          <td>{{$c->name}}</td>
           <td>{{$c->cli_nom}}</td>
           <td>{{$c->cli_ap_paterno}}</td>
           <td>{{$c->cli_ap_materno}}</td>
