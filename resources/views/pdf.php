@@ -65,6 +65,7 @@ $pdf->setXY(100,64);
 $pdf->Cell(150,12,utf8_decode($banco_tasa),0,1);
 $pdf->setXY(100,74);
 $pdf->Cell(150,12,utf8_decode($banco_monto_prestamo),0,1);
+
 $pdf->setXY(100,84);
 $pdf->Cell(150,12,utf8_decode($banco_monto_total),0,1);
 

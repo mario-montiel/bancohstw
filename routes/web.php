@@ -20,7 +20,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/cerrar-sesion', 'crudController@logout');
 
 // >>>>>>>>>>>  RUTAS VERIFICAR CLIENTE EN EL BURO DE CREDITO  <<<<<<<<<<<<<<<<<
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
@@ -109,6 +108,6 @@ route::get('/mostrar','crudController@gestionar');
 route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
 //generar pdf
 route::post('/ver_prestamos','prestamos_controller@ver_prestamos_view');
-route::get('/ver_prestamos_g/{id}','prestamos_controller@ver_prestamos_view2');
+route::get('/ver_prestamos_g/{id}','prestamos_controller@dompdf');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 

@@ -78,7 +78,7 @@
     
   </center>
 
-  <br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br>
 
   <div id="capa"></div>
 
@@ -99,7 +99,7 @@
             prest_id : prest_id            
           },
           success : function(html){
-            //alert("si jalo");
+            alert("si jalo");
             window.location.href = "ver_prestamos_g/"+prest_id;
 
             
