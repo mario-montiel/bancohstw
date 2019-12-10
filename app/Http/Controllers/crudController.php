@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Modelos\ClientesModelo;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class crudController extends Controller
 {
@@ -12,7 +13,7 @@ class crudController extends Controller
         $cli = ClientesModelo::all();
         return view('crud/insertar',compact('cli'));
     }
-    
+
     public function crear_cliente(Request $request){
         $cli=new ClientesModelo();
         // $cli->cliente_id=$request->get("clid");
@@ -32,7 +33,7 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function editar(Request $request, $id){
-        
+
         $id = $request->get("id");
         $cli =  ClientesModelo::findOrFail($id);
         $cli->cli_nom=$request->get("nombre");
@@ -49,5 +50,12 @@ class crudController extends Controller
         $cli = ClientesModelo::Where('cli_status','=','amarillo')->orWhere('cli_status','=','rojo')->get();
         return view("gestion_de_cobranza/gestionar",compact('cli'));
     }
-    
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->to(route('home'));
+    }
+
 }

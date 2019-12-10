@@ -2,20 +2,20 @@
 
 include "C:/xampp/htdocs/bancohstw/FPDF/fpdf.php";
 
-$banco_nombre = "AXEL ALBERTO SERNA ROMAN";
-$banco_anios = "3 AÑOS";
+$banco_nombre = "Jesus Alcala Luna";
+$banco_anios = "2 AÑOS";
 $banco_tipo_pago = "MENSUAL";
-$banco_tasa = "3%";
-$banco_monto_prestamo = "12,000 $";
-$banco_monto_total = "12,360 $";
+$banco_tasa = "5%";
+$banco_monto_prestamo = "8,000 $";
+$banco_monto_total = "8,400 $";
 
 
 $banco_no_pago = "17090069";
 $banco_fecha_pago = "30/11/2019";
-$banco_cuota = "343$";
-$banco_interes = "10$";
+$banco_cuota = "333.33$";
+$banco_interes = "16.66$";
 $banco_capital_amortizado = "360$";
-$banco_capital_final = "12,360$";
+$banco_capital_final = "8,400$";
 
 	
 $pdf = new FPDF();
@@ -117,6 +117,6 @@ $pdf->Cell(150,12,utf8_decode('información contenida en el mismo y que le ha si
 
 
 
-$pdf->Output('name.pdf','D');
+$pdf->Output('Prestamo.pdf','D');
 
 ?>

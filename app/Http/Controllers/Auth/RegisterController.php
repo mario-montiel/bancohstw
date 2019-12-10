@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Modelos\ClientesModelo;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,6 +54,12 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cli_nom' => ['required'],
+            'cli_ap_paterno' => ['required'],
+            'cli_ap_materno' => ['required'],
+            'cli_fecha_nac' => ['required'],
+            'cli_curp' => ['required'],
+            'cli_rfc' => ['required'],
         ]);
     }
 
@@ -64,17 +71,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //dd($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $user->cliente([
-            
+
+        ClientesModelo::create([
+            'cli_nom' => $data['cli_nom'],
+            'cli_ap_paterno' => $data['cli_ap_paterno'],
+            'cli_ap_materno' => $data['cli_ap_materno'],
+            'cli_fecha_nac' => $data['cli_fecha_nac'],
+            'cli_curp' => $data['cli_curp'],
+            'cli_rfc' => $data['cli_rfc'],
+            'user_id' => $user->id
         ]);
 
         return $user;
-
     }
-
 }

@@ -29,6 +29,7 @@
                 <th>Tasa interes</th>
                 <th>Monto total</th>
                 <th>PDF</th>
+                
             </tr>
         </thead>
         <tbody>     
@@ -37,10 +38,15 @@
 
           <tr>
                 <th>{{ $campo->prest_id }}</th>
-                <th>Axel Alberto Serna Roman</th>
-                <th>{{ $campo->tipos_pagos_tipo_pago_id}}</th>
+                <th>{{ $resultado = str_replace('"', " ",$cli_com_nom) }}</th>
+                <?php
+                if($campo->tipos_pagos_tipo_pago_id == 1){
+                  echo("<th>Mensual</th>");
+                } else
+                  echo("<th>quincenal</th>");
+                ?>
                 <th>{{ $campo->prest_monto_sol }} $</th>
-                <th>30/01/2020</th>
+                <th>{{ substr($campo->prest_fecha_final,0,-15) }}</th>
                 <th>{{ $campo->prest_tasa }}%</th>
                 <th>{{ $campo->prest_monto_total }} $</th> 
                 <th><button class="btn btn-primary btn_pdf" value="{{ $campo->prest_id }}">PDF</button></th>     
