@@ -92,8 +92,8 @@
                 <tbody>
                   @foreach($cli as $c)
                   <tr>
-                  <td id="id"></td>
-                  <td>{{$c->user_id}}</td>
+                  <td id="id">{{$c->cliente_id}}</td>
+                  <td>{{$c->name}}</td>
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
@@ -127,7 +127,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                                     </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->usu_id}}" >
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->name}}" disabled >
                               </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">

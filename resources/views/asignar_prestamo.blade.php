@@ -52,7 +52,14 @@
                                 <option value="8">8 años</option>
                                 <option value="10">10 años</option>
                             </select>
-                            
+                            <!-- <input type="number" class="form-control" id="" name="" placeholder="Seleccione el total de años que desea pagar el prestamo" required maxlength="15"> -->
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="plazo_pagar" class="control-label">Plazo de Pagos en Años:</label>
+                            <select class="form-control" name="plazo_pagar" id="tipo_pago">
+                                <option value="1">Quincenal</option>
+                                <option value="2">Mensual</option>
+                            </select>
                             <!-- <input type="number" class="form-control" id="" name="" placeholder="Seleccione el total de años que desea pagar el prestamo" required maxlength="15"> -->
                         </div>
                         <button id="btn_asignar_prestamos" class="btn btn-primary" type="submit">Solicitar</button>

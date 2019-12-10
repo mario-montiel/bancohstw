@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 // >>>>>>>>>>>  RUTAS VERIFICAR CLIENTE EN EL BURO DE CREDITO  <<<<<<<<<<<<<<<<<
-Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
+// Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
 Route::get('/ver-usuarios', 'verificar_buro_controller@get_clientes');
 Route::get('/verificar_nom_client', 'verificar_buro_controller@buscar_clientes');
 Route::get('/buscar_clientes_curp', 'verificar_buro_controller@buscar_clientes_curp');
