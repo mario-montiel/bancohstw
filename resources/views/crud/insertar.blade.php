@@ -127,7 +127,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                                     </div>
-                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->user_id}}" >
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->name}}" disabled >
                               </div>
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">

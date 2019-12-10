@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Modelos\ClientesModelo;
-use App\Modelos\Usuario;
 use Illuminate\Pagination\Paginator;
 use DB;
+use Illuminate\Support\Facades\Auth;
+
 class crudController extends Controller
 {
     public function gestionar_clientes(){
@@ -18,7 +19,7 @@ class crudController extends Controller
         ->get();
         return view('crud/insertar',compact('cli'));
     }
-    
+
     public function crear_cliente(Request $request){
         $cli=new ClientesModelo();
         // $cli->cliente_id=$request->get("clid");
@@ -38,18 +39,27 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function editar(Request $request, $id){
-        
+
         $id = $request->get("id");
         $cli =  ClientesModelo::findOrFail($id);
-        $user = Usuario::all();
+        $usu  = $request->get("usuario");
+        // $x = DB::table('users')->select('id')->where('name', $usu)->first();
+        // $y = json_encode($x->id);
+        $x = DB::table('clientes')->select('user_id')->where('cliente_id', $id)->first();
+        $y = json_encode($x->user_id);
+     // $user = Usuario::all();
         $cli->cli_nom=$request->get("nombre");
-        $user->name=$request->get("usuario");
+        $cli->user_id=$y;
         $cli->cli_ap_paterno=$request->get("appaterno");
         $cli->cli_ap_materno=$request->get("apmaterno");
         $cli->cli_fecha_nac=$request->get("fnac");
         $cli->cli_curp=$request->get("curp");
         $cli->cli_rfc=$request->get("rfc");
+
+        // $user = User::findOrFail($y);
+        // $user->name = $request->get("ususario"); 
         $cli->save();
+        // $user->save();
         return redirect("/gestionar_clientes");
     }
     public function gestionar(){
@@ -59,5 +69,12 @@ class crudController extends Controller
         ->get();
         return view("gestion_de_cobranza/gestionar",compact('cli'));
     }
-    
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->to(route('home'));
+    }
+
 }
