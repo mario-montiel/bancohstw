@@ -83,7 +83,7 @@
                                     <td>{{$usu->cli_nom}}</td>
                                     <td>{{$usu->cli_ap_paterno}}</td>
                                     <td>{{$usu->cli_ap_materno}}</td>
-                                    <td>{{$usu->ali_fecha_nac}}</td>
+                                    <td>{{$usu->cli_fecha_nac}}</td>
                                     <td>{{$usu->cli_curp}}</td>
                                     <td>{{$usu->cli_rfc}}</td>
                                 
