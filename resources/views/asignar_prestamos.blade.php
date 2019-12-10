@@ -1,7 +1,7 @@
 @extends('scripts/scripts')
 @extends('layouts/app')
 @section('content')
-    
+
     <div class="container  mt-5 pb-5">
         <div class="container-fluid">
             <div class="container-fluid container_asignar_prestamos mt-5 pl-5 pr-5 pb-5">

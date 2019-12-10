@@ -78,10 +78,16 @@ class asignar_prestamos_controller extends Controller
             $asignar_prestamo->tipos_pagos_tipo_pago_id = 2;
         }
         
+        if ($request->tipo_pago == 1){
+            $asignar_prestamo->prest_tasa = 1;
+        }
+        else{
+            $asignar_prestamo->prest_tasa = 2;
+        }
         $asignar_prestamo->prest_monto_sol = $request->monto_solicitado;
         $asignar_prestamo->prest_fecha_final = $endDate;
         $asignar_prestamo->prest_tasa = '5%';
-        $asignar_prestamo->prest_monto_total = $request->monto_solicitado + ($request->monto_solicitado * 0.05);
+        $asignar_prestamo->prest_monto_total = $request->monto_solicitado * 1.05;
         $asignar_prestamo->save();
 
         return redirect ('asignar_prestamos')
