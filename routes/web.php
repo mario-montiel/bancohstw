@@ -20,6 +20,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/cerrar-sesion', 'crudController@logout');
 
 // >>>>>>>>>>>  RUTAS VERIFICAR CLIENTE EN EL BURO DE CREDITO  <<<<<<<<<<<<<<<<<
 Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
