@@ -24,6 +24,6 @@ class CheckUserType
             return $next($request);
         }
 
-        return redirect('home');
+        return redirect('/');
     }
 }

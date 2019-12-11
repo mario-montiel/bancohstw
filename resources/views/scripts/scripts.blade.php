@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/banco_hstw.css">
+    <!-- <link rel="stylesheet" href="/css/banco_hstw.css"> -->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="css/sweetalert2.css">
     <link rel="stylesheet" href="css/fontawesome.css">
@@ -13,7 +13,7 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 </head>
 <body>
-    <script src="js/bancohstw/navbar.js"></script>
+    <!-- <script src="js/bancohstw/navbar.js"></script> -->
     <script src="js/jquery.js"></script>
     <script src="js/sweetalert2.js"></script>
     <script src="js/fontawesome.js"></script>
