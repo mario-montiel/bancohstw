@@ -1,18 +1,18 @@
-<!-- @extends('scripts/scripts') -->
-@extends('layouts/app')
+@extends('scripts/scripts')
+@extends('layouts/appAlcala')
 @section('content')
 
     <div class="container  mt-5 pb-5">
         <div class="container-fluid">
             <div class="container-fluid container_asignar_prestamos mt-5 pl-5 pr-5 pb-5">
             @if(Session::has('prestamo'))
-                <p class="alert alert-success" style="text-align:center;"> Prestamo realizado con Éxito! </p>
+                <p class="alert alert-success p" style="text-align:center;"> Prestamo realizado con Éxito! </p>
             @endif
             @if(Session::has('usuario_fail'))
-                <p class="alert alert-success" style="text-align:center;"> Usuario no encontrado! </p>
+                <p class="alert alert-success p" style="text-align:center;"> Usuario no encontrado! </p>
             @endif
             @if(Session::has('negado'))
-                <p class="alert alert-success" style="text-align:center;"> Solicitud de Préstamo NEGADO! <br>
+                <p class="alert alert-success p" style="text-align:center;"> Solicitud de Préstamo NEGADO! <br>
                     Estado de buro en ROJO
                 </p>
             @endif

@@ -86,7 +86,7 @@
                                     <td>{{$usu->cli_fecha_nac}}</td>
                                     <td>{{$usu->cli_curp}}</td>
                                     <td>{{$usu->cli_rfc}}</td>
-                                
+
                                     <td>
                                     @if ( $usu->cli_status == "verde")
                                         <center><img src="/img/verde.png" alt="" srcset="" style="height:30px;"></center>
@@ -146,10 +146,6 @@
                     <div class="form-group">
                         <label for="continente" class="control-label">Codigo Postal:</label>
                         <input disabled type="text" class="form-control" id="codigo_postal" name="codigo_postal" required maxlength="15">
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Codigo Postal:</label>
-                        <input disabled type="text" class="form-control" id="mensaje" name="mensaje" required maxlength="15">
                     </div>
 
                     </div>

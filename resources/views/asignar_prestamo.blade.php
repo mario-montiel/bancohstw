@@ -1,17 +1,17 @@
 @extends('scripts/scripts')
-@extends('layouts/app')
+@extends('layouts/appAlcala')
 @section('content')
     
     <div class="container  mt-5 pb-5">
         <div class="container-fluid">
             <div class="container-fluid container_asignar_prestamos mt-5 pl-5 pr-5 pb-5">
             @if(Session::has('solicitud_verde'))
-                <p class="alert alert-success" style="text-align:center;"> Cliente encontrado con Éxito! <br>
+                <p class="alert alert-success p" style="text-align:center;"> Cliente encontrado con Éxito! <br>
                     Va al corriente con sus pagos, SIGA ASÍ!
                 </p>
             @endif
             @if(Session::has('solicitud_amarillo'))
-                <p class="alert alert-success" style="text-align:center;"> Cliente encontrado con Éxito! <br>
+                <p class="alert alert-success p" style="text-align:center;"> Cliente encontrado con Éxito! <br>
                     Tiene pagos RETRASADOS
                 </p>
             @endif
