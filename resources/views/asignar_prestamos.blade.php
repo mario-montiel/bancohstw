@@ -1,4 +1,3 @@
-@extends('scripts/scripts')
 @extends('layouts/appAlcala')
 @section('content')
 

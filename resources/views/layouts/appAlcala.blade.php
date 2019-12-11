@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
         <link href="{{ asset('css/mdb.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="css/sweetalert2.css">
