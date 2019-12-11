@@ -65,9 +65,9 @@ $pdf->SetFont('Arial','B',10);
 
 
 $pdf->Rect(5,5,200,286,'D');
-$pdf->image("C:/xampp/htdocs/bancohstw/public/img/hsbc_logo.png",15,15,40,8,"PNG");
-$pdf->image("C:/xampp/htdocs/bancohstw/public/img/white.png",15,15,25,8,"PNG");
-$pdf->image("C:/xampp/htdocs/bancohstw/public/img/hstw_logo.JPG",41.2,11,13.5,13.5,"JPG");
+$pdf->image("../public/img/hsbc_logo.png",15,15,40,8,"PNG");
+$pdf->image("../public/img/white.png",15,15,25,8,"PNG");
+$pdf->image("../public/img/hstw_logo.JPG",41.2,11,13.5,13.5,"JPG");
 $pdf->setXY(14,13.5);
 $pdf->SetFont('Arial','B',24);
 $pdf->Cell(150,12,utf8_decode('HSTW'),0,1);
