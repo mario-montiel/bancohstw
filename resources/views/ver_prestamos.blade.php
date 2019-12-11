@@ -99,7 +99,7 @@
             prest_id : prest_id            
           },
           success : function(html){
-            alert("si jalo");
+            //alert("si jalo");
             window.location.href = "ver_prestamos_g/"+prest_id;
 
             

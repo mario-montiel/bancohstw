@@ -108,6 +108,12 @@ route::get('/mostrar','crudController@gestionar');
 route::get('/ver_prestamos_lista','prestamos_controller@ver_prestamos_view_lista');
 //generar pdf
 route::post('/ver_prestamos','prestamos_controller@ver_prestamos_view');
-route::get('/ver_prestamos_g/{id}','prestamos_controller@dompdf');
+route::get('/ver_prestamos_g/{id}','prestamos_controller@ver_prestamos_view2');
+//
+route::get('/dom',function(){
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Hola me la pelas</h1>');
+    $pdf->stream();
+});
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
