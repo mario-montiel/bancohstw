@@ -1,4 +1,5 @@
-@extends('layouts/appAlcala')
+@extends('scripts/scripts')
+@extends('layouts/app')
 @section('content')
 
 <div class="container mt-5 pb-5">
