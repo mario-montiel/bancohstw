@@ -8,8 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/') }}">Home
-                <span class="sr-only">(current)</span>
+                <a class="nav-link" href="{{ url('/') }}">Inicio
                 </a>
             </li>
             <li class="nav-item">
@@ -25,8 +24,9 @@
                 aria-haspopup="true" aria-expanded="false">Administrador
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="{{ url('/gestionar_clientes') }}">Gestión de clientes</a>
+                    <a class="dropdown-item" href="{{ url('/mostrar') }}">Gestión de cobranza</a>
+                    <div class="nav-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
