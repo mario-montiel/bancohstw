@@ -16,7 +16,7 @@ $banco_monto_prestamo = 8000;
 
 $prest_id = 1;
 $prest_arreglo = DB::table('prestamos')->select('prest_id','tipos_pagos_tipo_pago_id','prest_monto_sol','prest_fecha_final','prest_tasa','prest_monto_total')->where('prest_id',"=",$prest_id)->get();
-        
+
 $prest_monto_sol_s = json_encode($prest_arreglo[0]->prest_monto_sol);
 $prest_monto_sol_n = str_replace('"', "",$prest_monto_sol_s);
 $prest_monto_sol = (float)$prest_monto_sol_n;
@@ -51,14 +51,14 @@ $banco_fecha_pago = "30/11/2019";
 $name = Auth::user()->name;
 
 $user_id = Auth::user()->id;
-$cli_id_array = DB::table('clientes')->select('cliente_id','cli_nom','cli_ap_paterno','cli_ap_materno','ali_fecha_nac','cli_curp','cli_rfc',)->where('users_id',"=",$user_id)->get();
+$cli_id_array = DB::table('clientes')->select('cliente_id','cli_nom','cli_ap_paterno','cli_ap_materno','cli_fecha_nac','cli_curp','cli_rfc',)->where('user_id',"=",$user_id)->get();
 $cli_id = json_encode($cli_id_array[0]->cliente_id);
 $cli_name = json_encode($cli_id_array[0]->cli_nom);
 $cli_lastnamep = json_encode($cli_id_array[0]->cli_ap_paterno);
 $cli_lastnamem = json_encode($cli_id_array[0]->cli_ap_materno);
 $cli_com_nom = $cli_name . "" . $cli_lastnamep . "" . $cli_lastnamem;
 $nombre_completo = str_replace('"', " ",$cli_com_nom);
-	
+
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',10);

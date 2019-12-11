@@ -16,14 +16,14 @@ function verificar_buro_cliente(){
     $("#veri_fecha_cli").val("");
     $("#buscador_verif_curp").val("");
     $("#buscador_verif_rfc").val("");
-    
+
     var tipo_verificacion = document.getElementById("selector_cliente").value
-    
+
     if (tipo_verificacion == "f_n_f"){
         form_nom_fecha.style.display = "block"
         form_cliente_curp.style.display = "none"
         form_cliente_rfc.style.display = "none"
-        
+
     }
     else if (tipo_verificacion == "curp"){
         form_nom_fecha.style.display = "none"
@@ -80,9 +80,9 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             item.cli_ap_materno + "</td><td>" +
                                                             item.cli_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
-                                                            item.cli_rfc + "</td><td>" + 
+                                                            item.cli_rfc + "</td><td>" +
                                                             semaforo + "</td><td>" +
-                                                            '<center><button class="btn btn-success btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><i class="fas fa-eye"></i></button></center> </td><td>' + 
+                                                            '<center><button class="btn btn-success btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><i class="fas fa-eye"></i></button></center> </td><td>' +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                         "</tr>"+
@@ -92,7 +92,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                             $('#domicilios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente') 
+                                                var cliente = button.data('cliente')
                                                 var calle = button.data('calle')
                                                 var num_ext = button.data('numero')
                                                 var colonia = button.data('colonia')
@@ -113,7 +113,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                             $('#creditos_bancarios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion') 
+                                                var nombre_institucion = button.data('nombre_institucion')
                                                 var codigo = button.data('codigo')
                                                 var tipo_tarjeta = button.data('tipo_tarjeta')
                                                 var vencimiento = button.data('vencimiento')
@@ -139,10 +139,10 @@ $('#verificar_nom_client').on('keyup',function(e){
 // CURP
 $('#buscador_verif_curp').on('keyup',function(e){
     if ($('#buscador_verif_curp').val() == ""){
-        $('.table_verif_cli').css("display", "none"); 
+        $('.table_verif_cli').css("display", "none");
     }
     else{
-        $('.table_verif_cli').css("display", "block"); 
+        $('.table_verif_cli').css("display", "block");
     }
         e.preventDefault();
             $value = $('#buscador_verif_curp').val();
@@ -177,7 +177,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
-                                                            item.ali_fecha_nac + "</td><td>" +
+                                                            item.cli_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
                                                             semaforo + "</td><td>" +
@@ -191,7 +191,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                             $('#domicilios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente') 
+                                                var cliente = button.data('cliente')
                                                 var calle = button.data('calle')
                                                 var num_ext = button.data('numero')
                                                 var colonia = button.data('colonia')
@@ -212,7 +212,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                             $('#creditos_bancarios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion') 
+                                                var nombre_institucion = button.data('nombre_institucion')
                                                 var codigo = button.data('codigo')
                                                 var tipo_tarjeta = button.data('tipo_tarjeta')
                                                 var vencimiento = button.data('vencimiento')
@@ -237,10 +237,10 @@ $('#buscador_verif_curp').on('keyup',function(e){
 // RFC
 $('#buscador_verif_rfc').on('keyup',function(e){
     if ($('#buscador_verif_rfc').val() == ""){
-        $('.table_verif_cli').css("display", "none"); 
+        $('.table_verif_cli').css("display", "none");
     }
     else{
-        $('.table_verif_cli').css("display", "block"); 
+        $('.table_verif_cli').css("display", "block");
     }
         e.preventDefault();
             $value = $('#buscador_verif_rfc').val();
@@ -274,14 +274,14 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
-                                                            item.ali_fecha_nac + "</td><td>" +
+                                                            item.cli_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" +
                                                             semaforo + "</td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            
+
                                                         "</tr>"+
                                                     "</tbody>" +
                                                 " </table></center>" +
@@ -290,7 +290,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                             $('#domicilios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente') 
+                                                var cliente = button.data('cliente')
                                                 var calle = button.data('calle')
                                                 var num_ext = button.data('numero')
                                                 var colonia = button.data('colonia')
@@ -311,7 +311,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                             $('#creditos_bancarios').on('show.bs.modal', function (event) {
                                                 // DOMICILIOS
                                                 var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion') 
+                                                var nombre_institucion = button.data('nombre_institucion')
                                                 var codigo = button.data('codigo')
                                                 var tipo_tarjeta = button.data('tipo_tarjeta')
                                                 var vencimiento = button.data('vencimiento')
@@ -323,7 +323,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                                 modal.find('.modal-body #estado').val(vencimiento)
                                                 modal.find('.modal-body #comportamiento').val(estatus)
                                             });
-                                            
+
                                             $('.table_verif_cli').append(changos);
                         });
                     }
@@ -345,7 +345,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
 
 // $('#domicilios').modal("show");
 // 	var button = $(event.relatedTarget) // Botón que activó el modal
-//     var id = button.data('id') 
+//     var id = button.data('id')
 //     $('#botonPrueba').click(function(e){
 //         alert("hhhh")
 //         console.log(id)
@@ -356,7 +356,7 @@ $('#domicilios').on('show.bs.modal', function (event) {
     // DOMICILIOS
     console.log("hola")
     var button = $(event.relatedTarget) // Button that triggered the modal
-    var id = button.data('usu_id') 
+    var id = button.data('usu_id')
     var calle = button.data('calle')
     console.log(calle)
     var modal = $(this)
@@ -390,7 +390,7 @@ $('#domicilios').on('show.bs.modal', function (event) {
 //                                                         "<tr> <td>" +
 //                                                             item.cliente_id + "</td><td>" +
 //                                                             item.cli_nom + "</td><td>" +
-//                                                             item.ali_fecha_nac + "</td><td>" +
+//                                                             item.cli_fecha_nac + "</td><td>" +
 //                                                             item.cli_curp + "</td><td>" +
 //                                                             item.cli_rfc + "</td><td>" +
 //                                                         "</tr>"+

@@ -16,7 +16,7 @@ class prestamos_controller extends Controller
     public function ver_prestamos_view2($prest_id){
         ob_start();
     	$prest_arreglo = DB::table('prestamos')->select('prest_id','tipos_pagos_tipo_pago_id','prest_monto_sol','prest_fecha_final','prest_tasa','prest_monto_total')->where('prest_id',"=",$prest_id)->get();
-        
+
         $prest_monto_sol = json_encode($prest_arreglo[0]->prest_monto_sol);
         $prest_fecha_final_c = json_encode($prest_arreglo[0]->prest_fecha_final);
         $prest_fecha_final_s = substr($prest_fecha_final_c,0,-16);
@@ -36,7 +36,7 @@ class prestamos_controller extends Controller
 
     public function ver_prestamos_view_lista(){
         $user_id = Auth::user()->id;
-        $cli_id_array = DB::table('clientes')->select('cliente_id','cli_nom','cli_ap_paterno','cli_ap_materno','ali_fecha_nac','cli_curp','cli_rfc',)->where('users_id',"=",$user_id)->get();
+        $cli_id_array = DB::table('clientes')->select('cliente_id','cli_nom','cli_ap_paterno','cli_ap_materno','cli_fecha_nac','cli_curp','cli_rfc',)->where('user_id',"=",$user_id)->get();
     	$cli_id = json_encode($cli_id_array[0]->cliente_id);
         $cli_name = json_encode($cli_id_array[0]->cli_nom);
         $cli_lastnamep = json_encode($cli_id_array[0]->cli_ap_paterno);
@@ -60,6 +60,6 @@ class prestamos_controller extends Controller
     }
 
 
-    
+
 
 }

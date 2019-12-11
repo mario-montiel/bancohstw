@@ -109,14 +109,14 @@ CREATE TABLE IF NOT EXISTS `banco_hstw`.`clientes` (
   `cli_nom` VARCHAR(45) NOT NULL,
   `cli_ap_paterno` VARCHAR(45) NOT NULL,
   `cli_ap_materno` VARCHAR(45) NOT NULL,
-  `ali_fecha_nac` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `cli_fecha_nac` TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   `cli_curp` VARCHAR(45) NOT NULL,
   `cli_rfc` VARCHAR(45) NOT NULL,
-  `users_id` BIGINT(20) UNSIGNED,
+  `user_id` BIGINT(20) UNSIGNED,
   PRIMARY KEY (`cliente_id`),
-  INDEX `fk_clientes_users1_idx` (`users_id` ) ,
+  INDEX `fk_clientes_users1_idx` (`user_id` ) ,
   CONSTRAINT `fk_clientes_users1`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `banco_hstw`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -2912,8 +2912,8 @@ insert into `ciudades` (`ciudad_id`, `ciudad_nom`, `estado_id`) values(1, 'Aguas
 (2457, 'Moyahua de Estrada', 32);
 
 INSERT INTO `banco_hstw`.`users` (`id`, `name`, `email`, `password`, `type`) VALUES ('1', 'admin', 'admin@admin.com', '$2y$10$bCUkkthLSgj7uu.vMX1Q8OLPsXylDEnBdbdHeh/S4N0EB31E.XMGC', 'admin');
-INSERT INTO `banco_hstw`.`clientes` (`cliente_id`, `cli_nom`, `cli_ap_paterno`, `cli_ap_materno`, `ali_fecha_nac`, `cli_curp`, `cli_rfc`, `users_id`) VALUES ('1', 'Jesús', 'Alcalá', 'Luna', '14-enero-19997', 'CURPDEPRUEBA', 'RFCDEPRUEBA', '1');
-UPDATE `banco_hstw`.`clientes` SET `ali_fecha_nac` = '1997-01-14 00:00:00.000000' WHERE (`cliente_id` = '1');
+INSERT INTO `banco_hstw`.`clientes` (`cliente_id`, `cli_nom`, `cli_ap_paterno`, `cli_ap_materno`, `cli_fecha_nac`, `cli_curp`, `cli_rfc`, `user_id`) VALUES ('1', 'Jesús', 'Alcalá', 'Luna', '14-enero-19997', 'CURPDEPRUEBA', 'RFCDEPRUEBA', '1');
+UPDATE `banco_hstw`.`clientes` SET `cli_fecha_nac` = '1997-01-14 00:00:00.000000' WHERE (`cliente_id` = '1');
 
 
 
