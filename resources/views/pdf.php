@@ -3,7 +3,7 @@ use Illuminate\Http\Request;
 use Illuminate\support\Facades\Auth;
 use App\Modelos\ClientesModelo;
 use Illuminate\Support\Facades\DB;
-include "C:/xampp/htdocs/bancohstw/FPDF/fpdf.php";
+include "../FPDF/fpdf.php";
 
 //$banco_nombre = "Jesus Alcala Luna";
 
