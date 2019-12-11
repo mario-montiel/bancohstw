@@ -78,7 +78,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                             item.cli_nom + "</td><td>" +
                                                             item.cli_ap_paterno + "</td><td>" +
                                                             item.cli_ap_materno + "</td><td>" +
-                                                            item.ali_fecha_nac + "</td><td>" +
+                                                            item.cli_fecha_nac + "</td><td>" +
                                                             item.cli_curp + "</td><td>" +
                                                             item.cli_rfc + "</td><td>" + 
                                                             semaforo + "</td><td>" +
