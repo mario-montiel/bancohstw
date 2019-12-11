@@ -1,14 +1,14 @@
-@extends('scripts/scripts')
+{{-- @extends('scripts/scripts') --}}
 @extends('layouts/app')
 @section('content')
     
-    <div class="iovanna">
+    {{-- <div class="iovanna">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Crear cliente
       </button>        
-    </div>    
+    </div>     --}}
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" > 
         
           <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -167,15 +167,16 @@
                     </div>
                 </div>
                 </div>
-                
+        
                 
                 </td> 
                   </tr>
                   @endforeach     
                 </tbody>
                 
-              </table>
+            </table>
         </div>
+
         @endsection
 {{-- <script>
 
