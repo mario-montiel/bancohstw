@@ -12,12 +12,16 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="{{ url('/asignar_prestamos') }}">Prestamos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="{{ url('/verificar-burocredito') }}">Buro de credito</a>
             </li>
             @auth
+            <li class="nav-item">
+                <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
+            </li>
+
             @if (Auth::user()->type == 'admin')
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
@@ -27,7 +31,7 @@
                     <a class="dropdown-item" href="{{ url('/gestionar_clientes') }}">Gestión de clientes</a>
                     <a class="dropdown-item" href="{{ url('/mostrar') }}">Gestión de cobranza</a>
                     <div class="nav-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Prestamos</a>
                 </div>
             </li>
             @endif
