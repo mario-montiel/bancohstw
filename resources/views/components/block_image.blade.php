@@ -24,13 +24,12 @@
             <!--Grid column-->
             <div class="col-md-6 mb-4 mb-md-0">
 
-              <h3 class="font-weight-bold">Text</h3>
+              <h3 class="font-weight-bold">Prestamos</h3>
 
-              <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
-                molestiae
-                numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam, doloremque laborum.</p>
+              <p class="text-muted">Tes sorprenderia a donde puedes llegar solo con un empujo.</p>
+              <br>
 
-              <a class="btn btn-brown btn-md ml-0" href="#" role="button">Text<i class="far fa-money-bill-alt ml-2"></i></a>
+              <a class="btn btn-brown btn-md ml-0" href="{{ url('/asignar_prestamos') }}" role="button">Pedir prestamo<i class="far fa-money-bill-alt ml-2"></i></a>
 
             </div>
             <!--Grid column-->
