@@ -36,7 +36,7 @@ if($tipos_pago == "1"){
     $div = $anios * 24;
 }
 
-$banco_monto_total = $prest_monto_sol*($prest_tasa/100);
+$banco_monto_total = $prest_monto_sol*(1+($prest_tasa/100));
 $banco_cuota = $prest_monto_sol/$div;
 $banco_interes = $banco_cuota*($banco_tasa/100);
 $banco_capital_amortizado = $banco_cuota + $banco_interes;
