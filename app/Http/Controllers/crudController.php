@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class crudController extends Controller
 {
+    public function prueba()
+    {
+        $estado = Estado::get();
+        dd($estado);
+    }
+    
     public function gestionar_clientes(){
         // $cli = ClientesModelo::all()->inner jo;
         // $cli = ClientesModelo::with('user')->get();
@@ -44,7 +50,7 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function paises(){
-        
+
 
     }
     public function eliminar($id)
@@ -71,7 +77,7 @@ class crudController extends Controller
         $cli->cli_rfc=$request->get("rfc");
 
         // $user = User::findOrFail($y);
-        // $user->name = $request->get("ususario"); 
+        // $user->name = $request->get("ususario");
         $cli->save();
         // $user->save();
         return redirect("/gestionar_clientes");

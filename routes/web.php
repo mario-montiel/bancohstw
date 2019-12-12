@@ -38,6 +38,7 @@ Route::get('/buscar_clientes_rfc', 'verificar_buro_controller@buscar_clientes_rf
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/prueba', 'crudController@prueba');
 
 Route::get('/admin', 'verificar_buro_controller@admin');
 Route::get('/cerrar-sesion', 'crudController@logout');
