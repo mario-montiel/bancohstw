@@ -13,7 +13,7 @@ class Estado extends Model
     
     public function paises()
         {
-            return $this->hasMany('Pais', 'pais_id', '');
+            return $this->belongsTo(Pais::Class, 'pais_id', 'estado_id');
         }
 
 }
