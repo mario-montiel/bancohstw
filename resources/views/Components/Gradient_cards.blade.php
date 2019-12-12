@@ -52,7 +52,7 @@
                 <a href="#!">
                     <div class="text-white d-flex h-100 mask purple-gradient-rgba">
                         <div class="first-content align-self-center p-3">
-                            <h3 class="card-title">Tarjetas</h3>
+                            <a style="color: white;" href="/tarjetas"><h3 class="card-title">Tarjetas</h3></a>
                             <p class="lead mb-0">Solicita tu tarjeta hoy!</p>
                         </div>
                         <div class="second-content  align-self-center mx-auto text-center">
