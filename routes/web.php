@@ -118,4 +118,5 @@ route::get('/dom',function(){
 
 route::get('/calcular_prestamo','prestamos_controller@calcular_prestamo');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+route::get('/paises','crudController@paises');
 
