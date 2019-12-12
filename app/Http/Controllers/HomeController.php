@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modelos\Estado;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $estado = Estado::get();
+        dd($estado);
         return view('welcome');
+    }
+
+    public function prueba()
+    {
+        $estado = Estado::get();
+        dd($estado);
     }
 }
