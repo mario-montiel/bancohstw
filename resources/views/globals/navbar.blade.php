@@ -32,6 +32,7 @@
                     <a class="dropdown-item" href="{{ url('/mostrar') }}">Gestión de cobranza</a>
                     <div class="nav-divider"></div>
                     <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Prestamos</a>
+                    <a class="dropdown-item" href="{{ url('/tarjetas') }}">Tarjetas</a>
                 </div>
             </li>
             @endif

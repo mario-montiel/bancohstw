@@ -27,7 +27,7 @@
                         </select>
                         <div id="asig_num_cli" class="form-group mt-4">
                             <label for="numero_cliente" class="control-label">Número del Cliente:</label>
-                            <input type="text" class="form-control" id="asig_numero_cliente" name="numero_cliente" maxlength="2">
+                            <input type="text" class="form-control" id="asig_numero_cliente" name="numero_cliente" required maxlength="2">
                         </div>
                         <div id="form_asignar_nombre" class="container-fluid mt-5">
                             <div class="row">
@@ -59,7 +59,7 @@
                                     <label id="l_verif_curp" for="verif_curp" class="control-label">CURP:</label>
                                     <input id="asig_curp" name="verif_curp" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
                                 </div>
-                            </div>         
+                            </div>
                         </div>
 
                         <div id="form_asignar_rfc" class="mt-4">
@@ -68,7 +68,7 @@
                                     <label id="l_verif_rfc" for="verif_rfc" class="control-label">RFC:</label>
                                     <input id="asig_rfc" name="verif_rfc" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                         <div class="mt-4" id="tipo_tarjeta">
                         <label for="numero_cliente" class="control-label">Tarjeta:</label>

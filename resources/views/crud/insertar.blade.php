@@ -1,15 +1,15 @@
 {{-- @extends('scripts/scripts') --}}
 @extends('layouts/app')
 @section('content')
-    
-    {{-- <div class="iovanna">
+
+     <div class="iovanna">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Crear cliente
-      </button>        
-    </div>     --}}
+      </button>
+    </div>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" > 
-        
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -21,7 +21,7 @@
             <form action="/guardar" method="POST">
                     {{csrf_field()}}
                 <div class="modal-body">
-                        
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
@@ -65,7 +65,7 @@
                                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc" required>
                             </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            
+
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
             </form>
@@ -103,7 +103,7 @@
                   <td><a href="eliminar/{{$c->cliente_id}}" class="btn btn-danger eliminar" onclick="return confirm('Estás seguro?')" >Eliminar</a></td>
                   <td><button class="btn btn-warning editar" id="editar" data-toggle="modal" data-target="#editar_cliente{{$c->cliente_id}}" href="" >Editar</button>
                   <div class="modal fade" id="editar_cliente{{$c->cliente_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  
+
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -115,7 +115,7 @@
                         <form action="{{url('/editar',$c->cliente_id)}}" method="POST">
                               {{csrf_field()}}
                           <div class="modal-body">
-                                
+
                                 <input type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="id" value="{{$c->cliente_id}}">
                               <div class="input-group mb-3">
                                   <div class="input-group-prepend">
@@ -160,20 +160,20 @@
                                               <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="rfc" value="{{$c->cli_rfc}}">
                                       </div>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                      
+
                                       <button type="submit" class="btn btn-primary">Guardar</button>
                                   </div>
                       </form>
                     </div>
                 </div>
                 </div>
-        
-                
-                </td> 
+
+
+                </td>
                   </tr>
-                  @endforeach     
+                  @endforeach
                 </tbody>
-                
+
             </table>
         </div>
 
@@ -197,7 +197,7 @@
 //                 data: {id:id},
 //                 success: function (data) {
 //                               //
-//                     }         
+//                     }
 //             });
 //     });
 // });
