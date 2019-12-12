@@ -14,5 +14,8 @@ class ClientesModelo extends Model
     {
         return $this->hasOne('User', 'id', 'cliente_id');
     }
+    function direcciones() {
+        return $this->belongsToMany(Direccion::class, '', '', '');
+    }
 }
  

@@ -1,4 +1,4 @@
-@extends('base.base')
+@extends('scripts.scripts')
 @extends('layouts/app')
 @section('content')
 
