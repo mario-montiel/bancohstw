@@ -13,6 +13,6 @@ class Ciudad extends Model
 
     public function estados()
     {
-        return $this->hasMany(Estado::class, '', 'estado_id');
+        return $this->hasMany(Estado::class, 'estado_id', 'estado_id');
     }
 }
