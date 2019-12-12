@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class verificar_buro_controller extends Controller
 {
     public function verificar_buro_credito(){
+        // dd($usuarios);
+        return view('verificar_buro');
+    }
+
+    public function buro_credito_busqueda(Request $request){
+        // dd($request);
         $usuarios = DB::table('users')
                     ->select('*')
                     ->join('clientes', 'clientes.user_id', '=', 'users.id')
@@ -19,11 +25,21 @@ class verificar_buro_controller extends Controller
                     ->leftJoin('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
                     ->leftJoin('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
                     ->leftJoin('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
+                    ->orWhere('cli_nom', $request->nombre_cliente)
+                    ->orWhere('cli_nom', $request->curp_cliente)
+                    ->orWhere('cli_nom', $request->rfc_cliente)
                     ->get();
+
         // dd($usuarios);
-        return view('verificar_buro', compact('usuarios'));
+        
+        return view('buro_credito', compact('usuarios'))
+                ->with('usuario_encontrado', 'hey')
+                ->with('usuario_no_encontrado', 'hey');
     }
 
+    public function verVista2(){
+        return view('buro_credito');
+    }
 
     public function buscar_clientes(Request $request){
         $usuario = DB::table('users')
@@ -56,6 +72,8 @@ class verificar_buro_controller extends Controller
                     ->leftJoin('tarjetas', 'tarjetas.cliente_id', '=', 'clientes.cliente_id')
                     ->leftJoin('tipos_tarjetas', 'tipos_tarjetas.tipo_tarjeta_id', '=', 'tarjetas.tipo_tarjeta_id')
                     ->leftJoin('tipos_tarjetas_deb_cred', 'tipos_tarjetas_deb_cred.tipo_tarjeta_deb_cred_id', '=', 'tarjetas.tipo_tarjeta_deb_cred_id')
+                    ->leftJoin('deudas', 'deudas.clientes_cliente_id', '=', 'clientes.cliente_id')
+                    ->leftJoin('tienda', 'tienda.tienda_id', '=', 'deudas.tienda_tienda_id')
                     ->orWhere('cli_curp', 'LIKE', '%'.$request->buscar_clientes_curp.'%')
                     ->get();
 

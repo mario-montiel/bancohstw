@@ -2,114 +2,137 @@
 @extends('layouts/app')
 @section('content')
 
-<div class="container mt-5 pb-5">
-    <div class="form">
-    {{ csrf_field() }}
-        <div class="container-fluid container-verificar_buro">
-            <div class="container-fluid mt-5">
-                <center><h1 class="pt-5">BURÓ DE CREDITO</h1></center>
-                <select id="selector_cliente" class="form-control mt-4" name="" onchange="verificar_buro_cliente();">
-                    <option id="option" selected="true" disabled>Seleccione la forma de verificación del cliente</option>
-                    <option value="f_n_f">Nombre y Fecha</option>
-                    <option value="curp">CURP</option>
-                    <option value="rfc">RFC</option>
-                </select>
-            </div>
-
-            <div id="form_nom_fecha" class="container-fluid mt-5">
-                <div class="row">
-                    <div class="col-12">
-                        <label for="verificar_nom_client" class="control-label">Nombre Completo:</label>
-                        <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre completo del cliente">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            {{ csrf_field() }}
+            <form action="" method="get" class="pb-5">
+                <div class="container-fluid container-verificar_buro">
+                    <div class="container-fluid mt-4">
+                        <center><h4 class="pt-4">Consultar Cliente</h4></center>
+                        <select id="selector_cliente" class="form-control mt-4" name="" onchange="verificar_buro_cliente();">
+                            <option id="option" selected="true" disabled>Seleccione la forma de verificación del cliente</option>
+                            <option value="f_n_f">Nombre y Fecha</option>
+                            <option value="curp">CURP</option>
+                            <option value="rfc">RFC</option>
+                        </select>
                     </div>
-                    <div class="container mt-4">
+
+                    <div id="form_nom_fecha" class="container-fluid mt-4">
                         <div class="row">
-                            <div class="col-6">
-                                <label for="ap_paterno" class="control-label">Apellido Paterno:</label>
-                                <input id="verificar_ap_paterno" name="ap_paterno" type="search" class="form-control" placeholder="Ingrese el nombre paterno del cliente">
+                            <div class="col-12">
+                                <label for="verificar_nom_client" class="control-label">Nombre Completo:</label>
+                                <input id="verificar_nom_client" name="nombre_cliente" type="search" class="form-control" placeholder="Ingrese el nombre completo del cliente">
                             </div>
-                            <div class="col-6">
-                                <label for="ap_materno" class="control-label">Apellido Materno:</label>
-                                <input id="verificar_ap_materno" name="ap_materno" type="search" class="form-control" placeholder="Ingrese el nombre materno del cliente">
+                            <div class="container mt-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="ap_paterno" class="control-label">Apellido Paterno:</label>
+                                        <input id="verificar_ap_paterno" name="ap_paterno" type="search" class="form-control" placeholder="Ingrese el nombre paterno del cliente">
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="ap_materno" class="control-label">Apellido Materno:</label>
+                                        <input id="verificar_ap_materno" name="ap_materno" type="search" class="form-control" placeholder="Ingrese el nombre materno del cliente">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <label for="veri_fecha_cli" class="control-label">Fecha de Nacimiento:</label>
+                                <input id="veri_fecha_cli" type="date" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
-                        <label for="veri_fecha_cli" class="control-label">Fecha de Nacimiento:</label>
-                        <input id="veri_fecha_cli" type="date" class="form-control">
-                    </div>
-                </div>
-            </div>
 
 
-            <div id="form_cliente_curp" class="container-fluid mt-5">
-                <div class="row">
-                    <div class="col">
-                        <label for="buscador_verif_curp" class="control-label">Ingrese el CURP:</label>
-                        <input id="buscador_verif_curp" name="curp_cliente" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
+                    <div id="form_cliente_curp" class="container-fluid mt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="buscador_verif_curp" class="control-label">Ingrese el CURP:</label>
+                                <input id="buscador_verif_curp" name="curp_cliente" type="search" class="form-control" placeholder="Ingrese el CURP del cliente">
+                            </div>
+                        </div>         
                     </div>
-                </div>         
-            </div>
 
-            <div id="form_cliente_rfc" class="container-fluid mt-5">
-                <div class="row">
-                    <div class="col">
-                        <label for="buscador_verif_rfc" class="control-label">Ingrese el RFC:</label>
-                        <input id="buscador_verif_rfc" name="rfc_cliente" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
+                    <div id="form_cliente_rfc" class="container-fluid mt-4">
+                        <div class="row">
+                            <div class="col">
+                                <label for="buscador_verif_rfc" class="control-label">Ingrese el RFC:</label>
+                                <input id="buscador_verif_rfc" name="rfc_cliente" type="search" class="form-control" placeholder="Ingrese el RFC del cliente">
+                            </div>
+                        </div>        
                     </div>
+
                 </div>        
             </div>
             
 
-            <div class="container mt-5 pb-5">
-                <div class="row">
-                    <div class="col">
-                        <table class="table table-bordered table_verif_cli pt-5">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido Paterno</th>
-                                    <th>Apellido Materno</th>
-                                    <th>Fecha de Nacimiento</th>
-                                    <th>CURP</th>
-                                    <th>RFC</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($usuarios as $usu)
-                                <tr>
-                                    <td>{{$usu->cliente_id}}</td>
-                                    <td>{{$usu->cli_nom}}</td>
-                                    <td>{{$usu->cli_ap_paterno}}</td>
-                                    <td>{{$usu->cli_ap_materno}}</td>
-                                    <td>{{$usu->cli_fecha_nac}}</td>
-                                    <td>{{$usu->cli_curp}}</td>
-                                    <td>{{$usu->cli_rfc}}</td>
+                    <button id="btn_buro_credito" class="btn btn-primary mt-5 mb-5" type="button">Buscar</button>
+            </form>
+        </div>
+    </div>
 
-                                    <td>
-                                    @if ( $usu->cli_status == "verde")
-                                        <center><img src="/img/verde.png" alt="" srcset="" style="height:30px;"></center>
-                                    @endif
-                                    @if ( $usu->cli_status == "amarillo")
-                                        <center><img src="/img/amarillo.png" alt="" srcset="" style="height:30px;"></center>
-                                    @endif
-                                    @if ( $usu->cli_status == "rojo")
-                                        <center><img src="/img/rojo.png" alt="" srcset="" style="height:30px;"></center>
-                                    @endif
-                                    </td>
-                               
-                                </tr>
+
+    <!-- CARD DEL USUARIO -->
+    <!-- MUESTRA EL ESTADO DEL CLIENTE EN EL BURO DE CRÉDITO -->
+
+        <div class="col-sm-6 col-md-6 mt-4">
+            <div class="container">
+                <div class="card">
+                    <center><h5 id="titulo_cliente" class="card-header">Cliente</h5></center>
+                    <div class="card-body">
+                        
+                        <center>
+                            <h5 class="card-title">Buró de Crédito</h5>
+                            <img class="mt-4" src="img/user.png" alt="" style="height: 120px;">
+                            <div class="container">
                                 
-                            @endforeach
-                            </tbody>
-                        </table>
+                            </div>
+                            <p class="mt-4">
+                                <p id="mensaje_buro"><strong id="mensaje"></strong></p>
+                            </p>
+                            <button id="buscar_datos_domicilio" name="anchor" data-scroll href="#tabla_verif_domicilios" class="btn btn-outline-primary btn-sm buscar_datos_domicilio mt-3 smoothScroll">Ver Domicilio(s)</button>
+                            <button id="buscar_datos_bancarios" data-scroll href="#tabla_verif_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_bancarios mt-3 smoothScroll">Ver Cuentas Bancarias</button>
+                            <button id="buscar_datos_no_bancarios" data-scroll href="#tabla_verif_no_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_no_bancarios mt-3 smoothScroll">Ver Cuentas No Bancarias</button>
+                        </center>
+                
                     </div>
                 </div>
-                
+            </div>
+        </div>
 
-                <div id="domicilios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <!-- TABLA DONDE SE MUESTRAN LOS DATOS DEL CLIENTE -->
+
+        <div id="tabla_verif_cliente" class="col-12">
+            <div class="container mt-5">
+                <table class="table table-bordered table_verif_cli pt-5" style="text-align:center;">
+                </table>
+            </div>
+        </div>
+
+    <div id="tabla_verif_domicilios" class="col-12"">
+            <div class="container mt-5">
+                <table class="table table-bordered table_verif_domicilio pt-5" style="text-align:center;">
+                   
+                </table>
+            </div>
+        </div>
+
+    <div id="tabla_verif_cuentas" class="col-12">
+            <div class="container mt-5">
+                <table class="table table-bordered table_verif_cuentas pt-5" style="text-align:center;">
+                </table>
+            </div>
+        </div>
+
+    <div id="tabla_verif_no_cuentas" class="col-12">
+            <div class="container mt-5">
+                <table class="table table-bordered table_verif_no_cuentas pt-5" style="text-align:center;">
+                </table>
+            </div>
+        </div>
+    </div>
+
+                <!-- <div id="domicilios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -240,10 +263,10 @@
                     </div>
                     </div>
                 </div>
-                </div>
+                </div> -->
 
 
-            </div>
+            
         </div>     
     </div>
 </div>

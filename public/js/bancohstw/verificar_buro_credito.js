@@ -16,14 +16,14 @@ function verificar_buro_cliente(){
     $("#veri_fecha_cli").val("");
     $("#buscador_verif_curp").val("");
     $("#buscador_verif_rfc").val("");
-
+    
     var tipo_verificacion = document.getElementById("selector_cliente").value
-
+    
     if (tipo_verificacion == "f_n_f"){
         form_nom_fecha.style.display = "block"
         form_cliente_curp.style.display = "none"
         form_cliente_rfc.style.display = "none"
-
+        
     }
     else if (tipo_verificacion == "curp"){
         form_nom_fecha.style.display = "none"
@@ -38,7 +38,18 @@ function verificar_buro_cliente(){
 
 }
 // alert("h")
+
+
+
 // >>>>>>>>>>>>>>> JQUERY  <<<<<<<<<<<<<<<<<<<<<<<<<
+
+// new WOW().init();
+// var smoothScroll = require('smoothscroll');
+//smoothScroll
+// smoothScroll.init();
+// var scroll = new SmoothScroll('a[href*="#"]');
+
+
 $('#verificar_nom_client').on('keyup',function(e){
     $('#veri_fecha_cli').change(function(e){
         e.preventDefault();
@@ -48,86 +59,144 @@ $('#verificar_nom_client').on('keyup',function(e){
 				url:  '/verificar_nom_client',
 				data: {'verificar_nom_client':$value},
 				success:function(data){
-                    console.log(data)
-					if(data.no != ""){
-                        $('.table_verif_cli').html("");
-                        $.each(data, function(i, item) {
-                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
-                                changos = " <div class='container'> "+
-                                            "<center><h3> CLIENTE </h3>" +
-                                                "<table class='table table-bordered'> "+
-                                                    "<thead>"+
-                                                        "<tr>"+
-                                                            "<th> ID </th>"+
-                                                            "<th> Nombre </th>"+
-                                                            "<th> Apellido Paterno </th> " +
-                                                            "<th> Apellido Materno </th> " +
-                                                            "<th> Fecha de Nacimiento </th>"+
-                                                            "<th> CURP </th>"+
-                                                            "<th> RFC </th>"+
-                                                            "<th> Estado </th>"+
-                                                            "<th> Domicilio(s) </th>" +
-                                                            "<th> Creditos Bancarios </th> " +
-                                                            "<th> Creditos No Bancarios </th> " +
-                                                        "</tr>"+
+					$('#btn_buro_credito').click(function(e){
+                        
+                        if(data.no != ""){
+                            $('.table_verif_cli').html("");
+
+                            $.each(data, function(i, item) {
+                                $('#titulo_cliente').html(item.cli_nom + item.cli_ap_paterno + item.cli_ap_materno)
+                                if (item.cli_status == "verde")
+                                { semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+                                
+                                else if (item.cli_status == "rojo") {
+                                    semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+
+                                else if (item.cli_status == "amarillo") {
+                                    semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
+
+                                    $('.table_verif_cli').html("");
+                                    changos = " <div class='container-fluid'> "+
+                                                    "<table class='table table-bordered'> " +
+                                                    "<center>" +
+                                                        "<thead>" +
+                                                            "<tr>" +
+                                                                "<th> ID1 </th>" +
+                                                                "<th> Nombre </th>" +
+                                                                "<th> Fecha de Nacimiento </th>" +
+                                                                "<th> CURP </th>" +
+                                                                "<th> RFC </th>" +
+                                                                "<th> Estado </th>" +
+                                                            "</tr>" +
+                                                        "<tbody>" +
+                                                            "<tr> <td>" +
+                                                                item.cliente_id + "</td><td>" +
+                                                                item.cli_nom + "</td><td>" +
+                                                                item.cli_fecha_nac + "</td><td>" +
+                                                                item.cli_curp + "</td><td>" +
+                                                                item.cli_rfc + "</td><td>" +
+                                                                semaforo + "</td><td>" +
+                                                            "</tr>"+
+                                                        "</tbody>" +
+                                                    "</center></table>" +
+                                                "</div>";
+                                    $('.table_verif_cli').append(changos);
+                                $('.buscar_datos_domicilio').click(function(e){
+                                    $('.table_verif_domicilio').html("");
+                                    domicilios = " <div class='container'> "+
+                                                    "<table class='table table-bordered'> " +
+                                                    "<center>" +
+                                                        "<thead>" +
+                                                            "<tr>" +
+                                                                "<th> ID </th>" +
+                                                                "<th> Nombre </th>" +
+                                                                "<th> Calle </th>" +
+                                                                "<th> Número Exterior </th>" +
+                                                                "<th> Colonia </th>" +
+                                                                "<th> Ciudad </th>" +
+                                                                "<th> Estado </th>" +
+                                                                "<th> Código Postal </th> " +
+                                                            "</tr>" +
+                                                        "<tbody>" +
+                                                            "<tr> <td>" +
+                                                                item.cliente_id + "</td><td>" +
+                                                                item.cli_nom + "</td><td>" +
+                                                                item.direccion_calle + "</td><td>" +
+                                                                item.direccion_num_ext + "</td><td>" +
+                                                                item.direccion_colonia + "</td><td>" +
+                                                                item.ciudad_nom + "</td><td>" +
+                                                                item.estado_nom + "</td><td>" +
+                                                                item.direccion_codigo_postal + "</td><td>" +
+                                                            "</tr>"+
+                                                        "</tbody>" +
+                                                    "</center></table>" +
+                                                "</div>";
+                                    $('.table_verif_domicilio').append(domicilios);
+                                });
+                                $('.buscar_datos_bancarios').click(function(e){
+                                    $('.table_verif_cuentas').html("");
+                                    cuentas_bancarias = " <div class='container'> " +
+                                                "<table class='table table-bordered'> " +
+                                                "<center>" +
+                                                    "<thead>" +
+                                                        "<tr>" +
+                                                            "<th> ID </th>" +
+                                                            "<th> Nombre </th>" +
+                                                            "<th> Nombre de la Institución </th>" +
+                                                            "<th> Código </th>" +
+                                                            "<th> Tipo de Tarjeta </th>" +
+                                                            "<th> Vencimiento </th>" +
+                                                            "<th> Estatus </th>" +
+                                                        "</tr>" +
                                                     "<tbody>" +
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
-                                                            item.cli_ap_paterno + "</td><td>" +
-                                                            item.cli_ap_materno + "</td><td>" +
-                                                            item.cli_fecha_nac + "</td><td>" +
-                                                            item.cli_curp + "</td><td>" +
-                                                            item.cli_rfc + "</td><td>" +
-                                                            semaforo + "</td><td>" +
-                                                            '<center><button class="btn btn-success btn_obtener_datos" value='+item+' data-cliente='+item.cli_nom+' data-calle='+item.direccion_calle+' data-numero='+item.direccion_num_ext+' data-colonia='+item.direccion_colonia+' data-ciudad='+item.ciudad_nom+' data-estado='+item.estado_nom+' data-codigo_postal='+item.direccion_codigo_postal+' data-mensaje='+item.mensaje+' data-toggle="modal" data-target="#domicilios" class="btn btn-warning"><i class="fas fa-eye"></i></button></center> </td><td>' +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                        "</tr>"+
+                                                            item.nombre + "</td><td>" +
+                                                            item.tarjeta_numero + "</td><td>" +
+                                                            item.tipo_tarjeto_cd_nombre + "</td><td>" +
+                                                            item.tarjeta_fecha_venc + "</td><td>" +
+                                                            item.tarjeta_estatus + "</td><td>" +
+                                                        "</tr>" +
                                                     "</tbody>" +
-                                                " </table></center> " +
+                                                "</center></table>" +
                                             "</div>";
-                                            $('#domicilios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente')
-                                                var calle = button.data('calle')
-                                                var num_ext = button.data('numero')
-                                                var colonia = button.data('colonia')
-                                                var ciudad = button.data('ciudad')
-                                                var estado = button.data('estado')
-                                                var codigo_postal = button.data('codigo_postal')
-                                                var mensaje = button.data('mensaje')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #cliente').val(cliente)
-                                                modal.find('.modal-body #calle').val(calle)
-                                                modal.find('.modal-body #numero_ext').val(num_ext)
-                                                modal.find('.modal-body #colonia').val(colonia)
-                                                modal.find('.modal-body #ciudad').val(ciudad)
-                                                modal.find('.modal-body #estado').val(estado)
-                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
-                                                modal.find('.modal-body #mensaje').val(mensaje)
-                                            });
-                                            $('#creditos_bancarios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion')
-                                                var codigo = button.data('codigo')
-                                                var tipo_tarjeta = button.data('tipo_tarjeta')
-                                                var vencimiento = button.data('vencimiento')
-                                                var estatus = button.data('estatus')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #nombre_institucion').val(nombre_institucion)
-                                                modal.find('.modal-body #codigo').val(codigo)
-                                                modal.find('.modal-body #descripcion').val(tipo_tarjeta)
-                                                modal.find('.modal-body #estado').val(vencimiento)
-                                                modal.find('.modal-body #comportamiento').val(estatus)
-                                            });
-                                            $('.table_verif_cli').append(changos);
-                        });
-                    }
+                                    $('.table_verif_cuentas').append(cuentas_bancarias);
+                                });
+                                $('.buscar_datos_no_bancarios').click(function(e){
+                                    $('.table_verif_no_cuentas').html("");
+                                    cuentas_no_bancarias = " <div class='container'> " +
+                                                "<table class='table table-bordered'> " +
+                                                "<center>" +
+                                                    "<thead>" +
+                                                        "<tr>" +
+                                                            "<th> ID </th>" +
+                                                            "<th> Nombre </th>" +
+                                                            "<th> Nombre de la Institución </th>" +
+                                                            "<th> Código </th>" +
+                                                            "<th> Tipo de Tarjeta </th>" +
+                                                            "<th> Vencimiento </th>" +
+                                                            "<th> Estatus </th>" +
+                                                        "</tr>" +
+                                                    "<tbody>" +
+                                                        "<tr> <td>" +
+                                                            item.cliente_id + "</td><td>" +
+                                                            item.cli_nom + "</td><td>" +
+                                                            item.nombre + "</td><td>" +
+                                                            item.tarjeta_numero + "</td><td>" +
+                                                            item.tipo_tarjeto_cd_nombre + "</td><td>" +
+                                                            item.tarjeta_fecha_venc + "</td><td>" +
+                                                            item.tarjeta_estatus + "</td><td>" +
+                                                        "</tr>" +
+                                                    "</tbody>" +
+                                                "</center></table>" +
+                                            "</div>";
+                                    $('.table_verif_no_cuentas').append(cuentas_no_bancarias);
+                                });             
+                            });
+                            
+                        }
+                    });
 				},
 			     error: function () {
 			         alert("Error del Servidor");
@@ -135,235 +204,360 @@ $('#verificar_nom_client').on('keyup',function(e){
             });
     });
 });
-
-// CURP
+$('#btn_buro_credito').click(function(e){
+    if ($('#verificar_nom_client').val() == null || $('#verificar_nom_client').val() == ""
+    || $('#verificar_nom_client').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+    if ($('#buscador_verif_rfc').val() == null || $('#buscador_verif_rfc').val() == ""
+    || $('#buscador_verif_rfc').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+    if ($('#buscador_verif_curp').val() == null || $('#buscador_verif_curp').val() == ""
+    || $('#buscador_verif_curp').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+})
+// // CURP
 $('#buscador_verif_curp').on('keyup',function(e){
-    if ($('#buscador_verif_curp').val() == ""){
-        $('.table_verif_cli').css("display", "none");
-    }
-    else{
-        $('.table_verif_cli').css("display", "block");
-    }
         e.preventDefault();
+        
             $value = $('#buscador_verif_curp').val();
+            if ($value == null || $value == "" || $value.length == 0) {
+                $('#mensaje_buro').removeAttr('class');
+                $("#mensaje_buro").attr('class', '');
+                $('#mensaje_buro').addClass("alert-danger")
+                $('#mensaje').html("No se encontró ningun cliente con esos datos")
+                return false
+            }
 			$.ajax({
 				type: 'GET',
 				url:  '/buscar_clientes_curp',
 				data: {'buscar_clientes_curp':$value},
 				success:function(data){
-                    console.log(data);
-					if(data.no != ""){
-                        $('.table_verif_cli').html("");
-                        $.each(data, function(i, item) {
-                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
-                                changos = " <div class='container'> "+
-                                                "<center><h3> CLIENTE </h3>" +
-                                                "<table class='table table-bordered'> "+
-                                                    "<thead>"+
-                                                        "<tr>"+
-                                                            "<th> ID </th>"+
-                                                            "<th> Nombre </th>"+
-                                                            "<th> Fecha de Nacimiento </th>"+
-                                                            "<th> CURP </th>"+
-                                                            "<th> RFC </th>"+
-                                                            "<th> Estado </th>"+
-                                                            "<th>Domicilio(s)</th>" +
-                                                            "<th> Creditos Bancarios </th> " +
-                                                            "<th> Creditos No Bancarios </th> " +
-                                                        "</tr>"+
+                    // console.log(data);
+                        $('#btn_buro_credito').click(function(e){
+                            
+                        if(data.no != ""){
+                            $('.table_verif_cli').html("");
+                            $('.table_verif_domicilio').html("");
+                            $('.table_verif_cuentas').html("");
+                            $('.table_verif_no_cuentas').html("");
+                            
+                            $.each(data, function(i, item) {
+                                console.log(data)
+                                $('.table_verif_cli').html("");
+                                $('#titulo_cliente').html(item.cli_nom + " " + item.cli_ap_paterno + " " + item.cli_ap_materno)
+                                // $('#buscar_datos_domicilio').css("display", "block");
+                                // $('#buscar_datos_bancarios').css("display", "block");
+                                // $('#buscar_datos_no_bancarios').css("display", "block");
+
+                                if (item.cli_status == "verde"){ 
+                                    semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-success")
+                                    $('#mensaje').html("El cliente va al corriente en sus pagos")
+                                    
+                                    // $('#mensaje_buro').html("E")
+                                }
+                                
+                                else if (item.cli_status == "rojo") {
+                                    semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-danger")
+                                    $('#mensaje').html("El cliente está atrasado en unos pagos")
+                                }
+
+                                else if (item.cli_status == "amarillo") {
+                                    semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-warning")
+                                    $('#mensaje').html("El cliente no pagó en el límite del tiempo concedido")
+                                }
+
+                                
+                                    changos = " <div class='container-fluid'> "+
+                                                "<h5>Datos del Cliente" +
+                                                    "<table class='table table-bordered'> " +
+                                                    "<center>" +
+                                                        "<thead>" +
+                                                            "<tr>" +
+                                                                "<th> ID </th>" +
+                                                                "<th> Nombre </th>" +
+                                                                "<th> Fecha de Nacimiento </th>" +
+                                                                "<th> CURP </th>" +
+                                                                "<th> RFC </th>" +
+                                                                "<th> Estado </th>" +
+                                                            "</tr>" +
+                                                        "<tbody>" +
+                                                            "<tr> <td>" +
+                                                                item.cliente_id + "</td><td>" +
+                                                                item.cli_nom + "</td><td>" +
+                                                                item.cli_fecha_nac + "</td><td>" +
+                                                                item.cli_curp + "</td><td>" +
+                                                                item.cli_rfc + "</td><td>" +
+                                                                semaforo + "</td><td>" +
+                                                            "</tr>"+
+                                                        "</tbody>" +
+                                                    "</center></table>" +
+                                                "</div>";
+                                    $('.table_verif_cli').append(changos);
+                                $('.buscar_datos_domicilio').click(function(e){
+                                    $('.table_verif_domicilio').html("");
+                                    domicilios = " <div class='container'> " +
+                                                    "<h5>Domicilio del Cliente" +
+                                                    "<table class='table table-bordered'> " +
+                                                    "<center>" +
+                                                        "<thead>" +
+                                                            "<tr>" +
+                                                                "<th> ID </th>" +
+                                                                "<th> Nombre </th>" +
+                                                                "<th> Calle </th>" +
+                                                                "<th> Número Exterior </th>" +
+                                                                "<th> Colonia </th>" +
+                                                                "<th> Ciudad </th>" +
+                                                                "<th> Estado </th>" +
+                                                                "<th> Código Postal </th> " +
+                                                            "</tr>" +
+                                                        "<tbody>" +
+                                                            "<tr> <td>" +
+                                                                item.cliente_id + "</td><td>" +
+                                                                item.cli_nom + "</td><td>" +
+                                                                item.direccion_calle + "</td><td>" +
+                                                                item.direccion_num_ext + "</td><td>" +
+                                                                item.direccion_colonia + "</td><td>" +
+                                                                item.ciudad_nom + "</td><td>" +
+                                                                item.estado_nom + "</td><td>" +
+                                                                item.direccion_codigo_postal + "</td><td>" +
+                                                            "</tr>"+
+                                                        "</tbody>" +
+                                                    "</center></table>" +
+                                                "</div>";
+                                    $('.table_verif_domicilio').append(domicilios);
+                                });
+                                $('.buscar_datos_bancarios').click(function(e){
+                                    $('.table_verif_cuentas').html("");
+                                    cuentas_bancarias = " <div class='container'> " +
+                                                "<table class='table table-bordered'> " +
+                                                "<h5>Cuentas Bancarias del Cliente" +
+                                                "<center>" +
+                                                    "<thead>" +
+                                                        "<tr>" +
+                                                            "<th> ID </th>" +
+                                                            "<th> Nombre </th>" +
+                                                            "<th> Nombre de la Institución </th>" +
+                                                            "<th> Código </th>" +
+                                                            "<th> Tipo de Tarjeta </th>" +
+                                                            "<th> Vencimiento </th>" +
+                                                            "<th> Estatus </th>" +
+                                                        "</tr>" +
                                                     "<tbody>" +
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
-                                                            item.cli_fecha_nac + "</td><td>" +
-                                                            item.cli_curp + "</td><td>" +
-                                                            item.cli_rfc + "</td><td>" +
-                                                            semaforo + "</td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' value="+item+" data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                        "</tr>"+
+                                                            item.nombre + "</td><td>" +
+                                                            item.tarjeta_numero + "</td><td>" +
+                                                            item.tipo_tarjeto_cd_nombre + "</td><td>" +
+                                                            item.tarjeta_fecha_venc + "</td><td>" +
+                                                            item.tarjeta_estatus + "</td><td>" +
+                                                        "</tr>" +
                                                     "</tbody>" +
-                                                " </table></center>" +
+                                                "</center></table>" +
                                             "</div>";
-                                            $('#domicilios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente')
-                                                var calle = button.data('calle')
-                                                var num_ext = button.data('numero')
-                                                var colonia = button.data('colonia')
-                                                var ciudad = button.data('ciudad')
-                                                var estado = button.data('estado')
-                                                var codigo_postal = button.data('codigo_postal')
-                                                var mensaje = button.data('mensaje')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #cliente').val(cliente)
-                                                modal.find('.modal-body #calle').val(calle)
-                                                modal.find('.modal-body #numero_ext').val(num_ext)
-                                                modal.find('.modal-body #colonia').val(colonia)
-                                                modal.find('.modal-body #ciudad').val(ciudad)
-                                                modal.find('.modal-body #estado').val(estado)
-                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
-                                                modal.find('.modal-body #mensaje').val(mensaje)
-                                            });
-                                            $('#creditos_bancarios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion')
-                                                var codigo = button.data('codigo')
-                                                var tipo_tarjeta = button.data('tipo_tarjeta')
-                                                var vencimiento = button.data('vencimiento')
-                                                var estatus = button.data('estatus')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #nombre_institucion').val(nombre_institucion)
-                                                modal.find('.modal-body #codigo').val(codigo)
-                                                modal.find('.modal-body #descripcion').val(tipo_tarjeta)
-                                                modal.find('.modal-body #estado').val(vencimiento)
-                                                modal.find('.modal-body #comportamiento').val(estatus)
-                                            });
-                                            $('.table_verif_cli').append(changos);
-                        });
-                    }
-				},
-			     error: function () {
-			         alert("Error del Servidor");
-			     },
-            });
-});
-
-// RFC
-$('#buscador_verif_rfc').on('keyup',function(e){
-    if ($('#buscador_verif_rfc').val() == ""){
-        $('.table_verif_cli').css("display", "none");
-    }
-    else{
-        $('.table_verif_cli').css("display", "block");
-    }
-        e.preventDefault();
-            $value = $('#buscador_verif_rfc').val();
-			$.ajax({
-				type: 'GET',
-				url:  '/buscar_clientes_rfc',
-				data: {'buscar_clientes_rfc':$value},
-				success:function(data){
-					if(data.no != ""){
-                        $('.table_verif_cli').html("");
-                        $.each(data, function(i, item) {
-                            if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
-                            else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
-                                changos = " <div class='container'> "+
-                                                "<center><h3> CLIENTE </h3>" +
-                                                "<table class='table table-bordered'> "+
-                                                    "<thead>"+
-                                                        "<tr>"+
-                                                            "<th> ID </th>"+
-                                                            "<th> Nombre </th>"+
-                                                            "<th> Fecha de Nacimiento </th>"+
-                                                            "<th> CURP </th>"+
-                                                            "<th> RFC </th>"+
-                                                            "<th> Estado </th>"+
-                                                            "<th> Ver Domicilio(s) </th> " +
-                                                            "<th> Creditos Bancarios </th> " +
-                                                            "<th> Creditos No Bancarios </th> " +
-                                                        "</tr>"+
+                                    $('.table_verif_cuentas').append(cuentas_bancarias);
+                                });
+                                $('.buscar_datos_no_bancarios').click(function(e){
+                                    $('.table_verif_no_cuentas').html("");
+                                    cuentas_no_bancarias = " <div class='container'> " +
+                                                "<table class='table table-bordered'> " +
+                                                "<h5>Cuentas No Bancarias del Cliente" +
+                                                "<center>" +
+                                                    "<thead>" +
+                                                        "<tr>" +
+                                                            "<th> ID </th>" +
+                                                            "<th> Nombre </th>" +
+                                                            "<th> Nombre de la Institución </th>" +
+                                                            "<th> Código </th>" +
+                                                            "<th> Tipo de Tarjeta </th>" +
+                                                            "<th> Vencimiento </th>" +
+                                                            "<th> Estatus </th>" +
+                                                        "</tr>" +
                                                     "<tbody>" +
                                                         "<tr> <td>" +
                                                             item.cliente_id + "</td><td>" +
                                                             item.cli_nom + "</td><td>" +
-                                                            item.cli_fecha_nac + "</td><td>" +
-                                                            item.cli_curp + "</td><td>" +
-                                                            item.cli_rfc + "</td><td>" +
-                                                            semaforo + "</td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-                                                            "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
-
-                                                        "</tr>"+
+                                                            item.nombre + "</td><td>" +
+                                                            item.tarjeta_numero + "</td><td>" +
+                                                            item.tipo_tarjeto_cd_nombre + "</td><td>" +
+                                                            item.tarjeta_fecha_venc + "</td><td>" +
+                                                            item.tarjeta_estatus + "</td><td>" +
+                                                        "</tr>" +
                                                     "</tbody>" +
-                                                " </table></center>" +
+                                                "</center></table>" +
                                             "</div>";
-
-                                            $('#domicilios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var cliente = button.data('cliente')
-                                                var calle = button.data('calle')
-                                                var num_ext = button.data('numero')
-                                                var colonia = button.data('colonia')
-                                                var ciudad = button.data('ciudad')
-                                                var estado = button.data('estado')
-                                                var codigo_postal = button.data('codigo_postal')
-                                                var mensaje = button.data('mensaje')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #cliente').val(cliente)
-                                                modal.find('.modal-body #calle').val(calle)
-                                                modal.find('.modal-body #numero_ext').val(num_ext)
-                                                modal.find('.modal-body #colonia').val(colonia)
-                                                modal.find('.modal-body #ciudad').val(ciudad)
-                                                modal.find('.modal-body #estado').val(estado)
-                                                modal.find('.modal-body #codigo_postal').val(codigo_postal)
-                                                modal.find('.modal-body #mensaje').val(mensaje)
-                                            });
-                                            $('#creditos_bancarios').on('show.bs.modal', function (event) {
-                                                // DOMICILIOS
-                                                var button = $(event.relatedTarget) // Button that triggered the modal
-                                                var nombre_institucion = button.data('nombre_institucion')
-                                                var codigo = button.data('codigo')
-                                                var tipo_tarjeta = button.data('tipo_tarjeta')
-                                                var vencimiento = button.data('vencimiento')
-                                                var estatus = button.data('estatus')
-                                                var modal = $(this)
-                                                modal.find('.modal-body #nombre_institucion').val(nombre_institucion)
-                                                modal.find('.modal-body #codigo').val(codigo)
-                                                modal.find('.modal-body #descripcion').val(tipo_tarjeta)
-                                                modal.find('.modal-body #estado').val(vencimiento)
-                                                modal.find('.modal-body #comportamiento').val(estatus)
-                                            });
-
-                                            $('.table_verif_cli').append(changos);
-                        });
-                    }
+                                    $('.table_verif_no_cuentas').append(cuentas_no_bancarias);
+                                });             
+                            });
+                            
+                        }
+                        // if ($('#verificar_nom_client'.val() == "")){
+                        //     alert("wow")
+                        // }
+                    });
 				},
 			     error: function () {
 			         alert("Error del Servidor");
-			     },
+                 },
+                 
             });
+            
 });
 
-// $('#btn_obtener_datos').click(function(e){
-//     // $('#btn_obtener_datos').val()
-//     alert("hhhh")
+// // RFC
+// $('#buscador_verif_rfc').on('keyup',function(e){
+//     if ($('#buscador_verif_rfc').val() == ""){
+//         $('.table_verif_cli').css("display", "none"); 
+//     }
+//     else{
+//         $('.table_verif_cli').css("display", "block"); 
+//     }
+//         e.preventDefault();
+//             $value = $('#buscador_verif_rfc').val();
+// 			$.ajax({
+// 				type: 'GET',
+// 				url:  '/buscar_clientes_rfc',
+// 				data: {'buscar_clientes_rfc':$value},
+// 				success:function(data){
+// 					if(data.no != ""){
+//                         $('.table_verif_cli').html("");
+//                         $.each(data, function(i, item) {
+//                             if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+//                             else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+//                             else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
+//                                 changos = " <div class='container'> "+
+//                                                 "<center><h3> CLIENTE </h3>" +
+//                                                 "<table class='table table-bordered'> "+
+//                                                     "<thead>"+
+//                                                         "<tr>"+
+//                                                             "<th> ID </th>"+
+//                                                             "<th> Nombre </th>"+
+//                                                             "<th> Fecha de Nacimiento </th>"+
+//                                                             "<th> CURP </th>"+
+//                                                             "<th> RFC </th>"+
+//                                                             "<th> Estado </th>"+
+//                                                             "<th> Ver Domicilio(s) </th> " +
+//                                                             "<th> Creditos Bancarios </th> " +
+//                                                             "<th> Creditos No Bancarios </th> " +
+//                                                         "</tr>"+
+//                                                     "<tbody>" +
+//                                                         "<tr> <td>" +
+//                                                             item.cliente_id + "</td><td>" +
+//                                                             item.cli_nom + "</td><td>" +
+//                                                             item.ali_fecha_nac + "</td><td>" +
+//                                                             item.cli_curp + "</td><td>" +
+//                                                             item.cli_rfc + "</td><td>" +
+//                                                             semaforo + "</td><td>" +
+//                                                             "<center><button class='btn btn-success btn_obtener_datos' data-cliente="+item.cli_nom+" data-calle='"+item.direccion_calle+"' data-numero="+item.direccion_num_ext+" data-colonia='"+item.direccion_colonia+"' data-ciudad="+item.ciudad_nom+" data-estado="+item.estado_nom+" data-codigo_postal="+item.direccion_codigo_postal+" data-mensaje="+item.mensaje+" data-toggle='modal' data-target='#domicilios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
+//                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
+//                                                             "<center><button class='btn btn-success btn_obtener_datos' data-nombre_institucion="+item.tipo_tarjeta_nombre+" data-codigo='"+item.tarjeta_numero+"' data-tipo_tarjeta="+item.tipo_tarjeto_cd_nombre+" data-vencimiento='"+item.tarjeta_estatus+"' data-estatus="+item.cli_status+" data-toggle='modal' data-target='#creditos_bancarios' class='btn btn-warning'><i class='fas fa-eye'></i></button></center></td><td>" +
+                                                            
+//                                                         "</tr>"+
+//                                                     "</tbody>" +
+//                                                 " </table></center>" +
+//                                             "</div>";
+
+//                                             $('#domicilios').on('show.bs.modal', function (event) {
+//                                                 // DOMICILIOS
+//                                                 var button = $(event.relatedTarget) // Button that triggered the modal
+//                                                 var cliente = button.data('cliente') 
+//                                                 var calle = button.data('calle')
+//                                                 var num_ext = button.data('numero')
+//                                                 var colonia = button.data('colonia')
+//                                                 var ciudad = button.data('ciudad')
+//                                                 var estado = button.data('estado')
+//                                                 var codigo_postal = button.data('codigo_postal')
+//                                                 var mensaje = button.data('mensaje')
+//                                                 var modal = $(this)
+//                                                 modal.find('.modal-body #cliente').val(cliente)
+//                                                 modal.find('.modal-body #calle').val(calle)
+//                                                 modal.find('.modal-body #numero_ext').val(num_ext)
+//                                                 modal.find('.modal-body #colonia').val(colonia)
+//                                                 modal.find('.modal-body #ciudad').val(ciudad)
+//                                                 modal.find('.modal-body #estado').val(estado)
+//                                                 modal.find('.modal-body #codigo_postal').val(codigo_postal)
+//                                                 modal.find('.modal-body #mensaje').val(mensaje)
+//                                             });
+//                                             $('#creditos_bancarios').on('show.bs.modal', function (event) {
+//                                                 // DOMICILIOS
+//                                                 var button = $(event.relatedTarget) // Button that triggered the modal
+//                                                 var nombre_institucion = button.data('nombre_institucion') 
+//                                                 var codigo = button.data('codigo')
+//                                                 var tipo_tarjeta = button.data('tipo_tarjeta')
+//                                                 var vencimiento = button.data('vencimiento')
+//                                                 var estatus = button.data('estatus')
+//                                                 var modal = $(this)
+//                                                 modal.find('.modal-body #nombre_institucion').val(nombre_institucion)
+//                                                 modal.find('.modal-body #codigo').val(codigo)
+//                                                 modal.find('.modal-body #descripcion').val(tipo_tarjeta)
+//                                                 modal.find('.modal-body #estado').val(vencimiento)
+//                                                 modal.find('.modal-body #comportamiento').val(estatus)
+//                                             });
+                                            
+//                                             $('.table_verif_cli').append(changos);
+//                         });
+//                     }
+// 				},
+// 			     error: function () {
+// 			         alert("Error del Servidor");
+// 			     },
+//             });
 // });
-// $(document).on('show.bs.modal','#domicilios', function () {
-//     alert('hi');
-//   })
+
+// // $('#btn_obtener_datos').click(function(e){
+// //     // $('#btn_obtener_datos').val()
+// //     alert("hhhh")
+// // });
+// // $(document).on('show.bs.modal','#domicilios', function () {
+// //     alert('hi');
+// //   })
 
 
-// $('#domicilios').modal("show");
-// 	var button = $(event.relatedTarget) // Botón que activó el modal
-//     var id = button.data('id')
-//     $('#botonPrueba').click(function(e){
-//         alert("hhhh")
-//         console.log(id)
-//     });
+// // $('#domicilios').modal("show");
+// // 	var button = $(event.relatedTarget) // Botón que activó el modal
+// //     var id = button.data('id') 
+// //     $('#botonPrueba').click(function(e){
+// //         alert("hhhh")
+// //         console.log(id)
+// //     });
+// // });
+
+// $('#domicilios').on('show.bs.modal', function (event) {
+//     // DOMICILIOS
+//     console.log("hola")
+//     var button = $(event.relatedTarget) // Button that triggered the modal
+//     var id = button.data('usu_id') 
+//     var calle = button.data('calle')
+//     console.log(calle)
+//     var modal = $(this)
+//     modal.find('.modal-body #idCliente').val(id)
+//     modal.find('.modal-body #calleCliente').val(calle)
+//     // modal.find('.modal-body #tallerActualizar').val(taller)
 // });
-
-$('#domicilios').on('show.bs.modal', function (event) {
-    // DOMICILIOS
-    console.log("hola")
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var id = button.data('usu_id')
-    var calle = button.data('calle')
-    console.log(calle)
-    var modal = $(this)
-    modal.find('.modal-body #idCliente').val(id)
-    modal.find('.modal-body #calleCliente').val(calle)
-    // modal.find('.modal-body #tallerActualizar').val(taller)
-});
 // $('.ver_domicilios').change(function(e){
 //     e.preventDefault();
 //         $value = $('.buscador_verif_curp').val();
@@ -390,7 +584,7 @@ $('#domicilios').on('show.bs.modal', function (event) {
 //                                                         "<tr> <td>" +
 //                                                             item.cliente_id + "</td><td>" +
 //                                                             item.cli_nom + "</td><td>" +
-//                                                             item.cli_fecha_nac + "</td><td>" +
+//                                                             item.ali_fecha_nac + "</td><td>" +
 //                                                             item.cli_curp + "</td><td>" +
 //                                                             item.cli_rfc + "</td><td>" +
 //                                                         "</tr>"+

@@ -86,7 +86,17 @@ class asignar_prestamos_controller extends Controller
         }
         $asignar_prestamo->prest_monto_sol = $request->monto_solicitado;
         $asignar_prestamo->prest_fecha_final = $endDate;
+<<<<<<< HEAD
+        if ($request->plazo_pagar == 1){
+            $asignar_prestamo->prest_tasa = '3';
+        }
+        else{
+            $asignar_prestamo->prest_tasa = '5';
+        }
+        
+=======
         $asignar_prestamo->prest_tasa = '5';
+>>>>>>> 8ea56be4452c7ca0d68c3f12042d1baf2040b32f
         $asignar_prestamo->prest_monto_total = $request->monto_solicitado * 1.05;
         $asignar_prestamo->save();
 
