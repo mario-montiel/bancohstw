@@ -15,3 +15,4 @@ class ClientesModelo extends Model
         return $this->hasOne('User', 'id', 'cliente_id');
     }
 }
+ 

@@ -70,7 +70,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="RFC" id="rfc" name="rfc">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc" name="rfc" required>
 					</div>
 				</div>
 				<br>
@@ -94,7 +94,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="curp" id="curp" name="curp">
+						<input type="text" class="form-control" placeholder="curp" id="curp" name="curp" required>
 					</div>
 				</div>
 				<br>
@@ -118,7 +118,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="#" id="numero" name="numero">
+						<input type="text" class="form-control" placeholder="#" id="numero" name="numero" required>
 					</div>
 				</div>
 				<br>
@@ -142,7 +142,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Juan" id="nombre" name="nombre">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre" name="nombre" required>
 					</div>
 				</div>
 				<br>
@@ -153,7 +153,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Rodriguez" id="AP" name="AP">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP" name="AP" required>
 					</div>
 				</div>
 				<br>
@@ -164,7 +164,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Gonzalez" id="AM" name="AM">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM" name="AM" required>
 					</div>
 				</div>
 				<br>
@@ -175,7 +175,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="date" class="form-control" name="fecha" id="fecha">
+						<input type="date" class="form-control" name="fecha" id="fecha" required>
 					</div>
 				</div>
 				<br>
@@ -228,7 +228,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="RFC" id="rfc2" name="rfc2">
+						<input type="text" class="form-control" placeholder="RFC" id="rfc2" name="rfc2" required>
 					</div>
 				</div>
 				<br>
@@ -252,7 +252,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="curp" id="curp2" name="curp2">
+						<input type="text" class="form-control" placeholder="curp" id="curp2" name="curp2" required>
 					</div>
 				</div>
 				<br>
@@ -276,7 +276,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="#" id="numero2" name="numero2">
+						<input type="text" class="form-control" placeholder="#" id="numero2" name="numero2" required>
 					</div>
 				</div>
 				<br>
@@ -300,7 +300,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Juan" id="nombre2" name="nombre2">
+						<input type="text" class="form-control" placeholder="Juan" id="nombre2" name="nombre2" required>
 					</div>
 				</div>
 				<br>
@@ -311,7 +311,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Rodriguez" id="AP2" name="AP2">
+						<input type="text" class="form-control" placeholder="Rodriguez" id="AP2" name="AP2" required>
 					</div>
 				</div>
 				<br>
@@ -322,7 +322,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="text" class="form-control" placeholder="Gonzalez" id="AM2" name="AM2">
+						<input type="text" class="form-control" placeholder="Gonzalez" id="AM2" name="AM2" required>
 					</div>
 				</div>
 				<br>
@@ -333,7 +333,7 @@
 						</center>
 					</div>
 					<div class="col-8">
-						<input type="date" class="form-control" name="fecha2" id="fecha2">
+						<input type="date" class="form-control" name="fecha2" id="fecha2" required>
 					</div>
 				</div>
 				<br>

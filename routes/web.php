@@ -116,5 +116,8 @@ route::get('/dom',function(){
     $pdf->loadHTML('<h1>Hola me la pelas</h1>');
     $pdf->stream();
 });
+
+route::get('/calcular_prestamo','prestamos_controller@calcular_prestamo');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+route::get('/paises','crudController@paises');
 

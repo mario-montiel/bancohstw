@@ -50,7 +50,7 @@
 				<label>Numero de tarjeta:</label>
 			</div>
 			<div class="col-8">
-				<input type="text" class="form-control" name="numero" id="numero">
+				<input type="text" class="form-control" name="numero" id="numero" required>
 			</div>
 		</div>
 		<br>
@@ -60,7 +60,7 @@
 				<label>Fecha de vencimiento:</label>
 			</div>
 			<div class="col-8">
-				<input type="date" class="form-control" name="fecha" id="fecha">
+				<input type="date" class="form-control" name="fecha" id="fecha" required>
 			</div>
 		</div>
 		<div class="row">
