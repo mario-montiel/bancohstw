@@ -42,7 +42,7 @@ class asignar_prestamos_controller extends Controller
             return redirect ('asignar_prestamos')
                     ->with('negado', 'Usuario en estado rojo!...');
         }
-        
+
         if ($request->tipo_tarjeta == "credito" && $verificar_solicitud->cli_status == "verde"){
             return redirect ('asignar_prestamo')
                     ->with('solicitud_verde', 'Cliente encontrado en el sistema con éxito!...')
@@ -60,7 +60,7 @@ class asignar_prestamos_controller extends Controller
                     ->with(['tipo' => $request->tipo_tarjeta])
                     ->with(['verificar_solicitud' => $verificar_solicitud]);
         }
-        
+
     }
 
     public function prestamoSolicitado(Request $request){
@@ -77,7 +77,7 @@ class asignar_prestamos_controller extends Controller
         else if ($request->tipo_tarjeta == "debito") {
             $asignar_prestamo->tipos_pagos_tipo_pago_id = 2;
         }
-        
+
         if ($request->tipo_pago == 1){
             $asignar_prestamo->prest_tasa = 1;
         }
@@ -86,7 +86,7 @@ class asignar_prestamos_controller extends Controller
         }
         $asignar_prestamo->prest_monto_sol = $request->monto_solicitado;
         $asignar_prestamo->prest_fecha_final = $endDate;
-        $asignar_prestamo->prest_tasa = '5%';
+        $asignar_prestamo->prest_tasa = '5';
         $asignar_prestamo->prest_monto_total = $request->monto_solicitado * 1.05;
         $asignar_prestamo->save();
 
@@ -124,10 +124,10 @@ class asignar_prestamos_controller extends Controller
     //         $consulta = DB::table('usuarios')
     //                 ->select('*')
     //                 ->join('clientes', 'clientes.usu_id', '=', 'usuarios.usu_id')
-    //                 ->orWhere('ali_fecha_nac', 'LIKE', '%'.$request->datos["fecha"].'%')
+    //                 ->orWhere('cli_fecha_nac', 'LIKE', '%'.$request->datos["fecha"].'%')
     //                 ->get();
     //         return $consulta;
     //     }
-        
+
     // }
 }

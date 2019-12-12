@@ -19,7 +19,7 @@
             </li>
             @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
+                <a class="nav-link" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
             </li>
 
             @if (Auth::user()->type == 'admin')

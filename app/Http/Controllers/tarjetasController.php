@@ -40,9 +40,9 @@ class tarjetasController extends Controller
         $apaterno = $r->get('AP');
         $amaterno = $r->get('AM');
         $fecha = $r->get('fecha');
-        $selector = DB::table('prestamos')->join('clientes', 'clientes.cliente_id', '=', 'prestamos.clientes_cliente_id')->select('prestamos.prest_monto_sol','prestamos.prest_fecha_final','prestamos.prest_tasa','prestamos.prest_monto_total')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.ali_fecha_nac', $fecha)->get();
-        $selector2 = DB::table('deudas')->join('clientes','clientes.cliente_id','=','deudas.clientes_cliente_id')->select('deudas.deudas_cantidad','deudas.deudas_fecha','deudas.estatus')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.ali_fecha_nac', $fecha)->get();
-        $selector3 = DB::table('clientes')->select('cliente_id')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.ali_fecha_nac', $fecha)->get();
+        $selector = DB::table('prestamos')->join('clientes', 'clientes.cliente_id', '=', 'prestamos.clientes_cliente_id')->select('prestamos.prest_monto_sol','prestamos.prest_fecha_final','prestamos.prest_tasa','prestamos.prest_monto_total')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.cli_fecha_nac', $fecha)->get();
+        $selector2 = DB::table('deudas')->join('clientes','clientes.cliente_id','=','deudas.clientes_cliente_id')->select('deudas.deudas_cantidad','deudas.deudas_fecha','deudas.estatus')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.cli_fecha_nac', $fecha)->get();
+        $selector3 = DB::table('clientes')->select('cliente_id')->where('clientes.cli_nom', $nombre)->where('clientes.cli_ap_materno', $amaterno)->where('clientes.cli_ap_paterno', $apaterno)->where('clientes.cli_fecha_nac', $fecha)->get();
         return $this->buro($selector, $selector2, $selector3);
     }
     public function rfc2(Request $r){
@@ -66,7 +66,7 @@ class tarjetasController extends Controller
         $apaterno = $r->get('AP2');
         $amaterno = $r->get('AM2');
         $fecha = $r->get('fecha2');
-        $selector = DB::table('clientes')->select('cliente_id')->where('cli_nom', $nombre)->where('cli_ap_materno', $amaterno)->where('cli_ap_paterno', $apaterno)->where('ali_fecha_nac', $fecha)->get();
+        $selector = DB::table('clientes')->select('cliente_id')->where('cli_nom', $nombre)->where('cli_ap_materno', $amaterno)->where('cli_ap_paterno', $apaterno)->where('cli_fecha_nac', $fecha)->get();
         return $this->tarjetas2($selector);
     }
     public function tarjetas2($selector){
@@ -139,15 +139,15 @@ class tarjetasController extends Controller
             $semaforo = "amarillo";
             foreach ($selector as $s) {
                 $year = "";
-                for ($i=0; $i < 4; $i++) { 
+                for ($i=0; $i < 4; $i++) {
                     $year = $year.$s->prest_fecha_final[$i];
                 }
                 $month = "";
-                for ($i=5; $i < 7; $i++) { 
+                for ($i=5; $i < 7; $i++) {
                     $month = $month.$s->prest_fecha_final[$i];
                 }
                 $day = "";
-                for ($i=8; $i <10; $i++) { 
+                for ($i=8; $i <10; $i++) {
                     $day = $day.$s->prest_fecha_final[$i];
                 }
                 if (($month + 3) > 12) {
@@ -172,11 +172,11 @@ class tarjetasController extends Controller
                         $year = $year.$s->deudas_fecha[$i];
                     }
                     $month = "";
-                    for ($i=5; $i < 7; $i++) { 
+                    for ($i=5; $i < 7; $i++) {
                         $month = $month.$s->deudas_fecha[$i];
                     }
                     $day = "";
-                    for ($i=8; $i <10; $i++) { 
+                    for ($i=8; $i <10; $i++) {
                         $day = $day.$s->deudas_fecha[$i];
                     }
                     if (($month + 3) > 12) {
