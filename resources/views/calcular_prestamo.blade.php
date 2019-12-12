@@ -10,7 +10,7 @@
 
     <div class="card container">
       <div style="padding: 20px;">
-        
+
         <legend>Calcular Prestamo</legend>
         <br>
         <label>Tipo de pago</label>
@@ -42,20 +42,30 @@
 
     <br><br>
 
-    <div id="res" style="height: 250px;" class="container card">
-        <br><br>
+    <div id="res" style="height: 490px;" class="container card">
+      <div style="padding: 20px;">
+
+
         <center>
-          <legend style="padding-top: 20px">Resultados</legend>
+          <legend>Resultados</legend>
         </center>
         <br>
         <label>Monto total a pagar:</label>
         <input type="text" class="form-control" name="" disabled="true" id="textbox_monto_final">
         <br>
+        <label>Total en intereses</label>
+        <input type="text" class="form-control" name="" disabled="true" id="textbox_interes">
+        <br>
         <label id="pagos"></label>
-        <input type="text" class="form-control" name="" disabled="true" style="display: none;" id="textbox_pago">
-      
+        <input type="text" class="form-control" name="" disabled="true" id="textbox_pago">
+        <br>
+        <label>Interes por pago</label>
+        <input type="text" class="form-control" name="" disabled="true" id="textbox_interes_pago">
+
 
       </div>
+        
+    </div>
     
   
   
@@ -67,6 +77,8 @@
   $('#textbox_monto').val("");
   $('#textbox_monto_final').val("");
   $('#res').hide();
+  $('#textbox_tasa').val(5);
+  
   $( "#combobox_tipo_pago" ).change(function() {  
       $('#textbox_monto_final').val('');
       $('#textbox_pago').hide();
@@ -105,7 +117,9 @@
         $('#pagos').text(meses_str);
         pago = monto_total / meses;
         $('#textbox_pago').val(pago + " $");
-
+        interes = (tasa/100)*(monto/meses);
+        $('#textbox_interes_pago').val(interes + " $");
+        $('#textbox_interes').val((interes*meses) + " $");
       }
       
   });
