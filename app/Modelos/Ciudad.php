@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modelos;
 use App\Modelos\Estado;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,9 @@ class Ciudad extends Model
 
     public function estados()
     {
-        return $this->hasMany(Estado::class, 'estado_id', 'estado_id');
+        return $this->belongsTo('App\Modelos\Estado', 'estado_id', 'estado_id');
+    }
+    public static function ciudad($id){
+        return Ciudad::where("estado_id", '=', $id)->get();
     }
 }

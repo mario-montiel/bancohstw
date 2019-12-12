@@ -94,7 +94,7 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
 
     route::get('/gestionar_clientes','crudController@gestionar_clientes');
     //AREA DE COBRANZA
-    route::get('/mostrar','crudController@gestionar');
+    route::get('/mostrar','crudController@gestionar_clientes');
 });
 //>>>>>>>>>>>>rutas gestionar cliente
 
@@ -120,5 +120,5 @@ route::get('/dom',function(){
 
 route::get('/calcular_prestamo','prestamos_controller@calcular_prestamo');
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-route::get('/paises','crudController@paises');
+route::get('/ciudades/{id}','crudController@ciudad');
 

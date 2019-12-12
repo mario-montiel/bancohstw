@@ -14,12 +14,13 @@
 </head>
 <body>
 
-    <!-- <script src="js/bancohstw/navbar.js"></script> -->
+  {{-- <script src="js/bancohstw/navbar.js"></script> --}}
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script> -->
     <script src="js/bancohstw/tarjetas.js"></script>
+    <script src="js/bancohstw/gestionar_clientes.js"></script>
 </body>
 </html>

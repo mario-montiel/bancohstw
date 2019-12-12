@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,8 @@ class Direccion extends Model
     public $timestamps=false;
 
     function cliente() {
-        return $this->belongsToMany(ClienteModelo::class, '', '');
+        return $this->belongsToMany(ClienteModelo::class, 'direcciones_has_clientes', 'direccion_id','clientes_id')->withPivot("direcciones_direccion_id","clientes_cliente_id");
     }
+
 }
 

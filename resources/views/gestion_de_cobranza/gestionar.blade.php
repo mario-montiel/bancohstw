@@ -13,6 +13,12 @@
             <th scope="col">Fecha de nacimiento</th>
             <th scope="col">CURP</th>
             <th scope="col">RFC</th>
+            <th scope="col">Colonia</th>
+            <th scope="col">Calle</th>
+            <th scope="col">C.P</th>
+            <th scope="col">Num.Exterior</th>
+            <th scope="col">Num. Interior</th>
+            <th>Entre calles</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
@@ -28,8 +34,12 @@
           <td>{{$c->cli_curp}}</td>
           <td>{{$c->cli_rfc}}</td>
           <td>{{$c->cli_status}}</td>
-        
-        </td> 
+          <td>{{$c->direccion_calle}}<td>
+          <td>{{$c->direccion_colonia}}</td>
+          <td>{{$c->direccion_codigo_postal}}</td>
+          <td>{{$c->direccion_num_ext}}</td>
+          <td>{{$c->direccion_num_int}}</td>
+          <td>{{$c->direccion_entre_calles}}</td>
           </tr>
           @endforeach     
         </tbody>
