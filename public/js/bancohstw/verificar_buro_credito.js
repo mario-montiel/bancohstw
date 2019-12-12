@@ -38,7 +38,18 @@ function verificar_buro_cliente(){
 
 }
 // alert("h")
+
+
+
 // >>>>>>>>>>>>>>> JQUERY  <<<<<<<<<<<<<<<<<<<<<<<<<
+
+// new WOW().init();
+// var smoothScroll = require('smoothscroll');
+//smoothScroll
+// smoothScroll.init();
+// var scroll = new SmoothScroll('a[href*="#"]');
+
+
 $('#verificar_nom_client').on('keyup',function(e){
     $('#veri_fecha_cli').change(function(e){
         e.preventDefault();
@@ -48,16 +59,22 @@ $('#verificar_nom_client').on('keyup',function(e){
 				url:  '/verificar_nom_client',
 				data: {'verificar_nom_client':$value},
 				success:function(data){
-                    console.log(data)
 					$('#btn_buro_credito').click(function(e){
                         
                         if(data.no != ""){
                             $('.table_verif_cli').html("");
+
                             $.each(data, function(i, item) {
-                                console.log(item.cli_status)
-                                if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
-                                else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
-                                else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
+                                $('#titulo_cliente').html(item.cli_nom + item.cli_ap_paterno + item.cli_ap_materno)
+                                if (item.cli_status == "verde")
+                                { semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
+                                
+                                else if (item.cli_status == "rojo") {
+                                    semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
+
+                                else if (item.cli_status == "amarillo") {
+                                    semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
+
                                     $('.table_verif_cli').html("");
                                     changos = " <div class='container-fluid'> "+
                                                     "<table class='table table-bordered'> " +
@@ -187,32 +204,100 @@ $('#verificar_nom_client').on('keyup',function(e){
             });
     });
 });
-
+$('#btn_buro_credito').click(function(e){
+    if ($('#verificar_nom_client').val() == null || $('#verificar_nom_client').val() == ""
+    || $('#verificar_nom_client').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+    if ($('#buscador_verif_rfc').val() == null || $('#buscador_verif_rfc').val() == ""
+    || $('#buscador_verif_rfc').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+    if ($('#buscador_verif_curp').val() == null || $('#buscador_verif_curp').val() == ""
+    || $('#buscador_verif_curp').length == 0 ) {
+        $('#mensaje_buro').removeAttr('class');
+        $("#mensaje_buro").attr('class', '');
+        $('#mensaje_buro').addClass("alert-danger")
+        $('#mensaje').html("No se encontró ningun cliente con esos datos")
+        return false
+    }
+})
 // // CURP
 $('#buscador_verif_curp').on('keyup',function(e){
         e.preventDefault();
+        
             $value = $('#buscador_verif_curp').val();
+            if ($value == null || $value == "" || $value.length == 0) {
+                $('#mensaje_buro').removeAttr('class');
+                $("#mensaje_buro").attr('class', '');
+                $('#mensaje_buro').addClass("alert-danger")
+                $('#mensaje').html("No se encontró ningun cliente con esos datos")
+                return false
+            }
 			$.ajax({
 				type: 'GET',
 				url:  '/buscar_clientes_curp',
 				data: {'buscar_clientes_curp':$value},
 				success:function(data){
-                    console.log(data);
+                    // console.log(data);
                         $('#btn_buro_credito').click(function(e){
-                        
+                            
                         if(data.no != ""){
                             $('.table_verif_cli').html("");
+                            $('.table_verif_domicilio').html("");
+                            $('.table_verif_cuentas').html("");
+                            $('.table_verif_no_cuentas').html("");
+                            
                             $.each(data, function(i, item) {
-                                if (item.cli_status == "verde"){ semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"}
-                                else if (item.cli_status == "rojo"){semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"}
-                                else if (item.cli_status == "amarillo"){semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"}
-                                    $('.table_verif_cli').html("");
+                                console.log(data)
+                                $('.table_verif_cli').html("");
+                                $('#titulo_cliente').html(item.cli_nom + " " + item.cli_ap_paterno + " " + item.cli_ap_materno)
+                                // $('#buscar_datos_domicilio').css("display", "block");
+                                // $('#buscar_datos_bancarios').css("display", "block");
+                                // $('#buscar_datos_no_bancarios').css("display", "block");
+
+                                if (item.cli_status == "verde"){ 
+                                    semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-success")
+                                    $('#mensaje').html("El cliente va al corriente en sus pagos")
+                                    
+                                    // $('#mensaje_buro').html("E")
+                                }
+                                
+                                else if (item.cli_status == "rojo") {
+                                    semaforo = "<center><img src='/img/rojo.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-danger")
+                                    $('#mensaje').html("El cliente está atrasado en unos pagos")
+                                }
+
+                                else if (item.cli_status == "amarillo") {
+                                    semaforo = "<center><img src='/img/amarillo.png' style='height:30px;'></center>"
+                                    $('#mensaje_buro').removeAttr('class');
+                                    $("#mensaje_buro").attr('class', '');
+                                    $('#mensaje_buro').addClass("alert-warning")
+                                    $('#mensaje').html("El cliente no pagó en el límite del tiempo concedido")
+                                }
+
+                                
                                     changos = " <div class='container-fluid'> "+
+                                                "<h5>Datos del Cliente" +
                                                     "<table class='table table-bordered'> " +
                                                     "<center>" +
                                                         "<thead>" +
                                                             "<tr>" +
-                                                                "<th> ID1 </th>" +
+                                                                "<th> ID </th>" +
                                                                 "<th> Nombre </th>" +
                                                                 "<th> Fecha de Nacimiento </th>" +
                                                                 "<th> CURP </th>" +
@@ -234,7 +319,8 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                     $('.table_verif_cli').append(changos);
                                 $('.buscar_datos_domicilio').click(function(e){
                                     $('.table_verif_domicilio').html("");
-                                    domicilios = " <div class='container'> "+
+                                    domicilios = " <div class='container'> " +
+                                                    "<h5>Domicilio del Cliente" +
                                                     "<table class='table table-bordered'> " +
                                                     "<center>" +
                                                         "<thead>" +
@@ -268,6 +354,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                     $('.table_verif_cuentas').html("");
                                     cuentas_bancarias = " <div class='container'> " +
                                                 "<table class='table table-bordered'> " +
+                                                "<h5>Cuentas Bancarias del Cliente" +
                                                 "<center>" +
                                                     "<thead>" +
                                                         "<tr>" +
@@ -298,6 +385,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                     $('.table_verif_no_cuentas').html("");
                                     cuentas_no_bancarias = " <div class='container'> " +
                                                 "<table class='table table-bordered'> " +
+                                                "<h5>Cuentas No Bancarias del Cliente" +
                                                 "<center>" +
                                                     "<thead>" +
                                                         "<tr>" +
@@ -327,6 +415,9 @@ $('#buscador_verif_curp').on('keyup',function(e){
                             });
                             
                         }
+                        // if ($('#verificar_nom_client'.val() == "")){
+                        //     alert("wow")
+                        // }
                     });
 				},
 			     error: function () {

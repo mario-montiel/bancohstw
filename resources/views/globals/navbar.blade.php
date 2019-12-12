@@ -19,7 +19,10 @@
             </li>
             @auth
             <li class="nav-item">
-                <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
+                <a class="nav-link" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/calcular_prestamo') }}">Calcular Prestamo</a>
             </li>
 
             @if (Auth::user()->type == 'admin')
@@ -32,6 +35,7 @@
                     <a class="dropdown-item" href="{{ url('/mostrar') }}">Gestión de cobranza</a>
                     <div class="nav-divider"></div>
                     <a class="dropdown-item" href="{{ url('/ver_prestamos_lista') }}">Prestamos</a>
+                    <a class="dropdown-item" href="{{ url('/tarjetas') }}">Tarjetas</a>
                 </div>
             </li>
             @endif

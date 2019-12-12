@@ -11,8 +11,8 @@
             <div class="col-md-6 mt-md-0 mt-3">
 
               <!-- Content -->
-              <h5 class="text-uppercase">Footer Content</h5>
-              <p>Here you can use rows and columns to organize your footer content.</p>
+              <h5 class="text-uppercase">HSTW</h5>
+              <p>Gracias por tu preferencia y tu confianza.</p>
 
             </div>
             <!-- Grid column -->
@@ -23,20 +23,20 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
               <!-- Links -->
-              <h5 class="text-uppercase">Links</h5>
+              <h5 class="text-uppercase">Contactanos</h5>
 
               <ul class="list-unstyled">
                 <li>
-                  <a href="#!">Link 1</a>
+                  <a href="www.facebook.com">Facebook HSTW</a>
                 </li>
                 <li>
-                  <a href="#!">Link 2</a>
+                    <a href="www.facebook.com">Twitter HSTW</a>
                 </li>
                 <li>
-                  <a href="#!">Link 3</a>
+                    <a href="www.facebook.com">Instagram HSTW</a>
                 </li>
                 <li>
-                  <a href="#!">Link 4</a>
+                    <a href="www.facebook.com">hstw_sugerencias@hotmil.com</a>
                 </li>
               </ul>
 
@@ -47,20 +47,7 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
               <!-- Links -->
-              <h5 class="text-uppercase">Links</h5>
 
-              <ul class="list-unstyled">
-                <li>
-                  <a href="#!">Link 1</a>
-                </li>
-                <li>
-                  <a href="#!">Link 2</a>
-                </li>
-                <li>
-                  <a href="#!">Link 3</a>
-                </li>
-                <li>
-                  <a href="#!">Link 4</a>
                 </li>
               </ul>
 
@@ -75,7 +62,7 @@
 
         <!-- Copyright -->
         <div class="footer-copyright text-center py-3">© 2018 Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+          <a href="{{ url('/') }}"> hstw.com</a>
         </div>
         <!-- Copyright -->
 

@@ -9,7 +9,7 @@
             <form action="" method="get" class="pb-5">
                 <div class="container-fluid container-verificar_buro">
                     <div class="container-fluid mt-4">
-                        <center><h3 class="pt-4">BURÓ DE CREDITO</h3></center>
+                        <center><h4 class="pt-4">Consultar Cliente</h4></center>
                         <select id="selector_cliente" class="form-control mt-4" name="" onchange="verificar_buro_cliente();">
                             <option id="option" selected="true" disabled>Seleccione la forma de verificación del cliente</option>
                             <option value="f_n_f">Nombre y Fecha</option>
@@ -72,27 +72,21 @@
         <div class="col-sm-6 col-md-6 mt-4">
             <div class="container">
                 <div class="card">
-                    @if(Session::has('usuario_encontrado'))
-                        <p class="alert alert-success" style="text-align:center;"> Cliente encontrado! </p>
-                    @endif
-                    @if(Session::has('usuario_no_encontrado'))
-                        <p class="alert alert-danger" style="text-align:center;"> El cliente no se encuentra en la Base de Datos! </p>
-                    @endif
                     <center><h5 id="titulo_cliente" class="card-header">Cliente</h5></center>
                     <div class="card-body">
                         
                         <center>
-                            <h5 class="card-title">Datos del Cliente</h5>
+                            <h5 class="card-title">Buró de Crédito</h5>
                             <img class="mt-4" src="img/user.png" alt="" style="height: 120px;">
                             <div class="container">
                                 
                             </div>
                             <p class="mt-4">
-                                <strong>El cliente está atrasado en unos pagos</strong>
+                                <p id="mensaje_buro"><strong id="mensaje"></strong></p>
                             </p>
-                            <button class="btn btn-outline-primary btn-sm buscar_datos_domicilio mt-3" type="button">Ver Domicilio(s)</button>
-                            <button class="btn btn-outline-primary btn-sm buscar_datos_bancarios mt-3">Ver Cuentas Bancarias</button>
-                            <button class="btn btn-outline-primary btn-sm buscar_datos_no_bancarios mt-3">Ver Cuentas No Bancarias</button>
+                            <button id="buscar_datos_domicilio" name="anchor" data-scroll href="#tabla_verif_domicilios" class="btn btn-outline-primary btn-sm buscar_datos_domicilio mt-3 smoothScroll">Ver Domicilio(s)</button>
+                            <button id="buscar_datos_bancarios" data-scroll href="#tabla_verif_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_bancarios mt-3 smoothScroll">Ver Cuentas Bancarias</button>
+                            <button id="buscar_datos_no_bancarios" data-scroll href="#tabla_verif_no_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_no_bancarios mt-3 smoothScroll">Ver Cuentas No Bancarias</button>
                         </center>
                 
                     </div>

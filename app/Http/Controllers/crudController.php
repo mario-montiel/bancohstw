@@ -10,18 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class crudController extends Controller
 {
+    public function prueba()
+    {
+        $estado = Estado::get();
+        dd($estado);
+    }
+    
     public function gestionar_clientes(){
         // $cli = ClientesModelo::all()->inner jo;
         // $cli = ClientesModelo::with('user')->get();
+        $query = DB::table("estados")
+        ->select("estados.estado_id","estados.estado_nom")
+        ->get();
         $cli = DB::table("clientes")
         ->select("clientes.cliente_id", "clientes.cli_nom", "clientes.user_id", "clientes.cli_ap_paterno", "clientes.cli_ap_materno","clientes.cli_fecha_nac","clientes.cli_curp","clientes.cli_rfc","users.name")
         ->join("users","clientes.user_id", "=", "users.id")
         ->get();
-        return view('crud/insertar',compact('cli'));
+        return view('crud/insertar',compact('cli','query'));
     }
 
     public function crear_cliente(Request $request){
         $cli=new ClientesModelo();
+        $dir = new Direcciones();
         // $cli->cliente_id=$request->get("clid");
         $cli->cli_nom=$request->get("nombre");
         $cli->user_id=$request->get("usuario");
@@ -30,8 +40,18 @@ class crudController extends Controller
         $cli->cli_fecha_nac=$request->get("fnac");
         $cli->cli_curp=$request->get("curp");
         $cli->cli_rfc=$request->get("rfc");
+        $dir->direccion_calle=$request->get("calle");
+        $dir->direccion_colonia=$request->get("colonia");
+        $dir->direccion_codigo_postal=$request->get("cp");
+        $dir->direccion_num_ext=$request->get("ne");
+        $dir->direccion_num_int=$request->get("ni");
+        $dir->direccion_entre_calles=$request->get("entrecalles");
         $cli->save();
         return redirect("/gestionar_clientes");
+    }
+    public function paises(){
+
+
     }
     public function eliminar($id)
     {
@@ -57,7 +77,7 @@ class crudController extends Controller
         $cli->cli_rfc=$request->get("rfc");
 
         // $user = User::findOrFail($y);
-        // $user->name = $request->get("ususario"); 
+        // $user->name = $request->get("ususario");
         $cli->save();
         // $user->save();
         return redirect("/gestionar_clientes");
@@ -78,3 +98,4 @@ class crudController extends Controller
     }
 
 }
+
