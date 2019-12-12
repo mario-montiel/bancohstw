@@ -13,6 +13,10 @@ class prestamos_controller extends Controller
         return view('pdf');
     }
 
+    public function calcular_prestamo(){
+        return view('calcular_prestamo');
+    }
+
     public function ver_prestamos_view2($prest_id){
         ob_start();
     	$prest_arreglo = DB::table('prestamos')->select('prest_id','tipos_pagos_tipo_pago_id','prest_monto_sol','prest_fecha_final','prest_tasa','prest_monto_total')->where('prest_id',"=",$prest_id)->get();

@@ -21,6 +21,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/ver_prestamos_lista') }}">Tus Prestamos</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/calcular_prestamo') }}">Calcular Prestamo</a>
+            </li>
 
             @if (Auth::user()->type == 'admin')
             <li class="nav-item dropdown">
