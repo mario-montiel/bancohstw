@@ -114,8 +114,12 @@ class crudController extends Controller
     }
     public function gestionar(){
         $cli = DB::table("clientes")
-        ->select("clientes.cliente_id", "clientes.cli_nom", "clientes.user_id", "clientes.cli_ap_paterno", "clientes.cli_ap_materno","clientes.cli_fecha_nac","clientes.cli_curp","clientes.cli_rfc","users.name","clientes.cli_status")
-        ->join("users","clientes.user_id", "=", "users.id")
+        ->select("clientes.cliente_id", "clientes.cli_nom", "clientes.user_id", "clientes.cli_ap_paterno", "clientes.cli_ap_materno","clientes.cli_fecha_nac","clientes.cli_curp","clientes.cli_rfc",
+       "direcciones.direccion_colonia", "direcciones.direccion_calle","direcciones.direccion_codigo_postal","direcciones.direccion_num_ext",
+        "direcciones.direccion_num_int","direcciones.direccion_entre_calles","clientes.cli_status")
+        ->join("direcciones_has_clientes","clientes.cliente_id","=","direcciones_has_clientes.clientes_cliente_id")
+        ->join("direcciones","direcciones.direccion_id","=","direcciones_has_clientes.direcciones_direccion_id")
+        // ->join("users","clientes.user_id", "=", "users.id")
         ->get();
         return view("gestion_de_cobranza/gestionar",compact('cli'));
     }
