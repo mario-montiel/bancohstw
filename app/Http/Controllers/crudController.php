@@ -68,7 +68,8 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function ciudad(Request $r, $id){
-        
+        $x = $request->get("ciudades");
+        return $x;
             $c = Ciudad::ciudad($id);
             return response()->json($c);
 
