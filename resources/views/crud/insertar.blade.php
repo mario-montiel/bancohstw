@@ -123,13 +123,13 @@
 
                                 </select>
                               </div>
-                              <div class="input-group mb-3">
+                              {{-- <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                       <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
                                     </div>
                                     <select class="custom-select" id="ciudades">
                                     </select>
-                                  </div>
+                                  </div> --}}
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
@@ -257,13 +257,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Num. interior</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_int}}" name="ni" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_int}}" name="ni" >
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Num. Exterior</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_ext}}" name="ne" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_ext}}" name="ne" >
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -291,13 +291,13 @@
             
                                             </select>
                                           </div>
-                                          <div class="input-group mb-3">
+                                          {{-- <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                   <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
                                                 </div>
                                                 <select class="custom-select" id="ciudades">
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                                       <button type="submit" class="btn btn-primary">Guardar</button>

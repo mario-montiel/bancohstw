@@ -42,8 +42,10 @@ class crudController extends Controller
 
     public function crear_cliente(Request $request){
         //  return $request->nue;
-
+        $x = $request->get("ciudades");
+        return $x;
         $dir = Direccion::create([
+           
             'ciudad_id' => $request["ciudades"],
             'direccion_calle' => $request['calle'],
             'direccion_colonia' => $request['colonia'],
@@ -68,8 +70,6 @@ class crudController extends Controller
         return redirect("/gestionar_clientes");
     }
     public function ciudad(Request $r, $id){
-        $x = $request->get("ciudades");
-        return $x;
             $c = Ciudad::ciudad($id);
             return response()->json($c);
 
