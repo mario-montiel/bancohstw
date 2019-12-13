@@ -92,7 +92,8 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
 
     Route::get('/verificar-burocredito', 'verificar_buro_controller@verificar_buro_credito');
     Route::get('/buro_credito_busqueda', 'verificar_buro_controller@buro_credito_busqueda');
-    route::get('/gestionar_clientes','crudController@gestionar_clientes');
+    Route::get('/gestionar_clientes','crudController@gestionar_clientes');
+    Route::post('/editar','crudController@editar');
     //AREA DE COBRANZA
     route::get('/mostrar','crudController@gestionar_clientes');
 });
@@ -100,7 +101,6 @@ Route::group(['middleware' => ['userType', 'auth']], function () {
 
 route::post('/guardar','crudController@crear_cliente');
 route::get('/eliminar/{id}','crudController@eliminar');
-route::post('/editar/{id}','crudController@editar');
 route::get('/mostrar','crudController@gestionar');
 //>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<
 

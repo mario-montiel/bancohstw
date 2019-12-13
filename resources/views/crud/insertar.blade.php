@@ -89,13 +89,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Num. interior</span>
                                 </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ni" required>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nui" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Num. Exterior</span>
                                 </div>
-                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ne" required>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nue" required>
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -152,7 +152,7 @@
                     <th scope="col">RFC</th>
                     <th scope="col">Colonia</th>
                     <th scope="col">Calle</th>
-                    <th scope="col" style="min-width:100px;">Código Postal <s/th>
+                    <th scope="col" style="min-width:100px;">Código Postal </th>
                     <th scope="col">Num.Exterior</th>
                     <th scope="col">Num. Interior</th>
                     <th scope="col">Entre calles</th>
@@ -171,7 +171,7 @@
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
                   <td>{{$c->direccion_colonia}}</td>
-                  <td>{{$c->direccion_calle}}<td>
+                  <td>{{$c->direccion_calle}}</td>
                   <td>{{$c->direccion_codigo_postal}}</td>
                   <td>{{$c->direccion_num_ext}}</td>
                   <td>{{$c->direccion_num_int}}</td>
@@ -188,7 +188,7 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                             </div>
-                        <form action="{{url('/editar',$c->cliente_id)}}" method="POST">
+                        <form action="{{url('/editar')}}" method="POST">
                               {{csrf_field()}}
                           <div class="modal-body">
 

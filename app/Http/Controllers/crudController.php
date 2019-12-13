@@ -41,14 +41,15 @@ class crudController extends Controller
     }
 
     public function crear_cliente(Request $request){
+        //  return $request->nue;
 
         $dir = Direccion::create([
             'ciudad_id' => $request["ciudades"],
             'direccion_calle' => $request['calle'],
             'direccion_colonia' => $request['colonia'],
             'direccion_codigo_postal' => $request['cp'],
-            'direccion_num_int' => $request['ni'],
-            'direccion_num_ext' => $request['ne'],
+            'direccion_num_int' => $request->nui,
+            'direccion_num_ext' => $request->nue,
             'direccion_entre_calles' => $request['entrecalles']
             
         ]);
@@ -77,33 +78,39 @@ class crudController extends Controller
         ClientesModelo::destroy($id);
         return redirect("/gestionar_clientes");
     }
-    public function editar(Request $request, $id){
 
-        $id = $request->get("id");
-        $cli =  ClientesModelo::findOrFail($id);
-        $dir = Direccion::findOrFail($id);
-        $dircli = direcciones_has_clientes::findOrFail($id);
+    public function editar(Request $request){
+
+        
+
+        //$id = $request->get("id");
+        $cli =  ClientesModelo::findorFail($request->id);
+
+        $dircli = direcciones_has_clientes::where('clientes_cliente_id', '=', $request->id)->get();
+        
         $usu  = $request->get("usuario");
+
         $cli->cli_nom=$request->get("nombre");
-        $cli->user_id=$y;
+        //$cli->user_id=$y;
         $cli->cli_ap_paterno=$request->get("appaterno");
         $cli->cli_ap_materno=$request->get("apmaterno");
         $cli->cli_fecha_nac=$request->get("fnac");
         $cli->cli_curp=$request->get("curp");
         $cli->cli_rfc=$request->get("rfc");
+        
+        
 
+        $dir = Direccion::findorFail($dircli[0]->direcciones_direccion_id);
         $dir->direccion_colonia = $request->get("colonia");
         $dir->direccion_calle = $request->get("calle");
         $dir->direccion_codigo_postal = $request->get("cp");
         $dir->direccion_num_int = $request->get("ni");
         $dir->direccion_num_ext = $request->get("ne");
         $dir->direccion_entre_calles = $request->get("entrecalles");
-        // $user = User::findOrFail($y);
-        // $user->name = $request->get("ususario");
         $cli->save();
         $dir->save();
-        // $user->save();
-        return redirect("/gestionar_clientes");
+
+        return redirect()->back();
     }
     public function gestionar(){
         $cli = DB::table("clientes")
