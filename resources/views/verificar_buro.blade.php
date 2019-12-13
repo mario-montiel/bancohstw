@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    <a href="{{url('/')}}" class="btn btn-success"><i class="fas fa-arrow-left"></i></a>
     <div class="row">
         <div class="col-sm-12 col-md-6">
             {{ csrf_field() }}
@@ -90,9 +91,9 @@
                             <p class="mt-4">
                                 <p id="mensaje_buro"><strong id="mensaje"></strong></p>
                             </p>
-                            <button id="buscar_datos_domicilio" name="anchor" data-scroll href="#tabla_verif_domicilios" class="btn btn-outline-primary btn-sm buscar_datos_domicilio mt-3 smoothScroll">Ver Domicilio(s)</button>
-                            <button id="buscar_datos_bancarios" data-scroll href="#tabla_verif_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_bancarios mt-3 smoothScroll">Ver Cuentas Bancarias</button>
-                            <button id="buscar_datos_no_bancarios" data-scroll href="#tabla_verif_no_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_no_bancarios mt-3 smoothScroll">Ver Cuentas No Bancarias</button>
+                            <button id="buscar_datos_domicilio" name="anchor" data-scroll href="#tabla_verif_domicilios" class="btn btn-outline-primary btn-sm buscar_datos_domicilio ir-domicilios mt-3">Ver Domicilio(s)</button>
+                            <button id="buscar_datos_bancarios" data-scroll href="#tabla_verif_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_bancarios mt-3 ir-bancarias">Ver Cuentas Bancarias</button>
+                            <button id="buscar_datos_no_bancarios" data-scroll href="#tabla_verif_no_cuentas" class="btn btn-outline-primary btn-sm buscar_datos_no_bancarios mt-3 ir-no-bancarias">Ver Cuentas No Bancarias</button>
                         </center>
                 
                     </div>
@@ -132,141 +133,7 @@
         </div>
     </div>
 
-                <!-- <div id="domicilios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Domicilios</center> </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        
-                    <div class="form-group">
-                        <label for="codigo" class="control-label">Cliente:</label>
-                        <input disabled type="text" class="form-control" id="cliente" name="cliente" required maxlength="2">
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Calle:</label>
-                        <input disabled type="text" class="form-control" id="calle" name="calle" required maxlength="45">
-                    </div>
-                    <div class="form-group">
-                        <label for="moneda" class="control-label">Numero Exterior:</label>
-                        <input disabled type="text" class="form-control" id="numero_ext" name="numero_ext" required maxlength="3">
-                    </div>
-                    <div class="form-group">
-                        <label for="capital" class="control-label">Colonia:</label>
-                        <input disabled type="text" class="form-control" id="colonia" name="colonia" required maxlength="30"> 
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Ciudad:</label>
-                        <input disabled type="text" class="form-control" id="ciudad" name="ciudad" required maxlength="15">
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Estado:</label>
-                        <input disabled type="text" class="form-control" id="estado" name="estado" required maxlength="15">
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Codigo Postal:</label>
-                        <input disabled type="text" class="form-control" id="codigo_postal" name="codigo_postal" required maxlength="15">
-                    </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-
-
-
-                <div id="creditos_bancarios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Créditos Bancarios</center> </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        
-                    <div class="form-group">
-                        <label for="codigo" class="control-label">Nombre de la Institución:</label>
-                        <input disabled type="text" class="form-control" id="nombre_institucion" name="nombre_institucion" required maxlength="2">
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Código Identificador:</label>
-                        <input disabled type="text" class="form-control" id="codigo" name="codigo" required maxlength="45">
-                    </div>
-                    <div class="form-group">
-                        <label for="moneda" class="control-label">Descripción:</label>
-                        <input disabled type="text" class="form-control" id="descripcion" name="descripcion" required maxlength="3">
-                    </div>
-                    <div class="form-group">
-                        <label for="capital" class="control-label">Estado:</label>
-                        <input disabled type="text" class="form-control" id="estado" name="estado" required maxlength="30"> 
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Comportamiento:</label>
-                        <input disabled type="text" class="form-control" id="comportamiento" name="comportamiento" required maxlength="15">
-                    </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-
-
-                <div id="creditos_no_bancarios" class="modal bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle"> <center>Créditos No Bancarios</center> </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        
-                    <div class="form-group">
-                        <label for="codigo" class="control-label">Nombre de la Institución:</label>
-                        <input disabled type="text" class="form-control" id="nombre_institucion0" name="nombre_institucion0" required maxlength="2">
-                    </div>
-                    <div class="form-group">
-                        <label for="nombre" class="control-label">Código Identificador:</label>
-                        <input disabled type="text" class="form-control" id="codigo0" name="codigo0" required maxlength="45">
-                    </div>
-                    <div class="form-group">
-                        <label for="moneda" class="control-label">Descripción:</label>
-                        <input disabled type="text" class="form-control" id="descripcion0" name="descripcion0" required maxlength="3">
-                    </div>
-                    <div class="form-group">
-                        <label for="capital" class="control-label">Estado:</label>
-                        <input disabled type="text" class="form-control" id="estado0" name="estado0" required maxlength="30"> 
-                    </div>
-                    <div class="form-group">
-                        <label for="continente" class="control-label">Comportamiento:</label>
-                        <input disabled type="text" class="form-control" id="comportamiento0" name="comportamiento0" required maxlength="15">
-                    </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button id="botonPrueba" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                    </div>
-                </div>
-                </div> -->
-
-
-            
+    <center><button style="width: 20%" class="btn btn-success ir-arriba"><i class="fa fa-arrow-up" aria-hidden="true"></i></button></center>
         </div>     
     </div>
 </div>
