@@ -400,9 +400,9 @@ CREATE TABLE IF NOT EXISTS `banco_hstw`.`tarjetas` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-insert into `estados` (`estado_nom`,`pais_id`) values('Aguascalientes', 1),
+insert into `estados` (`estado_id`, `estado_nom`,`pais_id`) values('Aguascalientes', 1),
 ('Baja California', 1),
-('Baja California Sur', 1),
+('Baja California Sur', 2),
 ('Campeche', 1),
 ('Coahuila de Zaragoza', 1),
 ('Colima', 1),

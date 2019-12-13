@@ -27,7 +27,7 @@
                         </select>
                         <div id="asig_num_cli" class="form-group mt-4">
                             <label for="numero_cliente" class="control-label">Número del Cliente:</label>
-                            <input type="text" class="form-control" id="asig_numero_cliente" name="numero_cliente" required maxlength="2">
+                            <input type="text" class="form-control" id="asig_numero_cliente" name="numero_cliente" maxlength="2">
                         </div>
                         <div id="form_asignar_nombre" class="container-fluid mt-5">
                             <div class="row">
