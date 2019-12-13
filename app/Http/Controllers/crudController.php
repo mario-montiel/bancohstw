@@ -42,8 +42,7 @@ class crudController extends Controller
 
     public function crear_cliente(Request $request){
         //  return $request->nue;
-        $x = $request->get("ciudades");
-        return $x;
+     
         $dir = Direccion::create([
            
             'ciudad_id' => $request["ciudades"],
