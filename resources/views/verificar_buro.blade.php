@@ -62,10 +62,16 @@
                             </div>
                         </div>        
                     </div>
+
+                </div>        
+            </div>
+            
+
                     <button id="btn_buro_credito" class="btn btn-primary mt-5 mb-5" type="button">Buscar</button>
             </form>
         </div>
     </div>
+
 
     <!-- CARD DEL USUARIO -->
     <!-- MUESTRA EL ESTADO DEL CLIENTE EN EL BURO DE CRÉDITO -->

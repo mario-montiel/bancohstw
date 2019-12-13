@@ -13,6 +13,6 @@ class Pais extends Model
 
     public function estados()
         {
-            return $this->belongTo(Estado::class, 'pais_id', 'pais_id');
+            return $this->belongsTo(Estado::class, 'pais_id', 'pais_id');
         }
 }

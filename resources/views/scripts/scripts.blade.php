@@ -13,13 +13,19 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
 </head>
 <body>
+{{-- <script src="js/bancohstw/navbar.js"></script> --}}
+
 <script src="js/bancohstw/verificar_buro_credito.js"></script>
-    <!-- <script src="js/bancohstw/navbar.js"></script> -->
+
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->
     
     <!-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script> -->
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script> -->
+
+    <script src="js/bancohstw/tarjetas.js"></script>
+    <script src="js/bancohstw/gestionar_clientes.js"></script>
+
     <script src="js/smooth-scroll.js"></script>
     <script src="js/smooth-scroll.min.js"></script>
     <script src="path/to/smooth-scroll.polyfills.min.js"></script>
@@ -33,5 +39,6 @@
 
 <!-- Get a specific version -->
 <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+
 </body>
 </html>

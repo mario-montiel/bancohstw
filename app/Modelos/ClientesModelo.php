@@ -14,5 +14,7 @@ class ClientesModelo extends Model
     {
         return $this->hasOne('User', 'id', 'cliente_id');
     }
+    function direcciones() {
+        return $this->belongsToMany(Direccion::class, 'direcciones_has_clientes', 'clientes_id','direccion_id')->withPivot("direcciones_direccion_id","clientes_cliente_id");
+    }
 }
- 
