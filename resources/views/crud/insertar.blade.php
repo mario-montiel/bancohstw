@@ -152,19 +152,18 @@
                     <th scope="col">RFC</th>
                     <th scope="col">Colonia</th>
                     <th scope="col">Calle</th>
-                    <th scope="col" style="min-width:100px;">C.P</th>
+                    <th scope="col" style="min-width:100px;">Código Postal <s/th>
                     <th scope="col">Num.Exterior</th>
                     <th scope="col">Num. Interior</th>
-                    <th>Entre calles</th>
+                    <th scope="col">Entre calles</th>
                     <th scope="col">Eliminar</th>
-                    <th scope="col" >Editar</th>
+                    <th scope="col">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($cli as $c)
                   <tr>
                   <td id="id">{{$c->cliente_id}}</td>
-                  {{-- <td>{{$c->name}}</td> --}}
                   <td>{{$c->cli_nom}}</td>
                   <td>{{$c->cli_ap_paterno}}</td>
                   <td>{{$c->cli_ap_materno}}</td>
@@ -200,12 +199,12 @@
                                   </div>
                                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="nombre" value="{{$c->cli_nom}}" >
                                   </div>
-                              <div class="input-group mb-3">
+                              {{-- <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroup-sizing-default">Usuario</span>
                                     </div>
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="usuario" value="{{$c->name}}" disabled >
-                              </div>
+                              </div> --}}
                                       <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                               <span class="input-group-text" id="inputGroup-sizing-default">Apellido paterno</span>
@@ -240,37 +239,37 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Calle</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="calle" required>
+                                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="calle" value="{{$c->direccion_colonia}}" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Colonia</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="colonia" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="colonia" value="{{$c->direccion_calle}}" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">C.P</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="cp" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="cp" value="{{$c->direccion_codigo_postal}}" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Num. interior</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ni" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_int}}" name="ni" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Num. Exterior</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="ne" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_num_ext}}" name="ne" required>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Entre calles</span>
                                         </div>
-                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="entrecalles" required>
+                                            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{$c->direccion_entre_calles}}" name="entrecalles" required>
                                     </div>
                                     <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -285,24 +284,20 @@
                                             <div class="input-group-prepend">
                                               <label class="input-group-text" for="inputGroupSelect01">Estados</label>
                                             </div>
-                                            <select class="custom-select" id="estados">
+                                            <select class="custom-select" id="estados" onchange="gestionar();">
                                                @foreach ($query as $q)
                                             <option value="{{$q->estado_id}}">{{$q->estado_nom}}</option>
                                                @endforeach
-
+            
                                             </select>
                                           </div>
                                           <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                              <label class="input-group-text" for="inputGroupSelect01">Estados</label>
+                                                <div class="input-group-prepend">
+                                                  <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
+                                                </div>
+                                                <select class="custom-select" id="ciudades">
+                                                </select>
                                             </div>
-                                            <select class="custom-select" id="estados">
-                                               @foreach ($query as $q)
-                                            <option value="{{$q->estado_id}}">{{$q->estado_nom}}</option>
-                                               @endforeach
-
-                                            </select>
-                                          </div>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                                       <button type="submit" class="btn btn-primary">Guardar</button>
