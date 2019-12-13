@@ -286,20 +286,20 @@
                                             <div class="input-group-prepend">
                                               <label class="input-group-text" for="inputGroupSelect01">Estados</label>
                                             </div>
-                                            <select class="custom-select" id="estados2" onchange="gestionable();">
+                                            <select class="custom-select" id="estados" onchange="gestionar();">
                                                @foreach ($query as $q)
                                             <option value="{{$q->estado_id}}">{{$q->estado_nom}}</option>
                                                @endforeach
             
                                             </select>
                                           </div>
-                                          <div class="input-group mb-3">
+                                          {{-- <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                   <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
                                                 </div>
-                                                <select class="custom-select" id="ciudades2">
+                                            <select class="custom-select" id="ciudades" data-old="old{{$cli}}" name="ciudades">
                                                 </select>
-                                            </div>
+                                              </div> --}}
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                                       <button type="submit" class="btn btn-primary">Guardar</button>
