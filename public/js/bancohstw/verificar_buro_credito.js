@@ -447,7 +447,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                                             item.tarjeta_numero + "</td><td>" +
                                                             item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                             item.tarjeta_fecha_venc + "</td><td>" +
-                                                            item.tarjeta_estatus + "</td><td>" +
+                                                            item.estatus + "</td><td>" +
                                                         "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
@@ -478,7 +478,7 @@ $('#buscador_verif_curp').on('keyup',function(e){
                                                             item.tarjeta_numero + "</td><td>" +
                                                             item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                             item.tarjeta_fecha_venc + "</td><td>" +
-                                                            item.tarjeta_estatus + "</td><td>" +
+                                                            item.estatus + "</td><td>" +
                                                         "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
@@ -644,7 +644,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                                             item.tarjeta_numero + "</td><td>" +
                                                             item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                             item.tarjeta_fecha_venc + "</td><td>" +
-                                                            item.tarjeta_estatus + "</td><td>" +
+                                                            item.estatus + "</td><td>" +
                                                         "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
@@ -675,7 +675,7 @@ $('#buscador_verif_rfc').on('keyup',function(e){
                                                             item.tarjeta_numero + "</td><td>" +
                                                             item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                             item.tarjeta_fecha_venc + "</td><td>" +
-                                                            item.tarjeta_estatus + "</td><td>" +
+                                                            item.estatus + "</td><td>" +
                                                         "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
