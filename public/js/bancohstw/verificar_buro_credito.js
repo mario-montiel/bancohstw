@@ -141,9 +141,10 @@ $('#verificar_nom_client').on('keyup',function(e){
 					$('#btn_buro_credito').click(function(e){
                         
                         if(data.no != ""){
-                            $('.table_verif_cli').html("");
+                            
 
                             $.each(data, function(i, item) {
+                                $('.table_verif_cli').html("");
                                 if (item.cli_status == "verde"){ 
                                     semaforo = "<center><img src='/img/verde.png' style='height:30px;'></center>"
                                     $('#mensaje_buro').removeAttr('class');
@@ -252,7 +253,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                         item.tarjeta_numero + "</td><td>" +
                                                         item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                         item.tarjeta_fecha_venc + "</td><td>" +
-                                                        item.tarjeta_estatus + "</td><td>" +
+                                                        item.estatus + "</td><td>" +
                                                     "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
@@ -283,7 +284,7 @@ $('#verificar_nom_client').on('keyup',function(e){
                                                         item.tarjeta_numero + "</td><td>" +
                                                         item.tipo_tarjeto_cd_nombre + "</td><td>" +
                                                         item.tarjeta_fecha_venc + "</td><td>" +
-                                                        item.tarjeta_estatus + "</td><td>" +
+                                                        item.estatus + "</td><td>" +
                                                     "</tr>" +
                                                     "</tbody>" +
                                                 "</center></table>" +
