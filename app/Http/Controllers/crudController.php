@@ -118,8 +118,8 @@ class crudController extends Controller
        "direcciones.direccion_colonia", "direcciones.direccion_calle","direcciones.direccion_codigo_postal","direcciones.direccion_num_ext",
         "direcciones.direccion_num_int","direcciones.direccion_entre_calles","clientes.cli_status")
         ->join("direcciones_has_clientes","clientes.cliente_id","=","direcciones_has_clientes.clientes_cliente_id")
-        ->join("direcciones","direcciones.direccion_id","=","direcciones_has_clientes.direcciones_direccion_id")
-        // ->join("users","clientes.user_id", "=", "users.id")
+        ->join("direcciones","direcciones.direccion_id","=","direcciones_has_clientes.direcciones_direccion_id")->where("clientes.cli_status",'=',"amarillo")
+        ->orWhere("clientes.cli_status",'=',"rojo")
         ->get();
         return view("gestion_de_cobranza/gestionar",compact('cli'));
     }
