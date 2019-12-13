@@ -123,13 +123,13 @@
 
                                 </select>
                               </div>
-                              {{-- <div class="input-group mb-3">
+                              <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                       <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
                                     </div>
-                                    <select class="custom-select" id="ciudades">
+                                <select class="custom-select" id="ciudades" data-old="old{{$cli}}" name="ciudades">
                                     </select>
-                                  </div> --}}
+                                  </div>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>
@@ -150,6 +150,7 @@
                     <th scope="col">Fecha de nacimiento</th>
                     <th scope="col">CURP</th>
                     <th scope="col">RFC</th>
+                    <th>Ciudad</th>
                     <th scope="col">Colonia</th>
                     <th scope="col">Calle</th>
                     <th scope="col" style="min-width:100px;">Código Postal </th>
@@ -170,6 +171,7 @@
                   <td>{{$c->cli_fecha_nac}}</td>
                   <td>{{$c->cli_curp}}</td>
                   <td>{{$c->cli_rfc}}</td>
+                  <td>{{$c->ciudad}}</td>
                   <td>{{$c->direccion_colonia}}</td>
                   <td>{{$c->direccion_calle}}</td>
                   <td>{{$c->direccion_codigo_postal}}</td>
@@ -284,20 +286,20 @@
                                             <div class="input-group-prepend">
                                               <label class="input-group-text" for="inputGroupSelect01">Estados</label>
                                             </div>
-                                            <select class="custom-select" id="estados" onchange="gestionar();">
+                                            <select class="custom-select" id="estados2" onchange="gestionable();">
                                                @foreach ($query as $q)
                                             <option value="{{$q->estado_id}}">{{$q->estado_nom}}</option>
                                                @endforeach
             
                                             </select>
                                           </div>
-                                          {{-- <div class="input-group mb-3">
+                                          <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                   <label class="input-group-text" for="inputGroupSelect01">Ciudad</label>
                                                 </div>
-                                                <select class="custom-select" id="ciudades">
+                                                <select class="custom-select" id="ciudades2">
                                                 </select>
-                                            </div> --}}
+                                            </div>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
                                       <button type="submit" class="btn btn-primary">Guardar</button>

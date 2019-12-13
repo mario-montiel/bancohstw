@@ -9,6 +9,17 @@ function gestionar(){
         });
     });
 }
+function gestionable(){
+    $("#estados2").change(function(event){
+        $.get("ciudades/"+event.target.value+"",function(response){
+            for(i=0; i<response.length; i++){
+                console.log(response[i].ciudad_nom);
+                $("#ciudades2").append("<option value='"+response[i].ciudad_id+"'>"+response[i].ciudad_nom+"</option")
+            }
+           
+        });
+    });
+}
     // function gestionar(){
     // var estados = document.getElementById("estados").value
     // $("#estados").change(function(e){

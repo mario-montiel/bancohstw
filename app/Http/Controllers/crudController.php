@@ -31,12 +31,12 @@ class crudController extends Controller
         $cli = DB::table("clientes")
         ->select("clientes.cliente_id", "clientes.cli_nom", "clientes.user_id", "clientes.cli_ap_paterno", "clientes.cli_ap_materno","clientes.cli_fecha_nac","clientes.cli_curp","clientes.cli_rfc",
        "direcciones.direccion_colonia", "direcciones.direccion_calle","direcciones.direccion_codigo_postal","direcciones.direccion_num_ext",
-        "direcciones.direccion_num_int","direcciones.direccion_entre_calles")
+        "direcciones.direccion_num_int","direcciones.direccion_entre_calles","ciudades.ciudad_nom as ciudad")
         ->join("direcciones_has_clientes","clientes.cliente_id","=","direcciones_has_clientes.clientes_cliente_id")
         ->join("direcciones","direcciones.direccion_id","=","direcciones_has_clientes.direcciones_direccion_id")
-        // ->join("users","clientes.user_id", "=", "users.id")
+        ->join("ciudades","direcciones.ciudad_id","=","ciudades.ciudad_id")
         ->get();
-        
+        // return $cli;
         return view('crud/insertar',compact('cli','query'));
     }
 
